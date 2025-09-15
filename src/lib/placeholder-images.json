@@ -156,6 +156,42 @@
       "description": "Avatar for another commenter",
       "imageUrl": "https://i.pravatar.cc/150?u=user2",
       "imageHint": "person portrait"
+    },
+    {
+      "id": "short-1",
+      "description": "Vertical video of Singapore street food",
+      "imageUrl": "https://picsum.photos/seed/short1/270/480",
+      "imageHint": "street food"
+    },
+    {
+      "id": "short-2",
+      "description": "Vertical video of Gardens by the Bay",
+      "imageUrl": "https://picsum.photos/seed/short2/270/480",
+      "imageHint": "gardens night"
+    },
+    {
+      "id": "short-3",
+      "description": "Vertical video of Merlion Park",
+      "imageUrl": "https://picsum.photos/seed/short3/270/480",
+      "imageHint": "city landmark"
+    },
+    {
+      "id": "short-4",
+      "description": "Funny cat vertical video",
+      "imageUrl": "https://picsum.photos/seed/short4/270/480",
+      "imageHint": "funny cat"
+    },
+    {
+      "id": "short-5",
+      "description": "Dance challenge vertical video",
+      "imageUrl": "https://picsum.photos/seed/short5/270/480",
+      "imageHint": "dancing people"
+    },
+    {
+      "id": "short-6",
+      "description": "DIY art and craft vertical video",
+      "imageUrl": "https://picsum.photos/seed/short6/270/480",
+      "imageHint": "art craft"
     }
   ]
 }
