@@ -25,8 +25,8 @@ const moreDramas = [
 const justForYou = [
     { id: 'made-for-you-1', title: 'For You Mix' },
     { id: 'made-for-you-2', title: 'Lofi Beats' },
-    { id: 'made-for-you-3', title: 'Discovery' },
-    { id: 'made-for-you-4', title: 'New Releases' },
+    { id: 'made-for-you-3', 'title': 'Discovery' },
+    { id: 'made-for-you-4', 'title': 'New Releases' },
 ]
 
 const trendingNow = [
