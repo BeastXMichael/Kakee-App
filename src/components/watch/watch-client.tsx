@@ -141,7 +141,7 @@ export default function WatchClient() {
                                     const image = PlaceHolderImages.find(img => img.id === short.id);
                                     return (
                                         <button onClick={openPlayer} key={short.id} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={short.imageUrl} alt={short.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[9/16] object-cover" data-ai-hint={image.imageHint}/>}
+                                            {image && <Image src={image.imageUrl} alt={short.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[9/16] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-xs font-semibold">{short.title}</p>
                                         </button>
                                     );
@@ -199,3 +199,5 @@ export default function WatchClient() {
         </div>
     );
 }
+
+    
