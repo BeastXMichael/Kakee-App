@@ -102,6 +102,11 @@ export default {
             from: { transform: 'rotate(0deg)' },
             to: { transform: 'rotate(1080deg)' },
         },
+        'vote-pop': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.3) rotate(-10deg)' },
+          '100%': { transform: 'scale(1)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -110,6 +115,7 @@ export default {
         'radiant-glow': 'radiant-glow 15s ease-in-out infinite',
         'chest-glow': 'chest-glow 2s ease-in-out infinite',
         'wheel-spin': 'wheel-spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+        'vote-pop': 'vote-pop 0.5s ease-in-out',
       },
     },
   },
