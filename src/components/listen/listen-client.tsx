@@ -14,12 +14,24 @@ const madeForYouItems = [
     { id: 'made-for-you-4', title: 'New Releases' },
     { id: 'made-for-you-5', title: 'Indie Rock' },
     { id: 'made-for-you-6', title: 'Happy Hits' },
+    { id: 'radio-1', title: 'Chill Mix' },
+    { id: 'radio-2', title: 'Focus Flow' },
 ];
 
 const favoriteRadios = [
     { id: 'radio-1', title: 'For You Mix', playing: 'Blinding Lights', playingIcon: true },
     { id: 'radio-2', title: 'Lofi Beats', playing: 'a ku ka' },
     { id: 'radio-3', title: 'Happy Hits', playing: 'Good Days' },
+    { id: 'trending-1', title: 'Top Hits', playing: 'Espresso' },
+];
+
+const morePlaylists = [
+    { id: 'trending-1', title: 'Top Hits', description: 'The biggest tracks right now.' },
+    { id: 'trending-2', title: 'Viral 50', description: 'The songs blowing up online.' },
+    { id: 'trending-3', title: 'Global Hits', description: 'Top tracks from around the world.' },
+    { id: 'made-for-you-5', title: 'Indie Rock', description: 'The best of modern indie.' },
+    { id: 'made-for-you-6', title: 'Happy Hits', description: 'Feel-good tracks for a great day.' },
+    { id: 'recently-1', title: 'Study Beats', description: 'Instrumental beats to help you focus.' },
 ];
 
 type ListenClientProps = {
@@ -94,7 +106,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                     <div className="space-y-8 py-6 pb-24">
                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Your Favorite Radios</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar px-4">
+                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-8">
                                 {favoriteRadios.map(radio => {
                                     const image = PlaceHolderImages.find(img => img.id === radio.id);
                                     return (
@@ -115,7 +127,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
 
                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Trending Now</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar px-4">
+                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-8">
                                 {trendingNow.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return(
@@ -125,6 +137,26 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                             </div>
                                             <p className="text-sm font-semibold truncate">{item.title}</p>
                                             <p className="text-xs text-gray-500 truncate">Now Playing: {item.playing}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                         <div>
+                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">More Playlists</h2>
+                            <div className="px-4 space-y-2">
+                                {morePlaylists.map(item => {
+                                    const image = PlaceHolderImages.find(img => img.id === item.id);
+                                    return(
+                                        <div key={item.id} className="flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100/50">
+                                            <div className="w-16 h-16 rounded-lg shadow-md aspect-square overflow-hidden flex-shrink-0">
+                                                {image && <Image src={image.imageUrl} alt={item.title} width={64} height={64} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
+                                            </div>
+                                            <div>
+                                                <p className="font-bold truncate">{item.title}</p>
+                                                <p className="text-sm text-gray-600 truncate">{item.description}</p>
+                                            </div>
                                         </div>
                                     );
                                 })}

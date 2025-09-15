@@ -23,7 +23,7 @@ export default function DailySpinCard() {
     };
 
     return (
-        <div className="mt-3 bg-white/60 p-3 rounded-2xl shadow-sm border border-white/50 backdrop-blur-sm flex items-center space-x-3">
+        <div className="mt-3 bg-white/60 p-3 rounded-2xl shadow-sm border border-white/50 backdrop-blur-sm flex items-center space-x-3 flex-shrink-0">
             <div className="relative w-16 h-16 flex-shrink-0">
                 <DailySpinWheelIcon className={cn('w-full h-full', isSpinning && 'animate-wheel-spin')} />
             </div>

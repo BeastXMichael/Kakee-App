@@ -9,26 +9,27 @@ import { getPersonalizedHomeRecommendations } from '@/ai/flows/personalized-home
 async function RecentlyForYou() {
     // This is a mock implementation. In a real app, you'd pass actual user data.
     const recommendations = await getPersonalizedHomeRecommendations({
-        viewingHistory: ['video1'],
-        listeningHistory: ['song1'],
+        viewingHistory: ['video1', 'video2', 'video3'],
+        listeningHistory: ['song1', 'song2'],
         userRank: 'General'
     });
 
-    const contentMap = {
+    const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
         'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'recently-1'),
         'From HDB to CEO': PlaceHolderImages.find(img => img.id === 'recently-2'),
+        'Chill Mix': PlaceHolderImages.find(img => img.id === 'made-for-you-1'),
+        'Indie Wave': PlaceHolderImages.find(img => img.id === 'made-for-you-5'),
     };
     
     // In a real app, you would fetch content details based on IDs.
-    // For this mock, we'll just use the default images.
-    const recommendedContent = (recommendations.recommendedContent.length > 0 ? recommendations.recommendedContent : ['Lofi Beats Radio', 'From HDB to CEO']).slice(0, 2);
+    const recommendedContent = (recommendations.recommendedContent.length > 0 ? recommendations.recommendedContent : ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave']).slice(0, 4);
 
     return (
         <div className="flex-shrink-0">
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Recently for You</h2>
             <div className="grid grid-cols-2 gap-3">
                 {recommendedContent.map((title, index) => {
-                    const content = contentMap[title as keyof typeof contentMap] || Object.values(contentMap)[index];
+                    const content = contentMap[title] || Object.values(contentMap)[index % Object.keys(contentMap).length];
                     return (
                         <div key={index} className="space-y-1.5">
                             {content && (
@@ -56,11 +57,14 @@ function LatestDrops() {
         PlaceHolderImages.find(img => img.id === 'drops-1'),
         PlaceHolderImages.find(img => img.id === 'drops-2'),
         PlaceHolderImages.find(img => img.id === 'drops-3'),
+        PlaceHolderImages.find(img => img.id === 'new-drama-1'),
+        PlaceHolderImages.find(img => img.id === 'new-drama-2'),
+        PlaceHolderImages.find(img => img.id === 'new-drama-3'),
     ].filter(Boolean);
-    const titles = ["Ah Beng's Guide", "New Lobang!", "New Game!"];
+    const titles = ["Ah Beng's Guide", "New Lobang!", "New Game!", "Secret Kopi Stall", "Ah Beng's Galaxy", "Last Mama Shop"];
 
     return (
-        <div className="mt-auto">
+        <div className="flex-shrink-0">
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest Drops</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((drop, index) => (
@@ -83,7 +87,7 @@ function LatestDrops() {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col h-full bg-background relative overflow-hidden">
+    <div className="flex flex-col h-full bg-background relative">
       <div className="absolute inset-0 z-0 radiant-background-home animate-radiant-glow"></div>
       
       <header className="p-4 flex justify-between items-center z-10 flex-shrink-0">
@@ -103,7 +107,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="p-4 pt-0 flex-grow bg-transparent z-10 flex flex-col">
+      <main className="px-4 pt-0 flex-grow bg-transparent z-10 flex flex-col overflow-y-auto no-scrollbar">
         <div className="text-center my-2 flex-shrink-0">
           <ProfileAvatar />
         </div>
@@ -115,9 +119,10 @@ export default function HomePage() {
             <Button size="sm" className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</Button>
         </div>
 
-        <div className="flex-grow flex flex-col space-y-4">
+        <div className="flex-grow flex flex-col space-y-6 pb-4">
           <RecentlyForYou />
           <LatestDrops />
+          <RecentlyForYou />
         </div>
       </main>
     </div>

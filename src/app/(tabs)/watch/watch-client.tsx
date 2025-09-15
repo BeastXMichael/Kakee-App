@@ -15,6 +15,13 @@ const dramas = [
     { id: 'new-drama-3', title: 'The Last Mama Shop' },
 ];
 
+const moreDramas = [
+    { id: 'drops-1', title: 'Ah Beng\'s Guide' },
+    { id: 'drops-2', title: 'New Lobang!' },
+    { id: 'drops-3', title: 'New Game!' },
+    { id: 'recently-1', title: 'Lofi Beats Radio' },
+];
+
 export default function WatchClient() {
     const [showSearch, setShowSearch] = useState(false);
     const [showPlayer, setShowPlayer] = useState(false);
@@ -27,7 +34,7 @@ export default function WatchClient() {
     const closeSearch = () => setShowSearch(false);
 
     return (
-        <div className="h-full bg-white flex flex-col relative">
+        <div className="h-full bg-white flex flex-col relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-sky-200 via-cyan-100 to-transparent z-0"></div>
             
             <header className="p-4 pt-6 flex-shrink-0 z-10 relative">
@@ -46,8 +53,8 @@ export default function WatchClient() {
                 </div>
             </header>
 
-            <main className="flex-grow flex flex-col px-4 pt-2 pb-4 z-10 relative">
-                <div className="space-y-4 flex flex-col flex-grow">
+            <main className="flex-grow flex flex-col px-4 pt-2 pb-4 z-10 relative overflow-y-auto no-scrollbar">
+                <div className="space-y-8 flex flex-col flex-grow">
                     <div>
                         <h2 className="font-bold text-xl mb-3 text-gray-800">Recently Watched</h2>
                         <button onClick={openPlayer} className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden">
@@ -59,14 +66,28 @@ export default function WatchClient() {
                             </div>
                         </button>
                     </div>
-                    <div className="mt-auto">
+                    <div>
                         <h2 className="font-bold text-xl mb-3 text-gray-800">Newly Released</h2>
-                        <div className="flex space-x-4 overflow-x-auto no-scrollbar">
+                        <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                             {dramas.map(drama => {
                                 const image = PlaceHolderImages.find(img => img.id === drama.id);
                                 return (
                                     <button onClick={openPlayer} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left">
                                         {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
+                                        <p className="text-sm font-semibold">{drama.title}</p>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                     <div>
+                        <h2 className="font-bold text-xl mb-3 text-gray-800">More Dramas</h2>
+                        <div className="grid grid-cols-2 gap-4">
+                            {moreDramas.concat(moreDramas).map((drama, index) => {
+                                const image = PlaceHolderImages.find(img => img.id === drama.id);
+                                return (
+                                    <button onClick={openPlayer} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left">
+                                        {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
                                         <p className="text-sm font-semibold">{drama.title}</p>
                                     </button>
                                 );
