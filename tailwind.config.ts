@@ -3,15 +3,14 @@ import type {Config} from 'tailwindcss';
 export default {
   darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Poppins', 'sans-serif'],
+        headline: ['Poppins', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -55,16 +54,6 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -88,10 +77,39 @@ export default {
             height: '0',
           },
         },
+        spin: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        'radiant-glow': {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
+        },
+        'chest-glow': {
+          '0%, 100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
+          '50%': { transform: 'scale(1.05)', filter: 'drop-shadow(0 0 15px hsl(var(--primary)))' },
+        },
+        wave: {
+          '0%': { transform: 'scaleY(.3)' },
+          '20%': { transform: 'scaleY(1)' },
+          '40%': { transform: 'scaleY(.5)' },
+          '60%': { transform: 'scaleY(.85)' },
+          '80%': { transform: 'scaleY(.4)' },
+          '100%': { transform: 'scaleY(.9)' },
+        },
+        'wheel-spin': {
+            from: { transform: 'rotate(0deg)' },
+            to: { transform: 'rotate(1080deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        spin: 'spin 20s linear infinite',
+        'radiant-glow': 'radiant-glow 15s ease-in-out infinite',
+        'chest-glow': 'chest-glow 2s ease-in-out infinite',
+        'wheel-spin': 'wheel-spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
       },
     },
   },

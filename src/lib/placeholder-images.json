@@ -1,3 +1,161 @@
+
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar",
+      "description": "User avatar for profile",
+      "imageUrl": "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+      "imageHint": "portrait person"
+    },
+    {
+      "id": "recently-1",
+      "description": "Lofi Beats Radio cover",
+      "imageUrl": "https://picsum.photos/seed/recent1/400/231",
+      "imageHint": "music study"
+    },
+    {
+      "id": "recently-2",
+      "description": "From HDB to CEO cover",
+      "imageUrl": "https://picsum.photos/seed/recent2/400/231",
+      "imageHint": "city skyline"
+    },
+    {
+      "id": "drops-1",
+      "description": "Ah Beng's Guide cover",
+      "imageUrl": "https://picsum.photos/seed/drops1/200/300",
+      "imageHint": "street style"
+    },
+    {
+      "id": "drops-2",
+      "description": "New Lobang! cover",
+      "imageUrl": "https://picsum.photos/seed/drops2/200/300",
+      "imageHint": "shopping sale"
+    },
+    {
+      "id": "drops-3",
+      "description": "New Game! cover",
+      "imageUrl": "https://picsum.photos/seed/drops3/200/300",
+      "imageHint": "video game"
+    },
+    {
+      "id": "made-for-you-1",
+      "description": "For You Mix",
+      "imageUrl": "https://picsum.photos/seed/mix1/100/100",
+      "imageHint": "abstract gradient"
+    },
+    {
+      "id": "made-for-you-2",
+      "description": "Lofi Beats",
+      "imageUrl": "https://picsum.photos/seed/mix2/100/100",
+      "imageHint": "moody landscape"
+    },
+    {
+      "id": "made-for-you-3",
+      "description": "Discovery",
+      "imageUrl": "https://picsum.photos/seed/mix3/100/100",
+      "imageHint": "galaxy stars"
+    },
+    {
+      "id": "made-for-you-4",
+      "description": "New Releases",
+      "imageUrl": "https://picsum.photos/seed/mix4/100/100",
+      "imageHint": "bright lights"
+    },
+    {
+      "id": "made-for-you-5",
+      "description": "Indie Rock",
+      "imageUrl": "https://picsum.photos/seed/mix5/100/100",
+      "imageHint": "concert crowd"
+    },
+    {
+      "id": "made-for-you-6",
+      "description": "Happy Hits",
+      "imageUrl": "https://picsum.photos/seed/mix6/100/100",
+      "imageHint": "summer beach"
+    },
+    {
+      "id": "radio-1",
+      "description": "For You Mix radio cover",
+      "imageUrl": "https://picsum.photos/seed/radio1/400/400",
+      "imageHint": "abstract art"
+    },
+    {
+      "id": "radio-2",
+      "description": "Lofi Beats radio cover",
+      "imageUrl": "https://picsum.photos/seed/radio2/400/400",
+      "imageHint": "rainy window"
+    },
+    {
+      "id": "radio-3",
+      "description": "Happy Hits radio cover",
+      "imageUrl": "https://picsum.photos/seed/radio3/400/400",
+      "imageHint": "sunflower field"
+    },
+    {
+      "id": "trending-1",
+      "description": "Top Hits trending cover",
+      "imageUrl": "https://picsum.photos/seed/trend1/400/400",
+      "imageHint": "neon sign"
+    },
+    {
+      "id": "trending-2",
+      "description": "Viral 50 trending cover",
+      "imageUrl": "https://picsum.photos/seed/trend2/400/400",
+      "imageHint": "fireworks night"
+    },
+    {
+      "id": "trending-3",
+      "description": "Global Hits trending cover",
+      "imageUrl": "https://picsum.photos/seed/trend3/400/400",
+      "imageHint": "earth space"
+    },
+    {
+      "id": "now-playing-art",
+      "description": "Blinding Lights album art",
+      "imageUrl": "https://picsum.photos/seed/blindinglights/100/100",
+      "imageHint": "city lights"
+    },
+    {
+      "id": "recently-watched",
+      "description": "From HDB to CEO drama poster",
+      "imageUrl": "https://picsum.photos/seed/hdbceo/800/450",
+      "imageHint": "office building"
+    },
+    {
+      "id": "new-drama-1",
+      "description": "My Secret Kopi Stall Romance drama poster",
+      "imageUrl": "https://picsum.photos/seed/drama1/200/300",
+      "imageHint": "coffee shop"
+    },
+    {
+      "id": "new-drama-2",
+      "description": "Ah Beng's Guide to the Galaxy drama poster",
+      "imageUrl": "https://picsum.photos/seed/drama2/200/300",
+      "imageHint": "night sky"
+    },
+    {
+      "id": "new-drama-3",
+      "description": "The Last Mama Shop drama poster",
+      "imageUrl": "https://picsum.photos/seed/drama3/200/300",
+      "imageHint": "vintage storefront"
+    },
+    {
+      "id": "player-background",
+      "description": "Background image for the video player",
+      "imageUrl": "https://picsum.photos/seed/playerbg/600/1200",
+      "imageHint": "singapore night"
+    },
+    {
+      "id": "commenter-1",
+      "description": "Avatar for a commenter",
+      "imageUrl": "https://i.pravatar.cc/150?u=user1",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "commenter-2",
+      "description": "Avatar for another commenter",
+      "imageUrl": "https://i.pravatar.cc/150?u=user2",
+      "imageHint": "person portrait"
+    }
+  ]
 }
