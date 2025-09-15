@@ -95,7 +95,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                       {madeForYouItems.map(item => {
                         const image = PlaceHolderImages.find(img => img.id === item.id);
                         return (
-                          <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden">
+                          <div key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden transition-transform duration-200 hover:scale-105 cursor-pointer">
                             {image && <Image src={image.imageUrl} alt={item.title} width={48} height={48} className="w-12 h-12 flex-shrink-0" data-ai-hint={image.imageHint} />}
                             <p className="text-xs font-bold truncate pr-2">{item.title}</p>
                           </div>
@@ -110,7 +110,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                 {favoriteRadios.map(radio => {
                                     const image = PlaceHolderImages.find(img => img.id === radio.id);
                                     return (
-                                        <div key={radio.id} className="w-40 flex-shrink-0 space-y-2">
+                                        <div key={radio.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                             <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
                                                 {image && <Image src={image.imageUrl} alt={radio.title} width={160} height={160} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                             </div>
@@ -131,7 +131,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                 {trendingNow.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return(
-                                        <div key={item.id} className="w-32 flex-shrink-0 space-y-2">
+                                        <div key={item.id} className="w-32 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                             <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
                                             {image && <Image src={image.imageUrl} alt={item.title} width={128} height={128} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                             </div>
@@ -149,7 +149,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                 {morePlaylists.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return(
-                                        <div key={item.id} className="flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100/50">
+                                        <div key={item.id} className="flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100/50 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                             <div className="w-16 h-16 rounded-lg shadow-md aspect-square overflow-hidden flex-shrink-0">
                                                 {image && <Image src={image.imageUrl} alt={item.title} width={64} height={64} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                             </div>

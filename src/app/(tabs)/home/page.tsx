@@ -31,7 +31,7 @@ async function RecentlyForYou() {
                 {recommendedContent.map((title, index) => {
                     const content = contentMap[title] || Object.values(contentMap)[index % Object.keys(contentMap).length];
                     return (
-                        <div key={index} className="space-y-1.5">
+                        <div key={index} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
                             {content && (
                                 <Image
                                     src={content.imageUrl}
@@ -68,7 +68,7 @@ function LatestDrops() {
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest Drops</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((drop, index) => (
-                    <div key={drop!.id} className="space-y-1.5">
+                    <div key={drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
                         <Image
                             src={drop!.imageUrl}
                             alt={drop!.description}

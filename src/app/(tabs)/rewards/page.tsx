@@ -22,7 +22,7 @@ const games = [
 
 export default function RewardsPage() {
   return (
-    <div className="flex flex-col h-full bg-background relative overflow-hidden">
+    <div className="flex flex-col h-full bg-background relative">
       <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-amber-200 via-yellow-100 to-background z-0"></div>
       
       <div className="relative z-10 flex flex-col h-full">
@@ -47,7 +47,7 @@ export default function RewardsPage() {
             <h2 className="font-bold text-lg mb-2 text-gray-800">Exclusive Lobangs</h2>
             <div className="grid grid-cols-2 gap-3">
               {lobangs.map((lobang, index) => (
-                <Card key={index} className="shadow-md aspect-[4/3] overflow-hidden border-0">
+                <Card key={index} className="shadow-md aspect-[4/3] overflow-hidden border-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
                   <CardContent className={`bg-gradient-to-br ${lobang.gradient} flex flex-col items-center justify-center p-2 text-white text-center h-full`}>
                     <lobang.icon className="w-8 h-8" />
                     <p className="font-bold text-xs mt-1 text-shadow">{lobang.text}</p>
@@ -61,7 +61,7 @@ export default function RewardsPage() {
             <h2 className="font-bold text-lg mb-2 text-gray-800">Mini-Games Arcade</h2>
             <div className="grid grid-cols-2 gap-3">
               {games.map((game, index) => (
-                <Card key={index} className="shadow-md aspect-video overflow-hidden border-0">
+                <Card key={index} className="shadow-md aspect-video overflow-hidden border-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
                   <CardContent className={`bg-gradient-to-br ${game.gradient} flex flex-col items-center justify-center p-2 text-white text-center h-full`}>
                      <game.icon className="w-8 h-8" />
                      <p className="font-bold text-[10px] mt-1 text-shadow">{game.text}</p>
