@@ -111,6 +111,15 @@ export default {
           '0%': { transform: 'translate(0, 0)' },
           '50%': { transform: 'translate(5px, -2.5px)' },
           '100%': { transform: 'translate(0, 0)' },
+        },
+        'note-fall': {
+            '0%': { transform: 'translateY(-100%) scale(0.5)', opacity: '0' },
+            '20%': { transform: 'translateY(-80%) scale(0.7)', opacity: '1' },
+            '100%': { transform: 'translateY(2000%) scale(1.5)', opacity: '0' },
+        },
+        'grid-bg': {
+            '0%': { 'background-position': '0 0' },
+            '100%': { 'background-position': '0 40px' },
         }
       },
       animation: {
@@ -121,7 +130,15 @@ export default {
         'chest-glow': 'chest-glow 2s ease-in-out infinite',
         'wheel-spin': 'wheel-spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
         'vote-pop': 'vote-pop 0.5s ease-in-out',
+        'note-fall': 'note-fall 4s linear infinite',
+        'grid-bg': 'grid-bg 2s linear infinite',
       },
+      backgroundImage: {
+        'grid-pink-500/10': "linear-gradient(theme(colors.pink.500 / 0.1) 1px, transparent 1px), linear-gradient(to right, theme(colors.pink.500 / 0.1) 1px, transparent 1px)",
+      },
+      backgroundSize: {
+        '40px': '40px 40px',
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],

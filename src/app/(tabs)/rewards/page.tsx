@@ -3,6 +3,8 @@ import DailySpinCard from '@/components/rewards/daily-spin-card';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { StreamsRouletteIcon, LyricLegendIcon, KakeeBeatsIcon, GuessTheSongIcon } from '@/components/icons';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 const lobangs = [
   { icon: Coffee, text: "1-for-1 Coffee", gradient: "from-green-400 to-teal-500" },
@@ -12,12 +14,12 @@ const lobangs = [
 ];
 
 const games = [
-  { icon: StreamsRouletteIcon, text: "Streams Roulette", gradient: "from-purple-500 to-indigo-500" },
-  { icon: LyricLegendIcon, text: "Lyric Legend", gradient: "from-cyan-500 to-teal-500" },
-  { icon: KakeeBeatsIcon, text: "Kakee Beats", gradient: "from-pink-500 to-rose-500" },
-  { icon: GuessTheSongIcon, text: "Guess the Song", gradient: "from-sky-500 to-blue-500" },
-  { icon: Gamepad2, text: "Arcade Master", gradient: "from-violet-500 to-fuchsia-500" },
-  { icon: Headphones, text: "Audio Ace", gradient: "from-lime-500 to-emerald-500" },
+  { id: 'streams-roulette', icon: StreamsRouletteIcon, text: "Streams Roulette", gradient: "from-purple-500 to-indigo-500" },
+  { id: 'lyric-legend', icon: LyricLegendIcon, text: "Lyric Legend", gradient: "from-cyan-500 to-teal-500" },
+  { id: 'kakee-beats', icon: KakeeBeatsIcon, text: "Kakee Beats", gradient: "from-pink-500 to-rose-500" },
+  { id: 'guess-the-song', icon: GuessTheSongIcon, text: "Guess the Song", gradient: "from-sky-500 to-blue-500" },
+  { id: 'arcade-master', icon: Gamepad2, text: "Arcade Master", gradient: "from-violet-500 to-fuchsia-500" },
+  { id: 'audio-ace', icon: Headphones, text: "Audio Ace", gradient: "from-lime-500 to-emerald-500" },
 ];
 
 export default function RewardsPage() {
@@ -60,13 +62,15 @@ export default function RewardsPage() {
           <div className="mt-4 pb-4">
             <h2 className="font-bold text-lg mb-2 text-gray-800">Mini-Games Arcade</h2>
             <div className="grid grid-cols-2 gap-3">
-              {games.map((game, index) => (
-                <Card key={index} className="shadow-md aspect-video overflow-hidden border-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                  <CardContent className={`bg-gradient-to-br ${game.gradient} flex flex-col items-center justify-center p-2 text-white text-center h-full`}>
-                     <game.icon className="w-8 h-8" />
-                     <p className="font-bold text-[10px] mt-1 text-shadow">{game.text}</p>
-                  </CardContent>
-                </Card>
+              {games.map((game) => (
+                <Link href={`/rewards/${game.id}`} key={game.id}>
+                  <Card className="shadow-md aspect-video overflow-hidden border-0 transition-transform duration-200 hover:scale-105 cursor-pointer h-full">
+                    <CardContent className={cn("bg-gradient-to-br flex flex-col items-center justify-center p-2 text-white text-center h-full", game.gradient)}>
+                      <game.icon className="w-8 h-8" />
+                      <p className="font-bold text-[10px] mt-1 text-shadow">{game.text}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
