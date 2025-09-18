@@ -118,15 +118,17 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
 
                         <div className="space-y-4">
                              <h2 className="font-bold text-xl text-gray-800">For You</h2>
-                             <div className="grid grid-cols-2 gap-4">
+                             <div className="grid grid-cols-1 gap-4">
                                 {allLongFormContent.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
-                                    const isVertical = ['short', 'drama'].includes(item.type) && item.id.includes('drama') && !item.id.includes('k-drama');
                                     
                                     return (
                                         <Link href={getHref(item)} key={`${item.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={image.imageUrl} alt={item.title} width={400} height={225} className={`w-full h-auto rounded-lg shadow-md object-cover ${isVertical ? 'aspect-[2/3]' : 'aspect-video'}`} data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{item.title}</p>
+                                            {image && <Image src={image.imageUrl} alt={item.title} width={400} height={225} className={`w-full h-auto rounded-lg shadow-md object-cover aspect-video`} data-ai-hint={image.imageHint}/>}
+                                            <div>
+                                              <p className="text-sm font-semibold">{item.title}</p>
+                                              <p className="text-xs text-gray-500">{item.category}</p>
+                                            </div>
                                         </Link>
                                     );
                                 })}
