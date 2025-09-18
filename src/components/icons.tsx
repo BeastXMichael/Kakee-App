@@ -1,7 +1,7 @@
 
 import type { SVGProps } from 'react';
 import { cn } from "@/lib/utils"
-import { Music2, Share2, UserPlus, MapPin, KeyRound, GraduationCap, Building } from 'lucide-react';
+import { Music2, Share2, UserPlus, MapPin, KeyRound, GraduationCap, Building, Lock } from 'lucide-react';
 
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -200,4 +200,32 @@ export function TenantIcon(props: SVGProps<SVGSVGElement>) {
 }
 export function FreshmanIcon(props: SVGProps<SVGSVGElement>) {
   return <GraduationCap {...props} />
+}
+
+export const GeneralFrameAnimated = (props: SVGProps<SVGSVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" {...props}>
+    <circle cx="20" cy="20" r="18" stroke="url(#g-frame-select)" strokeWidth="2.5"/>
+    <defs>
+      <linearGradient id="g-frame-select" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#F87171" />
+        <stop offset="100%" stopColor="#FDE047" />
+      </linearGradient>
+    </defs>
+  </svg>
+)
+
+export function GeneralPackEmojis() {
+    return (
+        <div className="flex items-center justify-around p-2">
+            <span className="text-2xl">👑</span>
+            <span className="text-2xl">😎</span>
+            <span className="text-2xl">🔥</span>
+            <span className="text-2xl">💯</span>
+            <span className="text-2xl">💎</span>
+        </div>
+    )
+}
+
+export function LockIcon(props: SVGProps<SVGSVGElement>) {
+    return <Lock {...props} />
 }

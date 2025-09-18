@@ -13,6 +13,7 @@ import WelcomeGiftDialog from '@/components/home/welcome-gift-dialog';
 import { Shield, Sparkles, Trophy } from 'lucide-react';
 import QuestsSheet from '@/components/home/quests-sheet';
 import RankSheet from '@/components/home/rank-sheet';
+import BenefitsSheet from '@/components/home/benefits-sheet';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -152,6 +153,7 @@ export default function HomePage() {
   const [showWelcomeGift, setShowWelcomeGift] = useState(false);
   const [showQuests, setShowQuests] = useState(false);
   const [showRank, setShowRank] = useState(false);
+  const [showBenefits, setShowBenefits] = useState(false);
   
   useEffect(() => {
     const hasSeenWelcomeGift = sessionStorage.getItem('hasSeenWelcomeGift');
@@ -206,10 +208,10 @@ export default function HomePage() {
                 <Shield className="w-6 h-6 text-rose-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Rank</span>
             </button>
-             <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+             <button onClick={() => setShowBenefits(true)} className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
                 <Sparkles className="w-6 h-6 text-violet-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Benefits</span>
-            </Link>
+            </button>
         </div>
 
         <div className="flex-grow flex flex-col space-y-6 pb-4">
@@ -223,6 +225,7 @@ export default function HomePage() {
     <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
     <QuestsSheet open={showQuests} onOpenChange={setShowQuests} />
     <RankSheet open={showRank} onOpenChange={setShowRank} />
+    <BenefitsSheet open={showBenefits} onOpenChange={setShowBenefits} />
     </>
   );
 }
