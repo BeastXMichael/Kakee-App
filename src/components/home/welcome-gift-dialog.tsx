@@ -10,7 +10,6 @@ import {
 import { KoinIcon } from '../icons';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
-import Confetti from '../effects/confetti';
 
 type WelcomeGiftDialogProps = {
   open: boolean;
@@ -31,11 +30,10 @@ export default function WelcomeGiftDialog({ open, onOpenChange }: WelcomeGiftDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] bg-background border-none shadow-2xl rounded-2xl p-0 overflow-hidden">
-        {open && <Confetti />}
         <div className="p-8 text-center flex flex-col items-center relative">
-            <Sparkles className="w-8 h-8 text-yellow-400 absolute top-4 left-4 animate-pulse" />
-            <Sparkles className="w-6 h-6 text-pink-400 absolute top-16 right-8 animate-pulse [animation-delay:0.5s]" />
-            <Sparkles className="w-10 h-10 text-cyan-400 absolute bottom-24 left-8 animate-pulse [animation-delay:1s]" />
+            <Sparkles className="w-8 h-8 text-yellow-400 absolute top-4 left-4 animate-glow" />
+            <Sparkles className="w-6 h-6 text-pink-400 absolute top-16 right-8 animate-glow [animation-delay:0.5s]" />
+            <Sparkles className="w-10 h-10 text-cyan-400 absolute bottom-24 left-8 animate-glow [animation-delay:1s]" />
 
             <p className="font-bold text-sm text-muted-foreground z-10">A SPECIAL PARTNERSHIP</p>
             <h2 className="text-2xl font-extrabold text-primary-foreground my-2 z-10">NTU x Kakee: Thank You!</h2>
@@ -43,8 +41,8 @@ export default function WelcomeGiftDialog({ open, onOpenChange }: WelcomeGiftDia
             <Image 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEqgZEkPp9_S629UQkF2Z7bxeINuzqn89pw&s" 
                 alt="NTU x Kakee Partnership"
-                width={160}
-                height={100}
+                width={200}
+                height={125}
                 className="my-4 rounded-lg z-10"
             />
 

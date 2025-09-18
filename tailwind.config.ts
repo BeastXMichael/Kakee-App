@@ -87,6 +87,10 @@ export default {
           '50%': { 'background-position': '100% 50%' },
           '100%': { 'background-position': '0% 50%' },
         },
+        glow: {
+          '0%, 100%': { filter: 'drop-shadow(0 0 2px hsl(var(--primary) / 0.8))' },
+          '50%': { filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 1))' },
+        },
         'chest-glow': {
           '0%, 100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
           '50%': { transform: 'scale(1.05)', filter: 'drop-shadow(0 0 15px hsl(var(--primary)))' },
@@ -130,11 +134,7 @@ export default {
           '0%': { left: '0%', transform: 'translateX(-100%)' },
           '100%': { left: '100%', transform: 'translateX(0%)' },
         },
-        'card-pulse': {
-            '0%, 100%': { transform: 'scale(1)' },
-            '50%': { transform: 'scale(1.02)' }
-        },
-        'shine': {
+        shine: {
             '0%': { 'background-position': '-200% 0' },
             '100%': { 'background-position': '200% 0' },
         },
@@ -142,10 +142,10 @@ export default {
           '0%, 100%': { opacity: '0.7' },
           '50%': { opacity: '1' },
         },
-        'confetti-fall': {
-          '0%': { transform: 'translateY(-100%) rotate(0deg)', opacity: '1' },
-          '100%': { transform: 'translateY(100vh) rotate(360deg)', opacity: '0' },
-        },
+        'card-pulse': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.02)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -160,9 +160,10 @@ export default {
         'grid-bg': 'grid-bg 2s linear infinite',
         'score-popup': 'score-popup 1s ease-out forwards',
         'laser-scan': 'laser-scan 2s ease-in-out infinite alternate',
-        'shine': 'shine 1.5s infinite linear',
+        shine: 'shine 1.5s infinite linear',
         'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'confetti-fall': 'confetti-fall 7s linear infinite',
+        glow: 'glow 2.5s ease-in-out infinite',
+        'card-pulse': 'card-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',
