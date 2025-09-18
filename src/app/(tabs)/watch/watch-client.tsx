@@ -96,7 +96,7 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
                                 {trendingDramas.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
-                                        <Link href={`/watch/drama/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                        <Link href={`/watch/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
                                         </Link>
