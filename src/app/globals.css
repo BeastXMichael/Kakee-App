@@ -81,6 +81,9 @@
                   radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.1), transparent 50%);
       background-size: 200% 200%;
   }
+  .bg-rank-progress {
+    background: linear-gradient(to right, hsl(var(--accent)), #f87171);
+  }
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;

@@ -1,7 +1,7 @@
 
 import type { SVGProps } from 'react';
 import { cn } from "@/lib/utils"
-import { Music2, Share2, UserPlus } from 'lucide-react';
+import { Music2, Share2, UserPlus, MapPin, KeyRound, GraduationCap, Building } from 'lucide-react';
 
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -54,12 +54,10 @@ export function BellIcon(props: SVGProps<SVGSVGElement>) {
 export function CrownIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...props} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ffc107" d="M44,23l-8.8,3.2L32,18l-8,5l-8-5l-3.2,8.2L4,23L12,31l-2,8h28l-2-8L44,23z"/>
-        <path fill="#ff9800" d="M10.8,26.2L4,23l8,8l-1.1,4.4L10.8,26.2z M37.2,26.2L36.1,30.6L35,31l8-8l-6.8-3.2L37.2,26.2z"/>
-        <path fill="#ffeb3b" d="M12,31l-2,8h5l2-8L12,31z M35,31l-5,8h5l2-8L35,31z M24,18l-8,5l8,8l8-8L24,18z"/>
-        <circle fill="#ffc107" cx="10" cy="15" r="4"/>
-        <circle fill="#ffc107" cx="24" cy="14" r="4"/>
-        <circle fill="#ffc107" cx="38" cy="15" r="4"/>
+        <path fill="currentColor" d="M44,23l-8.8,3.2L32,18l-8,5l-8-5l-3.2,8.2L4,23L12,31l-2,8h28l-2-8L44,23z M10,15, M24,14, M38,15"/>
+        <circle fill="currentColor" cx="10" cy="15" r="4"/>
+        <circle fill="currentColor" cx="24" cy="14" r="4"/>
+        <circle fill="currentColor" cx="38" cy="15" r="4"/>
     </svg>
   );
 }
@@ -189,4 +187,17 @@ export function CommunityDjIcon(props: SVGProps<SVGSVGElement>) {
 
 export function UserPlusIcon(props: SVGProps<SVGSVGElement>) {
   return <UserPlus {...props} className={cn("text-red-500", props.className)} />
+}
+
+export function VillageHeadIcon(props: SVGProps<SVGSVGElement>) {
+  return <Building {...props} />
+}
+export function ExperiencedIcon(props: SVGProps<SVGSVGElement>) {
+  return <MapPin {...props} />
+}
+export function TenantIcon(props: SVGProps<SVGSVGElement>) {
+  return <KeyRound {...props} />
+}
+export function FreshmanIcon(props: SVGProps<SVGSVGElement>) {
+  return <GraduationCap {...props} />
 }
