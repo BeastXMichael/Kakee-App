@@ -39,51 +39,51 @@
     },
     {
       "id": "made-for-you-1",
-      "description": "For You Mix",
+      "description": "Shower Sessions",
       "imageUrl": "https://picsum.photos/seed/mix1/100/100",
-      "imageHint": "abstract gradient"
+      "imageHint": "bathroom shower"
     },
     {
       "id": "made-for-you-2",
-      "description": "Lofi Beats",
+      "description": "Workout Beats",
       "imageUrl": "https://picsum.photos/seed/mix2/100/100",
-      "imageHint": "moody landscape"
+      "imageHint": "gym workout"
     },
     {
       "id": "made-for-you-3",
-      "description": "Discovery",
+      "description": "Commute Jams",
       "imageUrl": "https://picsum.photos/seed/mix3/100/100",
-      "imageHint": "galaxy stars"
+      "imageHint": "train window"
     },
     {
       "id": "made-for-you-4",
-      "description": "New Releases",
+      "description": "Focus Flow",
       "imageUrl": "https://picsum.photos/seed/mix4/100/100",
-      "imageHint": "bright lights"
+      "imageHint": "desk study"
     },
     {
       "id": "made-for-you-5",
-      "description": "Indie Rock",
+      "description": "Late Night Lofi",
       "imageUrl": "https://picsum.photos/seed/mix5/100/100",
-      "imageHint": "concert crowd"
+      "imageHint": "night city"
     },
     {
       "id": "made-for-you-6",
-      "description": "Happy Hits",
+      "description": "Gaming Mix",
       "imageUrl": "https://picsum.photos/seed/mix6/100/100",
-      "imageHint": "summer beach"
+      "imageHint": "video game"
     },
     {
       "id": "radio-1",
-      "description": "For You Mix radio cover",
+      "description": "Party Starters",
       "imageUrl": "https://picsum.photos/seed/radio1/400/400",
-      "imageHint": "abstract art"
+      "imageHint": "disco ball"
     },
     {
       "id": "radio-2",
-      "description": "Lofi Beats radio cover",
+      "description": "Sleepy Sounds",
       "imageUrl": "https://picsum.photos/seed/radio2/400/400",
-      "imageHint": "rainy window"
+      "imageHint": "starry night"
     },
     {
       "id": "radio-3",

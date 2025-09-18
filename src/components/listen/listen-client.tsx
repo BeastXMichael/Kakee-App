@@ -8,14 +8,14 @@ import { TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 
 const madeForYouItems = [
-    { id: 'made-for-you-1', title: 'For You Mix' },
-    { id: 'made-for-you-2', title: 'Lofi Beats' },
-    { id: 'made-for-you-3', title: 'Discovery' },
-    { id: 'made-for-you-4', title: 'New Releases' },
-    { id: 'made-for-you-5', title: 'Indie Rock' },
-    { id: 'made-for-you-6', title: 'Happy Hits' },
-    { id: 'radio-1', title: 'Chill Mix' },
-    { id: 'radio-2', title: 'Focus Flow' },
+    { id: 'made-for-you-1', title: 'Shower Sessions' },
+    { id: 'made-for-you-2', title: 'Workout Beats' },
+    { id: 'made-for-you-3', title: 'Commute Jams' },
+    { id: 'made-for-you-4', title: 'Focus Flow' },
+    { id: 'made-for-you-5', title: 'Late Night Lofi' },
+    { id: 'made-for-you-6', title: 'Gaming Mix' },
+    { id: 'radio-1', title: 'Party Starters' },
+    { id: 'radio-2', title: 'Sleepy Sounds' },
 ];
 
 const favoriteRadios = [
