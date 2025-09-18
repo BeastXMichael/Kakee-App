@@ -1,5 +1,6 @@
 import type { SVGProps } from 'react';
 import { cn } from "@/lib/utils"
+import { Music2 } from 'lucide-react';
 
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (

@@ -1,11 +1,14 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, Music2 } from 'lucide-react';
+import { Search, Music2, BellIcon, SmileIcon } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { TreasureChestIcon } from '@/components/icons';
+import { KoinIcon, TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const madeForYouItems = [
     { id: 'made-for-you-1', title: 'Shower Power' },
@@ -65,31 +68,39 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
 
 
     return (
-        <>
-            {/* Sticky Header */}
-            <header className={`p-4 flex justify-between items-center flex-shrink-0 z-20 absolute top-0 left-0 w-full transition-all duration-300 ${headerState.show ? 'translate-y-0' : '-translate-y-full'} ${headerState.opaque ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent'}`}>
-                <h1 className={`text-md font-bold text-gray-800 transition-opacity duration-300 ${headerState.title ? 'opacity-100' : 'opacity-0'}`}>Listen</h1>
-                <button><Search className="w-6 h-6 text-gray-400" /></button>
+        <div className="flex flex-col h-full bg-background relative overflow-y-auto no-scrollbar">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-200 via-pink-100 to-transparent z-0"></div>
+            
+            <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-background/80 backdrop-blur-sm">
+                <Link href="/account" className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
+                    <Music2 className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h1 className="text-md font-bold text-primary-foreground">What's your mood?</h1>
+                    <p className="text-xs text-muted-foreground">We've got a beat for that</p>
+                  </div>
+                </Link>
+                <div className="flex items-center space-x-2">
+                    <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <Search className="w-6 h-6" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <BellIcon className="w-6 h-6" />
+                    </Button>
+                </div>
             </header>
 
-            {/* Main Scrollable Content */}
-            <main ref={scrollRef} className="flex-grow bg-white overflow-y-auto z-10 no-scrollbar h-full">
-                <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-red-200 via-pink-100 to-transparent z-0"></div>
+            <main ref={scrollRef} className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar px-4 h-full">
                 <div className="relative z-10">
-                    <header className="p-4 pt-6 transition-opacity duration-300" style={{ opacity: headerState.show ? 0 : 1 }}>
-                        <h1 className="text-3xl font-extrabold text-gray-800 mb-4">Listen</h1>
-                        <div className="bg-white/60 p-2 rounded-full shadow-sm border border-white/50 backdrop-blur-sm">
-                            <div className="flex items-center space-x-2">
-                                <div className="w-6 h-6 rounded-full bg-pink-500 text-white flex items-center justify-center text-xs font-bold"><Music2 className="w-4 h-4" /></div>
-                                <div className="w-full bg-gray-200 rounded-full h-2"><div className="bg-pink-500 h-2 rounded-full" style={{ width: "41.66%" }}></div></div>
-                                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-md cursor-pointer flex-shrink-0 animate-chest-glow">
-                                    <TreasureChestIcon className="w-6 h-6"/>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
+                    <Link href="/rewards" className="bg-white/60 p-3 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <KoinIcon />
+                        <span className="font-bold text-primary-foreground">1,250 Koins</span>
+                        <div className="flex-grow"></div>
+                        <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
+                    </Link>
                     
-                    <div className="grid grid-cols-2 gap-2 px-4">
+                    <div className="grid grid-cols-2 gap-2">
                       {madeForYouItems.map(item => {
                         const image = PlaceHolderImages.find(img => img.id === item.id);
                         return (
@@ -103,8 +114,8 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
 
                     <div className="space-y-8 py-6 pb-24">
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Trending Now</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-8">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Now</h2>
+                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                                 {trendingNow.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return(
@@ -121,8 +132,8 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                         </div>
 
                          <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">More Playlists</h2>
-                            <div className="px-4 space-y-2">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">More Playlists</h2>
+                            <div className="space-y-2">
                                 {morePlaylists.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return(
@@ -142,6 +153,6 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                     </div>
                 </div>
             </main>
-        </>
+        </div>
     );
 }
