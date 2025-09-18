@@ -3,14 +3,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search } from 'lucide-react';
+import { Search, Clapperboard } from 'lucide-react';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { KoinIcon, BellIcon } from '@/components/icons';
+import { KoinIcon, BellIcon, TreasureChestIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import SearchOverlay from '@/components/watch/search-overlay';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import NotificationPanel from '@/components/notifications/notification-panel';
+import { Progress } from '@/components/ui/progress';
 
 type VideoItem = {
     id: string;
@@ -67,12 +68,17 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
             <main className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar h-full px-4">
                 
                 <div className="relative z-10">
-                    <Link href="/rewards" className="bg-white/60 p-3 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                        <KoinIcon />
-                        <span className="font-bold text-primary-foreground">1,250 Koins</span>
-                        <div className="flex-grow"></div>
-                        <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
-                    </Link>
+                    <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            <Clapperboard className="w-4 h-4" />
+                        </div>
+                        <div className='w-full'>
+                            <Progress value={75} className='h-3' />
+                        </div>
+                        <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-md cursor-pointer flex-shrink-0 animate-chest-glow">
+                            <TreasureChestIcon className="w-7 h-7"/>
+                        </div>
+                    </div>
                     
                     <Link href="/watch/recently-watched" className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105 block">
                         {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
