@@ -83,15 +83,19 @@ export default function RewardsPage() {
           </div>
 
           <div className="mt-4 pb-4 relative">
-            <MusicNoteIcon className="w-8 h-8 absolute -top-2 -left-2 text-pink-300 opacity-80 rotate-[-15deg] animate-pulse" />
-            <SparklePinIcon className="w-8 h-8 absolute top-8 -right-2 text-cyan-300 opacity-90 animate-bounce" />
-             <MusicNoteIcon className="w-10 h-10 absolute bottom-1/2 -right-3 text-purple-300 opacity-70 rotate-[20deg] animate-pulse delay-500" />
-            
+            <div className='absolute inset-0 -z-10'>
+              <MusicNoteIcon className="w-8 h-8 absolute top-0 -left-2 text-pink-300 opacity-60 rotate-[-15deg] animate-pulse" />
+              <SparklePinIcon className="w-8 h-8 absolute top-12 -right-2 text-cyan-300 opacity-70 animate-bounce" />
+              <MusicNoteIcon className="w-10 h-10 absolute bottom-1/2 -right-3 text-purple-300 opacity-50 rotate-[20deg] animate-pulse delay-500" />
+              <SparklePinIcon className="w-6 h-6 absolute bottom-1/4 -left-3 text-amber-300 opacity-70 animate-pulse-slow" />
+              <MusicNoteIcon className="w-12 h-12 absolute top-1/3 right-1/4 text-green-300 opacity-40 rotate-[10deg] animate-pulse delay-300" />
+            </div>
+
             <h2 className="font-bold text-lg mb-2 text-gray-800">Mini-Games Arcade</h2>
             <div className="grid grid-cols-2 gap-3">
-              {games.map((game, index) => (
+              {games.map((game) => (
                 <Link href={`/rewards/${game.id}`} key={game.id}>
-                  <Card className={cn("shadow-md aspect-video overflow-hidden border-0 transition-transform duration-300 group cursor-pointer relative", "animate-card-pulse")} style={{animationDelay: `${index * 100}ms`}}>
+                  <Card className={cn("shadow-md aspect-video overflow-hidden border-0 transition-transform duration-300 group cursor-pointer relative")}>
                     <CardContent className={cn("bg-gradient-to-br flex flex-col items-center justify-center p-2 text-white text-center h-full transition-all duration-300 group-hover:brightness-110", game.gradient)}>
                       <game.icon className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" />
                       <p className="font-bold text-[10px] mt-1 text-shadow">{game.text}</p>
