@@ -15,10 +15,10 @@ const forYou = [
 ]
 
 const realityShows = [
-    { id: 'k-drama-1', title: 'Physical: 100' },
-    { id: 'k-drama-2', title: 'Single\'s Inferno' },
-    { id: 'k-drama-3', title: 'The Devil\'s Plan' },
-    { id: 'k-drama-4', title: 'Jinny\'s Kitchen' },
+    { id: 'k-drama-1', title: '피지컬: 100 (Physical: 100)' },
+    { id: 'k-drama-2', title: '솔로지옥 (Single\'s Inferno)' },
+    { id: 'k-drama-3', title: '데블스 플랜 (The Devil\'s Plan)' },
+    { id: 'k-drama-4', title: '서진이네 (Jinny\'s Kitchen)' },
 ];
 
 const newAndTrending = [
