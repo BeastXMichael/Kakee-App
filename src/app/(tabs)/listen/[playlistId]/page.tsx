@@ -181,7 +181,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                 </div>
 
                 <div className="mt-8">
-                    <h2 className="font-bold text-xl mb-3">Top Songs</h2>
+                    <h2 className="font-bold text-xl mb-3">More For You</h2>
                     <div className="space-y-3">
                         {songs.map((song, index) => (
                             <div key={song.id} className="flex items-center">
