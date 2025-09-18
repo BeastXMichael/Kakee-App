@@ -3,9 +3,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, Music2, BellIcon, SmileIcon } from 'lucide-react';
+import { Search, Music2, BellIcon } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { KoinIcon, TreasureChestIcon } from '@/components/icons';
+import { KoinIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -71,7 +71,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         <div className="flex flex-col h-full bg-background relative overflow-y-auto no-scrollbar">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-red-200 via-pink-100 to-transparent z-0"></div>
             
-            <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-background/80 backdrop-blur-sm">
+            <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-transparent backdrop-blur-sm">
                 <Link href="/account" className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
                     <Music2 className="w-6 h-6 text-primary-foreground" />
