@@ -192,6 +192,30 @@
       "description": "DIY art and craft vertical video",
       "imageUrl": "https://picsum.photos/seed/short6/270/480",
       "imageHint": "art craft"
+    },
+    {
+      "id": "playlist-crying-shower",
+      "description": "Playlist cover for Crying in the Shower",
+      "imageUrl": "https://picsum.photos/seed/playlist1/300/300",
+      "imageHint": "rain window"
+    },
+    {
+      "id": "morning-energy",
+      "description": "Playlist cover for Morning Energy",
+      "imageUrl": "https://picsum.photos/seed/playlist2/200/200",
+      "imageHint": "sunshine sunrise"
+    },
+    {
+      "id": "study-flow",
+      "description": "Playlist cover for Study Flow",
+      "imageUrl": "https://picsum.photos/seed/playlist3/200/200",
+      "imageHint": "books library"
+    },
+    {
+      "id": "hype-train",
+      "description": "Playlist cover for Hype Train",
+      "imageUrl": "https://picsum.photos/seed/playlist4/200/200",
+      "imageHint": "concert crowd"
     }
   ]
 }
