@@ -97,19 +97,14 @@ export default function WatchClient({ topVideos, trendingDramas, forYou, moreToW
                         <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
                     </Link>
                     
-                    <div className="grid grid-cols-2 gap-2">
-                        {topVideos.slice(0,8).map(item => {
-                            const image = PlaceHolderImages.find(img => img.id === item.id);
-                            return (
-                            <button onClick={openPlayer} key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden transition-transform duration-200 hover:scale-105 cursor-pointer group">
-                                {image && <Image src={image.imageUrl} alt={item.title} width={48} height={48} className="w-12 h-12 flex-shrink-0 object-cover" data-ai-hint={image.imageHint} />}
-                                <div className="truncate pr-2 flex-grow text-left">
-                                  <p className="text-xs font-bold truncate">{item.title}</p>
-                                </div>
-                            </button>
-                            );
-                        })}
-                    </div>
+                    <button onClick={openPlayer} className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105">
+                        {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
+                        <div className="relative z-10">
+                            <h3 className="text-2xl font-black text-shadow">From HDB to CEO</h3>
+                            <p className="text-sm text-shadow-sm">Ep 24: The Final Merger</p>
+                            <div className="mt-2 text-xs font-bold bg-white text-gray-900 px-4 py-1.5 rounded-full inline-block">Continue Watching</div>
+                        </div>
+                    </button>
                     
                     <div className="space-y-8 pt-6 pb-24">
                         <div>
@@ -199,3 +194,5 @@ export default function WatchClient({ topVideos, trendingDramas, forYou, moreToW
         </div>
     );
 }
+
+    
