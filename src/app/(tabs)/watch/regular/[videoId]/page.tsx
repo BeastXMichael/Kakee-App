@@ -86,19 +86,22 @@ export default function RegularVideoPage({ params }: { params: { videoId: string
                     {relatedVideos.map(video => {
                         const image = PlaceHolderImages.find(p => p.id === video.id);
                         return (
-                             <Link href="#" key={video.id} className="flex items-center space-x-3">
-                                <div className="w-32 h-18 rounded-lg overflow-hidden relative flex-shrink-0">
+                             <Link href="#" key={video.id} className="flex items-start space-x-3">
+                                <div className="w-32 flex-shrink-0">
                                     {image && (
                                         <Image
                                             src={image.imageUrl}
                                             alt={video.title}
                                             width={160}
                                             height={90}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-auto rounded-lg object-cover aspect-video"
                                         />
                                     )}
                                 </div>
-                                <p className="font-semibold text-sm flex-grow">{video.title}</p>
+                                <div className="flex-grow">
+                                    <p className="font-semibold text-sm leading-tight">{video.title}</p>
+                                    <p className="text-xs text-gray-500">Kakee Originals</p>
+                                </div>
                             </Link>
                         )
                     })}
