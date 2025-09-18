@@ -130,6 +130,7 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         spin: 'spin 20s linear infinite',
+        'spin-slow': 'spin 30s linear infinite',
         'radiant-glow': 'radiant-glow 15s ease-in-out infinite',
         'chest-glow': 'chest-glow 2s ease-in-out infinite',
         'wheel-spin': 'wheel-spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
@@ -138,6 +139,9 @@ export default {
         'grid-bg': 'grid-bg 2s linear infinite',
         'score-popup': 'score-popup 1s ease-out forwards',
       },
+      boxShadow: {
+        'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],

@@ -36,11 +36,11 @@ export default function BenefitsSheet({ open, onOpenChange }: { open: boolean, o
             <div
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
-                    "absolute bottom-0 left-0 w-full h-[90%] bg-[#f7f7f7] rounded-t-2xl flex flex-col transform transition-transform duration-300 ease-in-out",
+                    "absolute bottom-0 left-0 w-full h-[90%] bg-secondary rounded-t-2xl flex flex-col transform transition-transform duration-300 ease-in-out",
                     open ? "translate-y-0" : "translate-y-full"
                 )}
             >
-                <header className="p-4 flex-shrink-0 bg-white shadow-sm rounded-t-2xl">
+                <header className="p-4 flex-shrink-0 bg-background/80 backdrop-blur-sm shadow-sm rounded-t-2xl">
                      <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-2" />
                     <div className="text-center">
                         <h2 className="font-extrabold text-2xl text-gray-800">My Collection</h2>
@@ -51,11 +51,14 @@ export default function BenefitsSheet({ open, onOpenChange }: { open: boolean, o
                 <main className="flex-grow overflow-y-auto no-scrollbar p-4 space-y-6">
                     <div>
                         <h3 className="font-bold text-lg text-gray-800 mb-2">Profile Frames</h3>
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 space-y-3">
-                            <div className="flex items-center justify-between bg-red-500/10 border border-red-500/30 rounded-lg p-2">
+                        <div className="bg-white/80 rounded-xl shadow-sm border border-white/50 p-3 space-y-3">
+                            <div className="flex items-center justify-between bg-primary/20 border border-primary/30 rounded-lg p-2">
                                 <div className="flex items-center gap-3">
-                                    {userAvatar && <Image src={userAvatar.imageUrl} alt="User Avatar" width={40} height={40} className="w-10 h-10 rounded-full" />}
-                                    <span className="font-bold text-sm text-red-600">General's Frame</span>
+                                    <div className="relative">
+                                        {userAvatar && <Image src={userAvatar.imageUrl} alt="User Avatar" width={40} height={40} className="w-10 h-10 rounded-full shadow-lg shadow-primary/50" />}
+                                        <div className="absolute inset-0 w-10 h-10 rounded-full border-2 border-primary animate-pulse"></div>
+                                    </div>
+                                    <span className="font-bold text-sm text-primary-foreground">General's Frame</span>
                                 </div>
                                 <div className="w-10 h-10">
                                     <GeneralFrameAnimated className="animate-spin-slow"/>
@@ -75,7 +78,7 @@ export default function BenefitsSheet({ open, onOpenChange }: { open: boolean, o
                     
                     <div>
                         <h3 className="font-bold text-lg text-gray-800 mb-2">Sound Effects</h3>
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3">
+                        <div className="bg-white/80 rounded-xl shadow-sm border border-white/50 p-3">
                              <div className="flex items-center justify-between">
                                 <div>
                                     <h4 className="font-bold text-sm text-gray-800">Cosmic Echoes</h4>
@@ -83,7 +86,7 @@ export default function BenefitsSheet({ open, onOpenChange }: { open: boolean, o
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Switch id="sfx-cosmic" checked />
-                                    <Badge className="bg-red-500 hover:bg-red-600">Equipped</Badge>
+                                    <Badge className="bg-primary hover:bg-primary/90">Equipped</Badge>
                                 </div>
                             </div>
                         </div>
@@ -92,17 +95,17 @@ export default function BenefitsSheet({ open, onOpenChange }: { open: boolean, o
                     <div>
                         <h3 className="font-bold text-lg text-gray-800 mb-2">Emoji Packs</h3>
                          <div className="space-y-3">
-                            <div className="bg-white rounded-xl shadow-sm border-2 border-red-500 p-3">
+                            <div className="bg-white/80 rounded-xl shadow-sm border-2 border-primary p-3">
                                 <div className="flex items-center justify-between mb-2">
                                     <div>
                                         <h4 className="font-bold text-sm text-gray-800">General's Pack</h4>
                                         <p className="text-xs text-green-600 font-medium">Unlocked!</p>
                                     </div>
-                                    <Badge className="bg-red-500 hover:bg-red-600">Equipped</Badge>
+                                    <Badge className="bg-primary hover:bg-primary/90">Equipped</Badge>
                                 </div>
                                 <GeneralPackEmojis />
                             </div>
-                             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3">
+                             <div className="bg-white/80 rounded-xl shadow-sm border border-white/50 p-3">
                                  <div className="flex items-center justify-between">
                                     <div className="opacity-50">
                                         <h4 className="font-bold text-sm text-gray-800">Village Head's Pack</h4>
