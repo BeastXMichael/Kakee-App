@@ -1,7 +1,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { BellIcon, SmileIcon } from '@/components/icons';
+import { BellIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import { KoinIcon } from '@/components/icons';
@@ -147,8 +147,8 @@ export default function HomePage() {
       
       <div className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-background/80 backdrop-blur-sm">
         <Link href="/account" className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
-            <SmileIcon className="w-6 h-6 text-primary-foreground" />
+          <div className="w-10 h-10">
+            <ProfileAvatar />
           </div>
           <div>
             <h1 className="text-md font-bold text-primary-foreground">Welcome, General!</h1>
@@ -164,7 +164,9 @@ export default function HomePage() {
 
       <main className="px-4 pt-0 flex-grow bg-transparent z-10 flex flex-col">
         <Link href="/account" className="text-center my-2 flex-shrink-0">
-          <ProfileAvatar />
+          <div className="w-28 h-28 mx-auto">
+            <ProfileAvatar />
+          </div>
         </Link>
         
         <Link href="/rewards" className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">

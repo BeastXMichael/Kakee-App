@@ -3,13 +3,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, Music2, BellIcon } from 'lucide-react';
+import { Search, BellIcon } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { KoinIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ListenSearchOverlay from './search-overlay';
+import { ProfileAvatar } from '../home/profile-avatar';
 
 const madeForYouItems = [
     { id: 'made-for-you-1', title: 'Shower Power' },
@@ -76,13 +77,13 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                 
                 <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-transparent backdrop-blur-sm">
                     <Link href="/account" className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
-                        <Music2 className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <div>
-                        <h1 className="text-md font-bold text-primary-foreground">What's your mood?</h1>
-                        <p className="text-xs text-muted-foreground">We've got a beat for that</p>
-                    </div>
+                        <div className="w-10 h-10">
+                            <ProfileAvatar />
+                        </div>
+                        <div>
+                            <h1 className="text-md font-bold text-primary-foreground">What's your mood?</h1>
+                            <p className="text-xs text-muted-foreground">We've got a beat for that</p>
+                        </div>
                     </Link>
                     <div className="flex items-center space-x-2">
                         <Button variant="ghost" size="icon" onClick={() => setShowSearch(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
