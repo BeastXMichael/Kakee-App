@@ -1,3 +1,4 @@
+
 // src/app/(tabs)/listen/[playlistId]/page.tsx
 'use client';
 import { useState } from 'react';
@@ -217,7 +218,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                     <div className="flex items-center space-x-6 mt-4">
                         <Button onClick={() => togglePlay()} variant="ghost" size="icon" className="w-16 h-16 rounded-full bg-red-500 text-white hover:bg-red-600">
                             {isPlaying ? (
-                                <div className="playing h-8 w-8">
+                                <div className="h-8 w-8 playing">
                                     <SoundWaveIcon />
                                 </div>
                             ) : (
@@ -240,7 +241,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                             <button key={song.id} className="w-full flex items-center text-left" onClick={() => togglePlay(index)}>
                                 <div className="w-6 text-lg font-bold text-gray-400 flex items-center justify-center">
                                     {isPlaying && nowPlayingIndex === index ? (
-                                        <div className="playing h-4 w-4 text-red-500">
+                                        <div className="h-4 w-4 text-red-500 playing">
                                             <SoundWaveIcon />
                                         </div>
                                     ) : (
@@ -318,3 +319,5 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
         </div>
     );
 }
+
+    
