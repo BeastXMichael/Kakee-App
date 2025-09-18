@@ -88,8 +88,8 @@ export default {
           '100%': { 'background-position': '0% 50%' },
         },
         glow: {
-          '0%, 100%': { filter: 'drop-shadow(0 0 2px hsl(var(--primary) / 0.8))' },
-          '50%': { filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 1))' },
+          '0%, 100%': { filter: 'drop-shadow(0 0 2px currentColor)' },
+          '50%': { filter: 'drop-shadow(0 0 8px currentColor)' },
         },
         'chest-glow': {
           '0%, 100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 5px hsl(var(--primary)))' },
@@ -145,7 +145,11 @@ export default {
         'card-pulse': {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.02)' },
-        }
+        },
+        'confetti-fall': {
+          '0%': { transform: 'translateY(-100%) rotate(0deg)', opacity: '1' },
+          '100%': { transform: 'translateY(100vh) rotate(720deg)', opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -163,7 +167,8 @@ export default {
         shine: 'shine 1.5s infinite linear',
         'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         glow: 'glow 2.5s ease-in-out infinite',
-        'card-pulse': 'card-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+        'card-pulse': 'card-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'confetti-fall': 'confetti-fall linear infinite',
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',

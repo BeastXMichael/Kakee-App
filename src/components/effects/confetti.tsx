@@ -26,8 +26,8 @@ export default function Confetti() {
             width: `${size}px`,
             height: `${size}px`,
             backgroundColor: COLORS[Math.floor(Math.random() * COLORS.length)],
-            animationDelay: `${Math.random() * 7}s`, // Stagger the start
-            animationDuration: `${Math.random() * 3 + 4}s`, // 4s to 7s duration
+            animationDelay: `${Math.random() * 5}s`, // Stagger the start
+            animationDuration: `${Math.random() * 3 + 5}s`, // 5s to 8s duration
           },
         });
       }
@@ -38,11 +38,11 @@ export default function Confetti() {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-20">
+    <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-50">
       {pieces.map(piece => (
         <div
           key={piece.id}
-          className="absolute top-0 animate-confetti-fall"
+          className="absolute -top-4 animate-confetti-fall"
           style={piece.style}
         />
       ))}

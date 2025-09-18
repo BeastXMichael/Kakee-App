@@ -10,6 +10,7 @@ import {
 import { KoinIcon } from '../icons';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import Confetti from '../effects/confetti';
 
 type WelcomeGiftDialogProps = {
   open: boolean;
@@ -30,6 +31,7 @@ export default function WelcomeGiftDialog({ open, onOpenChange }: WelcomeGiftDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] bg-background border-none shadow-2xl rounded-2xl p-0 overflow-hidden">
+        <Confetti />
         <div className="p-8 text-center flex flex-col items-center relative">
             <Sparkles className="w-8 h-8 text-yellow-400 absolute top-4 left-4 animate-glow" />
             <Sparkles className="w-6 h-6 text-pink-400 absolute top-16 right-8 animate-glow [animation-delay:0.5s]" />
