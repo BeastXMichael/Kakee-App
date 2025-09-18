@@ -21,7 +21,7 @@ function RecentlyForYou() {
 
     return (
         <div className="flex-shrink-0">
-            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Recently for You</h2>
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Picked Just for You</h2>
             <div className="grid grid-cols-2 gap-3">
                 {recommendedContent.map((title, index) => {
                     const content = contentMap[title] || Object.values(contentMap)[index % Object.keys(contentMap).length];
@@ -55,7 +55,7 @@ function LatestListenDrops() {
 
     return (
         <div className="flex-shrink-0">
-            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Listen</h2>
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">New Music to Vibe To</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
                     <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -84,7 +84,7 @@ function LatestWatchDrops() {
 
     return (
         <div className="flex-shrink-0">
-            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Watch</h2>
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Fresh Dramas on Screen</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
                     <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -113,7 +113,7 @@ function LatestRewardsDrops() {
 
     return (
         <div className="flex-shrink-0">
-            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Rewards</h2>
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Your Newest Perks</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
                     <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
