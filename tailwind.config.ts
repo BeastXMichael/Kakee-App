@@ -106,6 +106,11 @@ export default {
           '0%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.3) rotate(-10deg)' },
           '100%': { transform: 'scale(1)' },
+        },
+        'wave-flow': {
+          '0%': { transform: 'translate(0, 0)' },
+          '50%': { transform: 'translate(5px, -2.5px)' },
+          '100%': { transform: 'translate(0, 0)' },
         }
       },
       animation: {

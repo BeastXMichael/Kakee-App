@@ -56,8 +56,8 @@ export default function VideoPlayer() {
                     </div>
                 </div>
                 
-                <div className="w-full bg-white/20 h-1 rounded-full mt-4">
-                    <div className="w-1/4 bg-red-500 h-1 rounded-full"></div>
+                <div className="w-full bg-white/20 h-2 rounded-full mt-4 overflow-hidden relative">
+                    <div className="w-1/3 h-full water-progress"></div>
                 </div>
             </div>
 

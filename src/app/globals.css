@@ -103,4 +103,26 @@
   @media (prefers-reduced-motion: reduce) {
     .playing .bar { animation: none; transform: scaleY(.6); }
   }
+
+  .water-progress {
+    @apply relative h-full bg-red-500;
+  }
+  .water-progress::before, .water-progress::after {
+    content: '';
+    position: absolute;
+    top: -5px; 
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ef4444; /* red-500 */
+    animation: wave-flow 2s linear infinite;
+  }
+  .water-progress::before {
+    left: 0;
+    opacity: 0.8;
+  }
+  .water-progress::after {
+    left: 50%;
+    animation-delay: -1s;
+  }
 }
