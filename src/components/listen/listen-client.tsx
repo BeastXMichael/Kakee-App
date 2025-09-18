@@ -48,10 +48,10 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     const [showNotifications, setShowNotifications] = useState(false);
 
     const trendingPlaylists = [
-        { id: 'trending-1', title: 'Gym Rat Fuel', playing: trendingData.trendingContent[0], playlistId: 'shower-power' },
-        { id: 'trending-2', title: 'POV: You\'re Vibing', playing: trendingData.trendingContent[1], playlistId: 'shower-power' },
-        { id: 'trending-3', title: 'Crank Up Brain Power', playing: trendingData.trendingContent[2], playlistId: 'shower-power' },
-        { id: 'radio-3', title: 'Serotonin Boost', playing: trendingData.trendingContent[3], playlistId: 'shower-power' },
+        { id: 'trending-1', title: 'Gym Fuel', playing: trendingData.trendingContent[0], playlistId: 'shower-power' },
+        { id: 'trending-2', title: 'Vibe Check', playing: trendingData.trendingContent[1], playlistId: 'shower-power' },
+        { id: 'trending-3', title: 'Brain Power', playing: trendingData.trendingContent[2], playlistId: 'shower-power' },
+        { id: 'radio-3', title: 'Happy Hits', playing: trendingData.trendingContent[3], playlistId: 'shower-power' },
         { id: 'made-for-you-1', title: 'Shower Sesh', playing: trendingData.trendingContent[4], playlistId: 'shower-power' }
     ];
 
@@ -180,3 +180,4 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     
 
     
+
