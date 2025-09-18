@@ -1,11 +1,16 @@
 
+'use client';
+
+import { useState } from 'react';
 import { Coffee, Ticket, Film, Pizza, Gamepad2, Headphones } from 'lucide-react';
 import DailySpinCard from '@/components/rewards/daily-spin-card';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { StreamsRouletteIcon, LyricLegendIcon, KakeeBeatsIcon, GuessTheSongIcon } from '@/components/icons';
+import { StreamsRouletteIcon, LyricLegendIcon, KakeeBeatsIcon, GuessTheSongIcon, BellIcon } from '@/components/icons';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { ProfileAvatar } from '@/components/home/profile-avatar';
+import NotificationPanel from '@/components/notifications/notification-panel';
 
 const lobangs = [
   { icon: Coffee, text: "1-for-1 Coffee", gradient: "from-green-400 to-teal-500" },
@@ -24,13 +29,30 @@ const games = [
 ];
 
 export default function RewardsPage() {
+  const [showNotifications, setShowNotifications] = useState(false);
+
   return (
+    <>
     <div className="flex flex-col h-full bg-background relative">
       <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-amber-200 via-yellow-100 to-background z-0"></div>
       
       <div className="relative z-10 flex flex-col h-full">
-        <header className="p-4 flex-shrink-0">
-          <h1 className="text-2xl font-extrabold text-gray-800">Rewards</h1>
+        <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-transparent backdrop-blur-sm">
+            <Link href="/account" className="flex items-center space-x-3">
+                <div className="w-10 h-10">
+                    <ProfileAvatar />
+                </div>
+                <div>
+                    <h1 className="text-md font-bold text-primary-foreground">Get Your Coins!</h1>
+                    <p className="text-xs text-muted-foreground">Your daily lobangs are here</p>
+                </div>
+            </Link>
+            <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="icon" onClick={() => setShowNotifications(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer relative">
+                    <BellIcon className="w-6 h-6" />
+                    <span className="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-background"/>
+                </Button>
+            </div>
         </header>
 
         <main className="flex-grow overflow-y-auto no-scrollbar px-4">
@@ -78,5 +100,7 @@ export default function RewardsPage() {
         </main>
       </div>
     </div>
+    <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
+    </>
   );
 }
