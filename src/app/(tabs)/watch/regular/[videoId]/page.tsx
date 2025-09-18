@@ -66,23 +66,6 @@ export default function RegularVideoPage({ params }: { params: { videoId: string
                 <span>{details.views}</span> &bull; <span>{details.uploadDate}</span>
             </div>
 
-            <div className="flex items-center space-x-4 my-4">
-                {channelAvatar && (
-                    <Image
-                        src={channelAvatar.imageUrl}
-                        alt={details.channel}
-                        width={40}
-                        height={40}
-                        className="w-10 h-10 rounded-full"
-                        data-ai-hint={channelAvatar.imageHint}
-                    />
-                )}
-                <div className="flex-grow">
-                    <p className="font-bold">{details.channel}</p>
-                    <p className="text-xs text-gray-500">In-House Production</p>
-                </div>
-            </div>
-
             <div className="flex items-center justify-around bg-gray-100 p-2 rounded-full my-4">
                 <Button variant="ghost" className="flex items-center space-x-2 text-gray-600">
                     <ThumbsUp className="w-5 h-5"/>
