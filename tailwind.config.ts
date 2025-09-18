@@ -129,6 +129,14 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '50%': { transform: 'translateX(calc(100vw - 100%))' },
           '100%': { transform: 'translateX(0)' },
+        },
+        'card-pulse': {
+            '0%, 100%': { transform: 'scale(1)', 'box-shadow': '0 0 5px rgba(255,255,255,0.1)' },
+            '50%': { transform: 'scale(1.02)', 'box-shadow': '0 0 15px rgba(255,255,255,0.3)' }
+        },
+        'shine': {
+            '0%': { 'background-position': '-200% 0' },
+            '100%': { 'background-position': '200% 0' },
         }
       },
       animation: {
@@ -144,6 +152,8 @@ export default {
         'grid-bg': 'grid-bg 2s linear infinite',
         'score-popup': 'score-popup 1s ease-out forwards',
         'laser-scan': 'laser-scan 3s ease-in-out infinite',
+        'card-pulse': 'card-pulse 4s infinite ease-in-out',
+        'shine': 'shine 1.5s infinite linear',
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',

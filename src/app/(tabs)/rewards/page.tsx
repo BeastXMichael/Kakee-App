@@ -85,13 +85,14 @@ export default function RewardsPage() {
           <div className="mt-4 pb-4">
             <h2 className="font-bold text-lg mb-2 text-gray-800">Mini-Games Arcade</h2>
             <div className="grid grid-cols-2 gap-3">
-              {games.map((game) => (
+              {games.map((game, index) => (
                 <Link href={`/rewards/${game.id}`} key={game.id}>
-                  <Card className="shadow-md aspect-video overflow-hidden border-0 transition-transform duration-200 hover:scale-105 cursor-pointer h-full">
-                    <CardContent className={cn("bg-gradient-to-br flex flex-col items-center justify-center p-2 text-white text-center h-full", game.gradient)}>
-                      <game.icon className="w-8 h-8" />
+                  <Card className={cn("shadow-md aspect-video overflow-hidden border-0 transition-transform duration-300 group cursor-pointer relative", "animate-card-pulse")} style={{animationDelay: `${index * 100}ms`}}>
+                    <CardContent className={cn("bg-gradient-to-br flex flex-col items-center justify-center p-2 text-white text-center h-full transition-all duration-300 group-hover:brightness-110", game.gradient)}>
+                      <game.icon className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" />
                       <p className="font-bold text-[10px] mt-1 text-shadow">{game.text}</p>
                     </CardContent>
+                    <div className="absolute inset-0 w-full h-full shine-effect opacity-0 group-hover:opacity-100"></div>
                   </Card>
                 </Link>
               ))}
