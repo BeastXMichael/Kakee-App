@@ -20,14 +20,14 @@ type VideoItem = {
 };
 
 type WatchClientProps = {
-    trendingDramas: VideoItem[];
-    forYou: VideoItem[];
-    realityShows: VideoItem[];
-    newAndTrending: VideoItem[];
-    shorts: VideoItem[];
-    top10Singapore: VideoItem[];
-    kDramas: VideoItem[];
-    regularVideos: VideoItem[];
+    trendingDramas: { id: string, title: string }[];
+    forYou: { id: string, title: string }[];
+    realityShows: { id: string, title: string }[];
+    newAndTrending: { id: string, title: string }[];
+    shorts: { id: string, title: string }[];
+    top10Singapore: { id: string, title: string }[];
+    kDramas: { id: string, title: string }[];
+    regularVideos: { id: string, title: string }[];
 };
 
 
@@ -100,7 +100,7 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                         </div>
                     </div>
                     
-                    <div className='space-y-8 pt-6 pb-24'>
+                    <div className='space-y-8 py-6 pb-24'>
                          <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800">Shorts</h2>
                             <div className="flex space-x-3 overflow-x-auto no-scrollbar -mx-4 px-4">
