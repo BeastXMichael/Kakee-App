@@ -12,6 +12,7 @@ import NotificationPanel from '@/components/notifications/notification-panel';
 import WelcomeGiftDialog from '@/components/home/welcome-gift-dialog';
 import { Shield, Sparkles, Trophy } from 'lucide-react';
 import QuestsSheet from '@/components/home/quests-sheet';
+import RankSheet from '@/components/home/rank-sheet';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -150,6 +151,7 @@ export default function HomePage() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showWelcomeGift, setShowWelcomeGift] = useState(false);
   const [showQuests, setShowQuests] = useState(false);
+  const [showRank, setShowRank] = useState(false);
   
   useEffect(() => {
     const hasSeenWelcomeGift = sessionStorage.getItem('hasSeenWelcomeGift');
@@ -200,10 +202,10 @@ export default function HomePage() {
                 <Trophy className="w-6 h-6 text-amber-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Quests</span>
             </button>
-             <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+             <button onClick={() => setShowRank(true)} className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
                 <Shield className="w-6 h-6 text-rose-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Rank</span>
-            </Link>
+            </button>
              <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
                 <Sparkles className="w-6 h-6 text-violet-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Benefits</span>
@@ -220,6 +222,7 @@ export default function HomePage() {
     </div>
     <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
     <QuestsSheet open={showQuests} onOpenChange={setShowQuests} />
+    <RankSheet open={showRank} onOpenChange={setShowRank} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 
 'use client';
 
-import { ChevronLeft, ChevronRight, User, Globe, Shield, Users, Settings, HelpCircle, LogOut } from 'lucide-react';
+import { ChevronLeft, ChevronRight, User, Globe, Users, Settings, HelpCircle, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
@@ -22,7 +22,6 @@ import { useToast } from '@/hooks/use-toast';
 const menuItems = [
   { icon: User, text: 'Edit Profile', href: '/account/edit-profile' },
   { icon: Globe, text: 'Language', href: '/account/language' },
-  { icon: Shield, text: 'My Rank', href: '/account/my-rank' },
   { icon: Users, text: 'Refer a Friend', href: '/account/refer-a-friend' },
   { icon: Settings, text: 'Settings', href: '/account/settings' },
   { icon: HelpCircle, text: 'Help & Support', href: '/account/help-support' },
