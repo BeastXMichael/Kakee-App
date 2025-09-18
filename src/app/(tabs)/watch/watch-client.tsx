@@ -3,7 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, Clapperboard } from 'lucide-react';
+import { Search, Clapperboard, Play } from 'lucide-react';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { KoinIcon, BellIcon, TreasureChestIcon } from '@/components/icons';
@@ -77,9 +77,14 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                     </div>
                     
                     {recentlyWatchedImg && (
-                        <div className="mb-8 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <div className="mb-8 space-y-2 group">
                             <h2 className="font-bold text-xl mb-3 text-gray-800">Continue Watching</h2>
-                            <Image src={recentlyWatchedImg.imageUrl} alt={recentlyWatchedImg.description} width={400} height={231} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={recentlyWatchedImg.imageHint}/>
+                            <Link href="/watch/1" className="relative block rounded-lg shadow-md overflow-hidden aspect-video transition-transform duration-200 group-hover:scale-105 cursor-pointer">
+                                <Image src={recentlyWatchedImg.imageUrl} alt={recentlyWatchedImg.description} width={400} height={231} className="w-full h-full object-cover" data-ai-hint={recentlyWatchedImg.imageHint}/>
+                                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Play className="w-12 h-12 text-white" fill="currentColor"/>
+                                </div>
+                            </Link>
                             <p className="font-bold">From HDB to CEO</p>
                             <p className="text-xs text-gray-500">S1:E8 - The Final Merger</p>
                         </div>
@@ -161,36 +166,6 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                             </div>
                         </div>
 
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Must-Watch K-Dramas</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {kDramas.map(item => {
-                                    const image = PlaceHolderImages.find(img => img.id === item.id);
-                                    return (
-                                        <Link href={`/watch/drama/${item.id}`} key={item.id} className="w-32 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                            {image && <Image src={image.imageUrl} alt={item.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{item.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Dramas</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {trendingDramas.map(item => {
-                                    const image = PlaceHolderImages.find(img => img.id === item.id);
-                                    return (
-                                        <Link href={`/watch/${item.id}`} key={item.id} className="w-32 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                            {image && <Image src={image.imageUrl} alt={item.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{item.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        
                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800">Regular Videos</h2>
                             <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
