@@ -14,11 +14,11 @@ const forYou = [
     { id: 'made-for-you-4', 'title': 'New Releases' },
 ]
 
-const longFormDramas = [
-    { id: 'k-drama-1', title: 'Queen of Tears' },
-    { id: 'k-drama-2', title: 'Lovely Runner' },
-    { id: 'k-drama-3', title: 'Silent Hill: Ascension' },
-    { id: 'k-drama-4', title: 'The Acolyte' },
+const realityShows = [
+    { id: 'k-drama-1', title: 'Physical: 100' },
+    { id: 'k-drama-2', title: 'Single\'s Inferno' },
+    { id: 'k-drama-3', title: 'The Devil\'s Plan' },
+    { id: 'k-drama-4', title: 'Jinny\'s Kitchen' },
 ];
 
 const newAndTrending = [
@@ -58,7 +58,7 @@ export default function WatchPage() {
     return <WatchClient 
         trendingDramas={trendingDramas} 
         forYou={forYou} 
-        longFormDramas={longFormDramas}
+        realityShows={realityShows}
         newAndTrending={newAndTrending}
         shorts={shorts}
         top10Singapore={top10Singapore}

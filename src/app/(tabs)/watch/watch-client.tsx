@@ -21,7 +21,7 @@ type VideoItem = {
 type WatchClientProps = {
     trendingDramas: VideoItem[];
     forYou: VideoItem[];
-    longFormDramas: VideoItem[];
+    realityShows: VideoItem[];
     newAndTrending: VideoItem[];
     shorts: VideoItem[];
     top10Singapore: VideoItem[];
@@ -29,7 +29,7 @@ type WatchClientProps = {
 };
 
 
-export default function WatchClient({ trendingDramas, forYou, longFormDramas, newAndTrending, shorts, top10Singapore, kDramas }: WatchClientProps) {
+export default function WatchClient({ trendingDramas, forYou, realityShows, newAndTrending, shorts, top10Singapore, kDramas }: WatchClientProps) {
     const [showSearch, setShowSearch] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
@@ -138,12 +138,12 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
                         </div>
 
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Long-Form Dramas</h2>
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Reality Show</h2>
                             <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {longFormDramas.map(drama => {
+                                {realityShows.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
-                                        <Link href={`/watch/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                        <Link href={`/watch/drama/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
                                         </Link>
