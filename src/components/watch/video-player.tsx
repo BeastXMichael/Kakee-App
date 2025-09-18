@@ -1,9 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { Heart, MessageCircle, Share2, X } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import CommentPanel from './comment-panel';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -11,23 +9,18 @@ import Link from 'next/link';
 export default function VideoPlayer() {
     const [liked, setLiked] = useState(false);
     const [showComments, setShowComments] = useState(false);
-    const playerBg = PlaceHolderImages.find(img => img.id === 'player-background');
 
     return (
         <div className={`dark absolute inset-0 z-40 bg-black flex flex-col`}>
-            {playerBg && (
-                <>
-                    <Image
-                        src={playerBg.imageUrl}
-                        alt="Drama background"
-                        fill
-                        className="object-cover"
-                        data-ai-hint={playerBg.imageHint}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute inset-0 radiant-background-watch-player animate-radiant-glow opacity-50"></div>
-                </>
-            )}
+            <video
+                src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                autoPlay
+                muted
+                loop
+                className="absolute inset-0 w-full h-full object-cover -z-10"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute inset-0 radiant-background-watch-player animate-radiant-glow opacity-50"></div>
             
             <div className={cn("relative z-10 flex flex-col h-full p-4 transition-opacity duration-300", showComments && "opacity-0 pointer-events-none")}>
                 <Link href="/watch" className="absolute top-4 left-4 text-white z-50">
