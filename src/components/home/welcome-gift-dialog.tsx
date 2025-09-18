@@ -30,8 +30,11 @@ export default function WelcomeGiftDialog({ open, onOpenChange }: WelcomeGiftDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] bg-background border-none shadow-2xl rounded-2xl p-0 overflow-hidden">
-        <div className="p-8 text-center flex flex-col items-center relative overflow-hidden">
-            <div className="absolute inset-0 confetti-bg opacity-30"></div>
+        <div className="p-8 text-center flex flex-col items-center relative">
+            <Sparkles className="w-8 h-8 text-yellow-400 absolute top-4 left-4 animate-pulse" />
+            <Sparkles className="w-6 h-6 text-pink-400 absolute top-16 right-8 animate-pulse [animation-delay:0.5s]" />
+            <Sparkles className="w-10 h-10 text-cyan-400 absolute bottom-24 left-8 animate-pulse [animation-delay:1s]" />
+
             <p className="font-bold text-sm text-muted-foreground z-10">A SPECIAL PARTNERSHIP</p>
             <h2 className="text-2xl font-extrabold text-primary-foreground my-2 z-10">NTU x Kakee: Thank You!</h2>
             
