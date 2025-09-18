@@ -134,7 +134,7 @@ export default {
         'grid-bg': 'grid-bg 2s linear infinite',
       },
       backgroundImage: {
-        'grid-pink-500/10': "linear-gradient(theme(colors.pink.500 / 0.1) 1px, transparent 1px), linear-gradient(to right, theme(colors.pink.500 / 0.1) 1px, transparent 1px)",
+        'grid-pink-500/10': "linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px), linear-gradient(to right, rgba(236, 72, 153, 0.1) 1px, transparent 1px)",
       },
       backgroundSize: {
         '40px': '40px 40px',

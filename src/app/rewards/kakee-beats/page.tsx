@@ -1,4 +1,3 @@
-
 'use client';
 
 import { ChevronLeft } from 'lucide-react';
@@ -6,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { KakeeBeatsIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const notes = [
   { id: 1, position: 20, delay: 0 },
@@ -24,7 +23,7 @@ export default function KakeeBeatsPage() {
 
   return (
     <div className="flex flex-col h-full bg-gray-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pink-500/10 animate-pulse"></div>
+      <div className="absolute inset-0 bg-grid-pink-500/10 [background-size:40px_40px] animate-grid-bg"></div>
 
       <header className="p-4 flex items-center justify-between flex-shrink-0 z-10 bg-gray-900/50 backdrop-blur-sm">
         <Link href="/rewards">
