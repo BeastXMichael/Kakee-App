@@ -1,3 +1,4 @@
+
 import { Coffee, Ticket, Film, Pizza, Gamepad2, Headphones } from 'lucide-react';
 import DailySpinCard from '@/components/rewards/daily-spin-card';
 import { Button } from '@/components/ui/button';
