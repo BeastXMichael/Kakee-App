@@ -7,12 +7,20 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { getPersonalizedHomeRecommendations } from '@/ai/flows/personalized-home-recommendations';
 
 async function RecentlyForYou() {
-    // This is a mock implementation. In a real app, you'd pass actual user data.
-    const recommendations = await getPersonalizedHomeRecommendations({
-        viewingHistory: ['video1', 'video2', 'video3'],
-        listeningHistory: ['song1', 'song2'],
-        userRank: 'General'
-    });
+    let recommendations;
+    const defaultRecommendations = ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'];
+    try {
+        // This is a mock implementation. In a real app, you'd pass actual user data.
+        recommendations = await getPersonalizedHomeRecommendations({
+            viewingHistory: ['video1', 'video2', 'video3'],
+            listeningHistory: ['song1', 'song2'],
+            userRank: 'General'
+        });
+    } catch (error) {
+        console.error("Failed to get personalized recommendations:", error);
+        recommendations = { recommendedContent: defaultRecommendations };
+    }
+
 
     const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
         'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'recently-1'),
@@ -22,7 +30,7 @@ async function RecentlyForYou() {
     };
     
     // In a real app, you would fetch content details based on IDs.
-    const recommendedContent = (recommendations.recommendedContent.length > 0 ? recommendations.recommendedContent : ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave']).slice(0, 4);
+    const recommendedContent = (recommendations.recommendedContent.length > 0 ? recommendations.recommendedContent : defaultRecommendations).slice(0, 4);
 
     return (
         <div className="flex-shrink-0">
@@ -101,7 +109,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
+          <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
             <BellIcon className="w-6 h-6" />
           </Button>
         </div>
@@ -112,7 +120,7 @@ export default function HomePage() {
           <ProfileAvatar />
         </div>
         
-        <div className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0">
+        <div className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
             <KoinIcon />
             <span className="font-bold text-primary-foreground">1,250 Koins</span>
             <div className="flex-grow"></div>
