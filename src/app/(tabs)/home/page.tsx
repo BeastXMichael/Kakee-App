@@ -156,15 +156,11 @@ export default function HomePage() {
   const [showBenefits, setShowBenefits] = useState(false);
   
   useEffect(() => {
-    const hasSeenWelcomeGift = sessionStorage.getItem('hasSeenWelcomeGift');
-    if (!hasSeenWelcomeGift) {
-      // Use a timeout to avoid layout shift issues and make the popup feel less abrupt
-      const timer = setTimeout(() => {
-        setShowWelcomeGift(true);
-        sessionStorage.setItem('hasSeenWelcomeGift', 'true');
-      }, 500);
-      return () => clearTimeout(timer);
-    }
+    // Use a timeout to avoid layout shift issues and make the popup feel less abrupt
+    const timer = setTimeout(() => {
+      setShowWelcomeGift(true);
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
 
