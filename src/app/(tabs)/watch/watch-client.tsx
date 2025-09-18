@@ -94,7 +94,7 @@ export default function WatchClient({ forYou, realityShows, newAndTrending, shor
                                 {forYou.map(item => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
-                                        <Link href={`/watch/drama/${item.id}`} key={item.id} className="w-32 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                        <Link href={`/watch/${item.id}`} key={item.id} className="w-32 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                             {image && <Image src={image.imageUrl} alt={item.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{item.title}</p>
                                         </Link>
