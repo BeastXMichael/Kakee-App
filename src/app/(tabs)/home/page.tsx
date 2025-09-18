@@ -46,12 +46,37 @@ function RecentlyForYou() {
     );
 }
 
-
-function LatestDrops() {
+function LatestListenDrops() {
     const drops = [
-        { drop: PlaceHolderImages.find(img => img.id === 'new-drama-2'), title: "Ah Beng's Guide" },
-        { drop: PlaceHolderImages.find(img => img.id === 'drops-2'), title: "New Lobang!" },
-        { drop: PlaceHolderImages.find(img => img.id === 'drops-3'), title: "New Game!" },
+        { drop: PlaceHolderImages.find(img => img.id === 'trending-1'), title: 'Top Hits 2024' },
+        { drop: PlaceHolderImages.find(img => img.id === 'trending-2'), title: 'Viral 50 - SG' },
+        { drop: PlaceHolderImages.find(img => img.id === 'trending-3'), title: 'Global Top 50' },
+    ].filter(item => item.drop);
+
+    return (
+        <div className="flex-shrink-0">
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Listen</h2>
+            <div className="grid grid-cols-3 gap-3">
+                {drops.map((item) => (
+                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <Image
+                            src={item.drop!.imageUrl}
+                            alt={item.drop!.description}
+                            width={200}
+                            height={200}
+                            className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
+                            data-ai-hint={item.drop!.imageHint}
+                        />
+                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function LatestWatchDrops() {
+    const drops = [
         { drop: PlaceHolderImages.find(img => img.id === 'new-drama-1'), title: "Secret Kopi Stall" },
         { drop: PlaceHolderImages.find(img => img.id === 'new-drama-2'), title: "Ah Beng's Galaxy" },
         { drop: PlaceHolderImages.find(img => img.id === 'new-drama-3'), title: "Last Mama Shop" },
@@ -59,7 +84,7 @@ function LatestDrops() {
 
     return (
         <div className="flex-shrink-0">
-            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest Drops</h2>
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Watch</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
                     <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
@@ -69,6 +94,35 @@ function LatestDrops() {
                             width={200}
                             height={300}
                             className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover"
+                            data-ai-hint={item.drop!.imageHint}
+                        />
+                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function LatestRewardsDrops() {
+    const drops = [
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-1'), title: '1-for-1 Movie Tix' },
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-2'), title: 'New Vouchers!' },
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-3'), title: 'Spin to Win!' },
+    ].filter(item => item.drop);
+
+    return (
+        <div className="flex-shrink-0">
+            <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest in Rewards</h2>
+            <div className="grid grid-cols-3 gap-3">
+                {drops.map((item) => (
+                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <Image
+                            src={item.drop!.imageUrl}
+                            alt={item.drop!.description}
+                            width={200}
+                            height={200}
+                            className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
                             data-ai-hint={item.drop!.imageHint}
                         />
                         <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
@@ -115,7 +169,9 @@ export default function HomePage() {
 
         <div className="flex-grow flex flex-col space-y-6 pb-4">
           <RecentlyForYou />
-          <LatestDrops />
+          <LatestListenDrops />
+          <LatestWatchDrops />
+          <LatestRewardsDrops />
         </div>
       </main>
     </div>
