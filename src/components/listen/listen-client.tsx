@@ -96,9 +96,9 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                             const image = PlaceHolderImages.find(img => img.id === item.id);
                             return (
                             <button key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden transition-transform duration-200 hover:scale-105 cursor-pointer group">
-                                {image && <Image src={image.imageUrl} alt={item.title} width={48} height={48} className="w-12 h-12 flex-shrink-0" data-ai-hint={image.imageHint} />}
-                                <div className="truncate pr-2 flex-grow">
-                                  <p className="text-xs font-bold truncate ">{item.title}</p>
+                                {image && <Image src={image.imageUrl} alt={item.title} width={48} height={48} className="w-12 h-12 flex-shrink-0 object-cover" data-ai-hint={image.imageHint} />}
+                                <div className="truncate pr-2 flex-grow text-left">
+                                  <p className="text-xs font-bold truncate">{item.title}</p>
                                   <p className="text-xs text-muted-foreground truncate">{item.artist}</p>
                                 </div>
                                 <div className="pr-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -110,23 +110,6 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                         </div>
 
                         <div className="space-y-8 py-6 pb-24">
-                            <div>
-                                <h2 className="font-bold text-xl mb-3 text-gray-800">Your Favorite Radios</h2>
-                                <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                    {radioStations.map(item => {
-                                        const image = PlaceHolderImages.find(img => img.id === item.id);
-                                        return(
-                                            <Link href={`/listen/shower-power`} key={item.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                                <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
-                                                {image && <Image src={image.imageUrl} alt={item.title} width={160} height={160} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
-                                                </div>
-                                                <p className="text-sm font-semibold truncate text-center">{item.title}</p>
-                                            </Link>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                            
                             <div>
                                 <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Now</h2>
                                 <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
@@ -145,8 +128,25 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                 </div>
                             </div>
 
+                             <div>
+                                <h2 className="font-bold text-xl mb-3 text-gray-800">Your Favorite Radios</h2>
+                                <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
+                                    {radioStations.map(item => {
+                                        const image = PlaceHolderImages.find(img => img.id === item.id);
+                                        return(
+                                            <Link href={`/listen/shower-power`} key={item.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                                <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
+                                                {image && <Image src={image.imageUrl} alt={item.title} width={160} height={160} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
+                                                </div>
+                                                <p className="text-sm font-semibold truncate text-center">{item.title}</p>
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
                             <div>
-                                <h2 className="font-bold text-xl mb-3 text-gray-800">Discover More Tracks</h2>
+                                <h2 className="font-bold text-xl mb-3 text-gray-800">More Songs</h2>
                                 <div className="space-y-2">
                                     {moreSongs.map(item => {
                                         const image = PlaceHolderImages.find(img => img.id === item.id);
@@ -155,7 +155,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                                 <div className="w-16 h-16 rounded-lg shadow-md aspect-square overflow-hidden flex-shrink-0">
                                                     {image && <Image src={image.imageUrl} alt={item.title} width={64} height={64} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                                 </div>
-                                                <div className="flex-grow">
+                                                <div className="flex-grow text-left">
                                                     <p className="font-bold truncate">{item.title}</p>
                                                     <p className="text-sm text-gray-600 truncate">{item.artist}</p>
                                                 </div>
@@ -176,5 +176,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         </>
     );
 }
+
+    
 
     
