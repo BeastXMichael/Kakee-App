@@ -8,30 +8,23 @@ import { TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 
 const madeForYouItems = [
-    { id: 'made-for-you-1', title: 'Shower Sessions' },
-    { id: 'made-for-you-2', title: 'Workout Beats' },
-    { id: 'made-for-you-3', title: 'Commute Jams' },
-    { id: 'made-for-you-4', title: 'Focus Flow' },
-    { id: 'made-for-you-5', title: 'Late Night Lofi' },
-    { id: 'made-for-you-6', title: 'Gaming Mix' },
-    { id: 'radio-1', title: 'Party Starters' },
-    { id: 'radio-2', title: 'Sleepy Sounds' },
-];
-
-const favoriteRadios = [
-    { id: 'radio-1', title: 'For You Mix', playing: 'Blinding Lights', playingIcon: true },
-    { id: 'radio-2', title: 'Lofi Beats', playing: 'a ku ka' },
-    { id: 'radio-3', title: 'Happy Hits', playing: 'Good Days' },
-    { id: 'trending-1', title: 'Top Hits', playing: 'Espresso' },
+    { id: 'made-for-you-1', title: 'Shower Power' },
+    { id: 'made-for-you-2', title: 'Running Flash' },
+    { id: 'made-for-you-3', title: 'Commute Grooves' },
+    { id: 'made-for-you-4', title: 'Focus Learning' },
+    { id: 'made-for-you-5', title: 'Midnight Chill' },
+    { id: 'made-for-you-6', title: 'Game On' },
+    { id: 'radio-1', title: 'Party Mode' },
+    { id: 'radio-2', title: 'Sleepy Time' },
 ];
 
 const morePlaylists = [
-    { id: 'trending-1', title: 'Top Hits', description: 'The biggest tracks right now.' },
-    { id: 'trending-2', title: 'Viral 50', description: 'The songs blowing up online.' },
-    { id: 'trending-3', title: 'Global Hits', description: 'Top tracks from around the world.' },
-    { id: 'made-for-you-5', title: 'Indie Rock', description: 'The best of modern indie.' },
-    { id: 'made-for-you-6', title: 'Happy Hits', description: 'Feel-good tracks for a great day.' },
-    { id: 'recently-1', title: 'Study Beats', description: 'Instrumental beats to help you focus.' },
+    { id: 'trending-1', title: 'Adrenaline Rush', description: 'High-energy tracks for your workout.' },
+    { id: 'trending-2', title: 'Creative Flow', description: 'Inspiring music to get your ideas flowing.' },
+    { id: 'trending-3', title: 'Road Trip Anthems', description: 'The perfect soundtrack for your journey.' },
+    { id: 'made-for-you-5', title: 'Indie Drive', description: 'Cruising with the best modern indie.' },
+    { id: 'made-for-you-6', title: 'Sunshine Beats', description: 'Feel-good tracks for a great day.' },
+    { id: 'recently-1', title: 'Deep Study', description: 'Instrumental beats to help you focus.' },
 ];
 
 type ListenClientProps = {
@@ -61,7 +54,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     
     const trendingNow = trendingData.trendingContent.map((title, index) => ({
       id: `trending-${index+1}`,
-      title: index === 0 ? "Upbeat Pop" : (index === 1 ? "Chill Vibes" : "Global Grooves"),
+      title: index === 0 ? "Morning Boost" : (index === 1 ? "Evening Unwind" : "Workout Power"),
       playing: title
     }));
 
@@ -104,27 +97,6 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                     </div>
 
                     <div className="space-y-8 py-6 pb-24">
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Your Favorite Radios</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-8">
-                                {favoriteRadios.map(radio => {
-                                    const image = PlaceHolderImages.find(img => img.id === radio.id);
-                                    return (
-                                        <div key={radio.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                                            <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
-                                                {image && <Image src={image.imageUrl} alt={radio.title} width={160} height={160} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
-                                            </div>
-                                            <div className="flex items-center gap-1.5 min-w-0">
-                                                <p className="text-sm font-semibold truncate">{radio.title}</p>
-                                                {radio.playingIcon && <div className="playing h-3 w-4 shrink-0 flex items-end gap-[2px] text-emerald-500" aria-hidden="true" title="Now playing"><span className="bar"></span><span className="bar"></span><span className="bar"></span></div>}
-                                            </div>
-                                            <p className="text-xs text-gray-500 truncate">Now Playing: {radio.playing}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Trending Now</h2>
                             <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-8">
