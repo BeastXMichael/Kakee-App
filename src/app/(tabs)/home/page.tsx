@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { BellIcon, SmileIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
@@ -115,7 +116,6 @@ export default function HomePage() {
         <div className="flex-grow flex flex-col space-y-6 pb-4">
           <RecentlyForYou />
           <LatestDrops />
-          <RecentlyForYou />
         </div>
       </main>
     </div>
