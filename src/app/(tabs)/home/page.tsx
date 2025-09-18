@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { BellIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
-import { KoinIcon } from '@/components/icons';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/notifications/notification-panel';
 import WelcomeGiftDialog from '@/components/home/welcome-gift-dialog';
+import { Shield, Sparkles, Trophy } from 'lucide-react';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -193,12 +193,20 @@ export default function HomePage() {
           </div>
         </Link>
         
-        <Link href="/rewards" className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
-            <KoinIcon />
-            <span className="font-bold text-primary-foreground">1,250 Koins</span>
-            <div className="flex-grow"></div>
-            <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
-        </Link>
+        <div className="grid grid-cols-3 gap-2 text-center mb-4 flex-shrink-0">
+            <Link href="/rewards" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <Trophy className="w-6 h-6 text-amber-500"/>
+                <span className="text-xs font-bold text-primary-foreground/90">Quests</span>
+            </Link>
+             <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <Shield className="w-6 h-6 text-rose-500"/>
+                <span className="text-xs font-bold text-primary-foreground/90">Rank</span>
+            </Link>
+             <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                <Sparkles className="w-6 h-6 text-violet-500"/>
+                <span className="text-xs font-bold text-primary-foreground/90">Benefits</span>
+            </Link>
+        </div>
 
         <div className="flex-grow flex flex-col space-y-6 pb-4">
           <RecentlyForYou />
