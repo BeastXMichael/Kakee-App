@@ -1,3 +1,4 @@
+'use client';
 
 import { ChevronLeft, Copy } from 'lucide-react';
 import Link from 'next/link';
@@ -5,13 +6,16 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
 export default function ReferPage() {
+  const { toast } = useToast();
   const referralCode = "KAKEE-GENERAL";
 
-  // This would be a client component to use useToast, but for simplicity we keep it server-side.
-  // The toast would show on button click.
   const handleCopy = () => {
-    // In a real app, you'd use navigator.clipboard.writeText
-    console.log("Copied!");
+    navigator.clipboard.writeText(referralCode).then(() => {
+      toast({
+        title: "Copied!",
+        description: "Your referral code has been copied to your clipboard.",
+      });
+    });
   };
   
   return (
