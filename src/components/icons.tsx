@@ -229,3 +229,25 @@ export function GeneralPackEmojis() {
 export function LockIcon(props: SVGProps<SVGSVGElement>) {
     return <Lock {...props} />
 }
+
+export function MusicNoteIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+    )
+}
+
+export function SparklePinIcon(props: SVGProps<SVGSVGElement>) {
+    return (
+         <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9.46-.35c.6-.6 1.56-.6 2.16 0L20 8.16c.6.6.6 1.56 0 2.16l-1.3 1.3-3.6-3.6L20 3.36 10.5.35z"/>
+            <path d="m14.31 15.15-2.86-2.86"/>
+            <path d="M11.45 18.01 22.06 7.4l-1.3-1.3L11.45 15.4l-2.12-2.12-1.3 1.3 2.12 2.12-1.3 1.3 2.12 2.12 1.3-1.3-2.12-2.12 1.3-1.3 2.12 2.12z"/>
+            <path d="m5.23 16.59-1.3 1.3c-.6.6-.6 1.56 0 2.16l1.3 1.3c.6.6 1.56.6 2.16 0l1.3-1.3"/>
+            <path d="M12.8 21.2a1 1 0 0 0 1.4-1.4l-7.58-7.58a1 1 0 0 0-1.4 1.4Z"/>
+        </svg>
+    )
+}

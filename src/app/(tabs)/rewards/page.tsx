@@ -6,7 +6,7 @@ import { Coffee, Ticket, Film, Pizza, Gamepad2, Headphones } from 'lucide-react'
 import DailySpinCard from '@/components/rewards/daily-spin-card';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { StreamsRouletteIcon, LyricLegendIcon, KakeeBeatsIcon, GuessTheSongIcon, BellIcon } from '@/components/icons';
+import { StreamsRouletteIcon, LyricLegendIcon, KakeeBeatsIcon, GuessTheSongIcon, BellIcon, MusicNoteIcon, SparklePinIcon } from '@/components/icons';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
@@ -82,7 +82,11 @@ export default function RewardsPage() {
             </div>
           </div>
 
-          <div className="mt-4 pb-4">
+          <div className="mt-4 pb-4 relative">
+            <MusicNoteIcon className="w-8 h-8 absolute -top-2 -left-2 text-pink-300 opacity-80 rotate-[-15deg] animate-pulse" />
+            <SparklePinIcon className="w-8 h-8 absolute top-8 -right-2 text-cyan-300 opacity-90 animate-bounce" />
+             <MusicNoteIcon className="w-10 h-10 absolute bottom-1/2 -right-3 text-purple-300 opacity-70 rotate-[20deg] animate-pulse delay-500" />
+            
             <h2 className="font-bold text-lg mb-2 text-gray-800">Mini-Games Arcade</h2>
             <div className="grid grid-cols-2 gap-3">
               {games.map((game, index) => (
