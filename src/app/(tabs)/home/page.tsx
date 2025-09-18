@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import { KoinIcon } from '@/components/icons';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/notifications/notification-panel';
+import WelcomeGiftDialog from '@/components/home/welcome-gift-dialog';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -146,9 +147,24 @@ function LatestRewardsDrops() {
 
 export default function HomePage() {
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showWelcomeGift, setShowWelcomeGift] = useState(false);
   
+  useEffect(() => {
+    const hasSeenWelcomeGift = sessionStorage.getItem('hasSeenWelcomeGift');
+    if (!hasSeenWelcomeGift) {
+      // Use a timeout to avoid layout shift issues and make the popup feel less abrupt
+      const timer = setTimeout(() => {
+        setShowWelcomeGift(true);
+        sessionStorage.setItem('hasSeenWelcomeGift', 'true');
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+
   return (
     <>
+    <WelcomeGiftDialog open={showWelcomeGift} onOpenChange={setShowWelcomeGift} />
     <div className="flex flex-col h-full bg-background relative overflow-y-auto no-scrollbar">
       <div className="absolute inset-0 z-0 radiant-background-home animate-radiant-glow"></div>
       
