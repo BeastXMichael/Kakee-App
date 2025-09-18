@@ -1,21 +1,10 @@
 
 import WatchClient from "./watch-client";
 
-const topVideos = [
-    { id: 'new-drama-1', title: 'My Secret Kopi Stall Romance' },
-    { id: 'new-drama-2', title: "Ah Beng's Guide to the Galaxy" },
-    { id: 'new-drama-3', title: 'The Last Mama Shop' },
-    { id: 'drops-1', title: 'Ah Beng\'s Guide' },
-    { id: 'drops-2', title: 'New Lobang!' },
-    { id: 'drops-3', title: 'New Game!' },
-    { id: 'recently-1', title: 'Lofi Beats Radio' },
-    { id: 'made-for-you-1', title: 'For You Mix' },
-];
-
 const trendingDramas = [
-    { id: 'trending-1', title: 'Top Hits' },
-    { id: 'trending-2', title: 'Viral 50' },
-    { id: 'trending-3', title: 'Global Hits' },
+    { id: 'trending-1', title: 'Shōgun' },
+    { id: 'trending-2', title: 'Fallout' },
+    { id: 'trending-3', title: 'Baby Reindeer' },
 ];
 
 const forYou = [
@@ -25,11 +14,18 @@ const forYou = [
     { id: 'made-for-you-4', 'title': 'New Releases' },
 ]
 
-const moreToWatch = [
-    { id: 'drops-1', title: 'Ah Beng\'s Guide' },
-    { id: 'drops-2', title: 'New Lobang!' },
-    { id: 'drops-3', title: 'New Game!' },
-    { id: 'recently-1', title: 'Lofi Beats Radio' },
+const longFormDramas = [
+    { id: 'k-drama-1', title: 'Queen of Tears' },
+    { id: 'k-drama-2', title: 'Lovely Runner' },
+    { id: 'k-drama-3', title: 'Silent Hill: Ascension' },
+    { id: 'k-drama-4', title: 'The Acolyte' },
+];
+
+const newAndTrending = [
+    { id: 'new-drama-1', title: 'Dune: Part Two' },
+    { id: 'new-drama-2', title: "Godzilla x Kong: The New Empire" },
+    { id: 'new-drama-3', title: "Civil War" },
+    { id: 'drops-1', title: 'The Ministry of Ungentlemanly Warfare' },
 ];
 
 const shorts = [
@@ -42,16 +38,16 @@ const shorts = [
 ];
 
 const top10Singapore = [
-    { id: 'new-drama-1', title: 'My Secret Kopi Stall Romance' },
-    { id: 'new-drama-3', title: 'The Last Mama Shop' },
-    { id: 'new-drama-2', title: "Ah Beng's Guide to the Galaxy" },
+    { id: 'new-drama-1', title: 'Dune: Part Two' },
+    { id: 'new-drama-3', title: 'Civil War' },
+    { id: 'new-drama-2', title: "Godzilla x Kong: The New Empire" },
     { id: 'short-1', title: 'Singapore Street Food' },
-    { id: 'made-for-you-1', title: 'For You Mix' },
+    { id: 'k-drama-1', title: 'Queen of Tears' },
 ];
 
 const kDramas = [
-    { id: 'k-drama-1', title: 'Crash Landing on You' },
-    { id: 'k-drama-2', title: 'Itaewon Class' },
+    { id: 'k-drama-1', title: 'Queen of Tears' },
+    { id: 'k-drama-2', title: 'Lovely Runner' },
     { id: 'k-drama-3', title: 'Vincenzo' },
     { id: 'k-drama-4', title: 'Squid Game' },
     { id: 'k-drama-5', title: 'The Glory' },
@@ -60,10 +56,10 @@ const kDramas = [
 
 export default function WatchPage() {
     return <WatchClient 
-        topVideos={topVideos} 
         trendingDramas={trendingDramas} 
         forYou={forYou} 
-        moreToWatch={moreToWatch} 
+        longFormDramas={longFormDramas}
+        newAndTrending={newAndTrending}
         shorts={shorts}
         top10Singapore={top10Singapore}
         kDramas={kDramas}

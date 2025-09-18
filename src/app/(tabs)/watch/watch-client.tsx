@@ -20,14 +20,15 @@ type VideoItem = {
 type WatchClientProps = {
     trendingDramas: VideoItem[];
     forYou: VideoItem[];
-    moreToWatch: VideoItem[];
+    longFormDramas: VideoItem[];
+    newAndTrending: VideoItem[];
     shorts: VideoItem[];
     top10Singapore: VideoItem[];
     kDramas: VideoItem[];
 };
 
 
-export default function WatchClient({ trendingDramas, forYou, moreToWatch, shorts, top10Singapore, kDramas }: WatchClientProps) {
+export default function WatchClient({ trendingDramas, forYou, longFormDramas, newAndTrending, shorts, top10Singapore, kDramas }: WatchClientProps) {
     const [showSearch, setShowSearch] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
@@ -76,8 +77,8 @@ export default function WatchClient({ trendingDramas, forYou, moreToWatch, short
                     <Link href="/watch/recently-watched" className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105 block">
                         {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
                         <div className="relative z-10">
-                            <h3 className="text-2xl font-black text-shadow">From HDB to CEO</h3>
-                            <p className="text-sm text-shadow-sm">Ep 24: The Final Merger</p>
+                            <h3 className="text-2xl font-black text-shadow">Dune: Part Two</h3>
+                            <p className="text-sm text-shadow-sm">Continue where you left off</p>
                             <div className="mt-2 text-xs font-bold bg-white text-gray-900 px-4 py-1.5 rounded-full inline-block">Continue Watching</div>
                         </div>
                     </Link>
@@ -131,9 +132,9 @@ export default function WatchClient({ trendingDramas, forYou, moreToWatch, short
                         </div>
 
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">K-Dramas</h2>
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Long-Form Dramas</h2>
                             <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {kDramas.map(drama => {
+                                {longFormDramas.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
                                         <Link href={`/watch/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
@@ -144,11 +145,11 @@ export default function WatchClient({ trendingDramas, forYou, moreToWatch, short
                                 })}
                             </div>
                         </div>
-
+                        
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">More to Watch</h2>
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">New & Trending</h2>
                             <div className="grid grid-cols-2 gap-4">
-                                {moreToWatch.map((drama, index) => {
+                                {newAndTrending.map((drama, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
                                         <Link href={`/watch/${drama.id}`} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
@@ -159,7 +160,6 @@ export default function WatchClient({ trendingDramas, forYou, moreToWatch, short
                                 })}
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </main>
