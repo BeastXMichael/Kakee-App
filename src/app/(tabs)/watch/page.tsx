@@ -1,12 +1,6 @@
 
 import WatchClient from "./watch-client";
 
-const trendingDramas = [
-    { id: 'trending-1', title: 'Shōgun' },
-    { id: 'trending-2', title: 'Fallout' },
-    { id: 'trending-3', title: 'Baby Reindeer' },
-];
-
 const forYou = [
     { id: 'made-for-you-1', title: 'For You Mix' },
     { id: 'made-for-you-2', title: 'Lofi Beats' },
@@ -38,19 +32,11 @@ const shorts = [
 ];
 
 const top10Singapore = [
-    { id: 'new-drama-1', title: 'Dune: Part Two' },
-    { id: 'new-drama-3', title: 'Civil War' },
     { id: 'new-drama-2', title: "Godzilla x Kong: The New Empire" },
+    { id: 'new-drama-3', title: 'Civil War' },
     { id: 'short-1', title: 'Singapore Street Food' },
     { id: 'k-drama-1', title: 'Queen of Tears' },
-];
-
-const kDramas = [
-    { id: 'k-drama-1', title: 'Queen of Tears' },
-    { id: 'k-drama-2', title: 'Lovely Runner' },
-    { id: 'k-drama-3', title: 'Vincenzo' },
-    { id: 'k-drama-4', title: 'Squid Game' },
-    { id: 'k-drama-5', title: 'The Glory' },
+    { id: 'new-drama-1', title: 'Dune: Part Two' },
 ];
 
 const regularVideos = [
@@ -62,13 +48,13 @@ const regularVideos = [
 
 export default function WatchPage() {
     return <WatchClient 
-        trendingDramas={trendingDramas} 
         forYou={forYou} 
         realityShows={realityShows}
         newAndTrending={newAndTrending}
         shorts={shorts}
         top10Singapore={top10Singapore}
-        kDramas={kDramas}
         regularVideos={regularVideos}
     />;
 }
+
+    

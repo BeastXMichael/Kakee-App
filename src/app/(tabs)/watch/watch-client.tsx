@@ -14,23 +14,21 @@ import NotificationPanel from '@/components/notifications/notification-panel';
 import { Progress } from '@/components/ui/progress';
 
 type WatchClientProps = {
-    trendingDramas: { id: string, title: string }[];
     forYou: { id: string, title: string }[];
     realityShows: { id: string, title: string }[];
     newAndTrending: { id: string, title: string }[];
     shorts: { id: string, title: string }[];
     top10Singapore: { id: string, title: string }[];
-    kDramas: { id: string, title: string }[];
     regularVideos: { id: string, title: string }[];
 };
 
 
-export default function WatchClient({ trendingDramas, forYou, realityShows, newAndTrending, shorts, top10Singapore, kDramas, regularVideos }: WatchClientProps) {
+export default function WatchClient({ forYou, realityShows, newAndTrending, shorts, top10Singapore, regularVideos }: WatchClientProps) {
     const [showSearch, setShowSearch] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
 
-    const recentlyWatchedImg = PlaceHolderImages.find(img => img.id === 'recently-watched');
+    const recentlyWatchedImg = PlaceHolderImages.find(img => img.id === 'new-drama-1');
 
     const openSearch = () => setShowSearch(true);
     const closeSearch = () => setShowSearch(false);
@@ -77,16 +75,15 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                     </div>
                     
                     {recentlyWatchedImg && (
-                        <div className="mb-8 space-y-2 group">
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Continue Watching</h2>
-                            <Link href="/watch/1" className="relative block rounded-lg shadow-md overflow-hidden aspect-video transition-transform duration-200 group-hover:scale-105 cursor-pointer">
-                                <Image src={recentlyWatchedImg.imageUrl} alt={recentlyWatchedImg.description} width={400} height={231} className="w-full h-full object-cover" data-ai-hint={recentlyWatchedImg.imageHint}/>
-                                <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Play className="w-12 h-12 text-white" fill="currentColor"/>
+                        <div className="mb-4 space-y-2 group">
+                            <Link href="/watch/drama/dune-part-two" className="relative block rounded-lg shadow-md overflow-hidden aspect-video transition-transform duration-200 group-hover:scale-105 cursor-pointer">
+                                <Image src={recentlyWatchedImg.imageUrl} alt="Dune: Part Two" width={400} height={225} className="w-full h-full object-cover" data-ai-hint="movie poster war"/>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-4">
+                                  <h3 className="text-white text-2xl font-bold text-shadow">Dune: Part Two</h3>
+                                  <p className="text-white/90 text-sm text-shadow mb-3">Continue where you left off</p>
+                                  <Button variant="secondary" size="sm" className="bg-white/90 text-black hover:bg-white w-fit px-4 h-8">Continue Watching</Button>
                                 </div>
                             </Link>
-                            <p className="font-bold">From HDB to CEO</p>
-                            <p className="text-xs text-gray-500">S1:E8 - The Final Merger</p>
                         </div>
                     )}
                     
