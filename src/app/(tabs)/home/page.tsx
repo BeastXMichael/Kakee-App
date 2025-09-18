@@ -12,7 +12,7 @@ function RecentlyForYou() {
     const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
         'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'recently-1'),
         'From HDB to CEO': PlaceHolderImages.find(img => img.id === 'recently-2'),
-        'Chill Mix': PlaceHolderImages.find(img => img.id === 'made-for-you-1'),
+        'Chill Mix': PlaceHolderImages.find(img => img.id === 'radio-1'),
         'Indie Wave': PlaceHolderImages.find(img => img.id === 'made-for-you-5'),
     };
     
@@ -48,30 +48,29 @@ function RecentlyForYou() {
 
 function LatestDrops() {
     const drops = [
-        PlaceHolderImages.find(img => img.id === 'drops-1'),
-        PlaceHolderImages.find(img => img.id === 'drops-2'),
-        PlaceHolderImages.find(img => img.id === 'drops-3'),
-        PlaceHolderImages.find(img => img.id === 'new-drama-1'),
-        PlaceHolderImages.find(img => img.id === 'new-drama-2'),
-        PlaceHolderImages.find(img => img.id === 'new-drama-3'),
-    ].filter(Boolean);
-    const titles = ["Ah Beng's Guide", "New Lobang!", "New Game!", "Secret Kopi Stall", "Ah Beng's Galaxy", "Last Mama Shop"];
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-1'), title: "Ah Beng's Guide" },
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-2'), title: "New Lobang!" },
+        { drop: PlaceHolderImages.find(img => img.id === 'drops-3'), title: "New Game!" },
+        { drop: PlaceHolderImages.find(img => img.id === 'new-drama-1'), title: "Secret Kopi Stall" },
+        { drop: PlaceHolderImages.find(img => img.id === 'new-drama-2'), title: "Ah Beng's Galaxy" },
+        { drop: PlaceHolderImages.find(img => img.id === 'new-drama-3'), title: "Last Mama Shop" },
+    ].filter(item => item.drop);
 
     return (
         <div className="flex-shrink-0">
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Latest Drops</h2>
             <div className="grid grid-cols-3 gap-3">
-                {drops.map((drop, index) => (
-                    <div key={drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                {drops.map((item) => (
+                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
                         <Image
-                            src={drop!.imageUrl}
-                            alt={drop!.description}
+                            src={item.drop!.imageUrl}
+                            alt={item.drop!.description}
                             width={200}
                             height={300}
                             className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover"
-                            data-ai-hint={drop!.imageHint}
+                            data-ai-hint={item.drop!.imageHint}
                         />
-                        <p className="text-xs font-semibold text-primary-foreground/80">{titles[index]}</p>
+                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
                     </div>
                 ))}
             </div>
@@ -81,10 +80,10 @@ function LatestDrops() {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col h-full bg-background relative">
+    <div className="flex flex-col h-full bg-background relative overflow-y-auto no-scrollbar">
       <div className="absolute inset-0 z-0 radiant-background-home animate-radiant-glow"></div>
       
-      <header className="p-4 flex justify-between items-center z-10 flex-shrink-0">
+      <div className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-background/80 backdrop-blur-sm">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
             <SmileIcon className="w-6 h-6 text-primary-foreground" />
@@ -99,9 +98,9 @@ export default function HomePage() {
             <BellIcon className="w-6 h-6" />
           </Button>
         </div>
-      </header>
+      </div>
 
-      <main className="px-4 pt-0 flex-grow bg-transparent z-10 flex flex-col overflow-y-auto no-scrollbar">
+      <main className="px-4 pt-0 flex-grow bg-transparent z-10 flex flex-col">
         <div className="text-center my-2 flex-shrink-0">
           <ProfileAvatar />
         </div>
