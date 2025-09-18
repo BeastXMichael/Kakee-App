@@ -53,6 +53,12 @@ const kDramas = [
     { id: 'k-drama-5', title: 'The Glory' },
 ];
 
+const regularVideos = [
+    { id: 'regular-video-1', title: 'How to Make the Perfect Kopi' },
+    { id: 'regular-video-2', title: 'Exploring Pulau Ubin' },
+    { id: 'regular-video-3', title: 'Top 5 Hawker Centre Dishes' },
+];
+
 
 export default function WatchPage() {
     return <WatchClient 
@@ -63,5 +69,6 @@ export default function WatchPage() {
         shorts={shorts}
         top10Singapore={top10Singapore}
         kDramas={kDramas}
+        regularVideos={regularVideos}
     />;
 }

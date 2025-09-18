@@ -220,25 +220,25 @@
     {
       "id": "k-drama-1",
       "description": "Crash Landing on You poster",
-      "imageUrl": "https://picsum.photos/seed/kdrama1/200/300",
+      "imageUrl": "https://picsum.photos/seed/kdrama1/400/225",
       "imageHint": "romance couple"
     },
     {
       "id": "k-drama-2",
       "description": "Itaewon Class poster",
-      "imageUrl": "https://picsum.photos/seed/kdrama2/200/300",
+      "imageUrl": "https://picsum.photos/seed/kdrama2/400/225",
       "imageHint": "city night"
     },
     {
       "id": "k-drama-3",
       "description": "Vincenzo poster",
-      "imageUrl": "https://picsum.photos/seed/kdrama3/200/300",
+      "imageUrl": "https://picsum.photos/seed/kdrama3/400/225",
       "imageHint": "mafia suit"
     },
     {
       "id": "k-drama-4",
       "description": "Squid Game poster",
-      "imageUrl": "https://picsum.photos/seed/kdrama4/200/300",
+      "imageUrl": "https://picsum.photos/seed/kdrama4/400/225",
       "imageHint": "game mask"
     },
     {
@@ -246,6 +246,24 @@
       "description": "The Glory poster",
       "imageUrl": "https://picsum.photos/seed/kdrama5/200/300",
       "imageHint": "drama revenge"
+    },
+    {
+      "id": "regular-video-1",
+      "description": "A video about making Kopi",
+      "imageUrl": "https://picsum.photos/seed/regvid1/400/225",
+      "imageHint": "coffee making"
+    },
+    {
+      "id": "regular-video-2",
+      "description": "A video exploring Pulau Ubin",
+      "imageUrl": "https://picsum.photos/seed/regvid2/400/225",
+      "imageHint": "nature island"
+    },
+    {
+      "id": "regular-video-3",
+      "description": "A video about hawker food",
+      "imageUrl": "https://picsum.photos/seed/regvid3/400/225",
+      "imageHint": "food market"
     }
   ]
 }

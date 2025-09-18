@@ -26,10 +26,11 @@ type WatchClientProps = {
     shorts: VideoItem[];
     top10Singapore: VideoItem[];
     kDramas: VideoItem[];
+    regularVideos: VideoItem[];
 };
 
 
-export default function WatchClient({ trendingDramas, forYou, realityShows, newAndTrending, shorts, top10Singapore, kDramas }: WatchClientProps) {
+export default function WatchClient({ trendingDramas, forYou, realityShows, newAndTrending, shorts, top10Singapore, kDramas, regularVideos }: WatchClientProps) {
     const [showSearch, setShowSearch] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
 
@@ -161,6 +162,21 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                                         <Link href={`/watch/drama/${drama.id}`} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Regular Videos</h2>
+                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
+                                {regularVideos.map(video => {
+                                    const image = PlaceHolderImages.find(img => img.id === video.id);
+                                    return (
+                                        <Link href={`/watch/regular/${video.id}`} key={video.id} className="w-64 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                            {image && <Image src={image.imageUrl} alt={video.title} width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
+                                            <p className="text-sm font-semibold">{video.title}</p>
                                         </Link>
                                     );
                                 })}
