@@ -34,8 +34,8 @@ const moreSongs = [
     { id: 'trending-1', title: 'Adrenaline Rush', artist: 'High-energy tracks for your workout.', playlistId: 'gym-rat-fuel' },
     { id: 'trending-2', title: 'Creative Flow', artist: 'Inspiring music to get your ideas flowing.', playlistId: 'crank-up-brain-power' },
     { id: 'trending-3', title: 'Road Trip Anthems', artist: 'The perfect soundtrack for your journey.', playlistId: 'pov-you-vibe' },
-    { id: 'made-for-you-5', title: 'Indie Drive', artist: 'Cruising with the best modern indie.', playlistId: 'shower-power' },
-    { id: 'made-for-you-6', title: 'Sunshine Beats', artist: 'Feel-good tracks for a great day.', playlistId: 'shower-power' },
+    { id: 'made-for-you-5', title: 'Indie Drive', artist: 'Cruising with the best modern indie.', playlistId: 'sad-girl-hours' },
+    { id: 'made-for-you-6', title: 'Sunshine Beats', artist: 'Feel-good tracks for a great day.', playlistId: 'running-flash' },
     { id: 'recently-1', title: 'Deep Study', artist: 'Instrumental beats to help you focus.', playlistId: 'crank-up-brain-power' },
 ];
 
