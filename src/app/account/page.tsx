@@ -1,8 +1,7 @@
 
 import { ChevronLeft, ChevronRight, User, Globe, Shield, Users, Settings, HelpCircle, LogOut } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ProfileAvatar } from '@/components/home/profile-avatar';
 
 const menuItems = [
   { icon: User, text: 'Edit Profile' },
@@ -14,8 +13,6 @@ const menuItems = [
 ];
 
 export default function AccountPage() {
-  const avatarImage = PlaceHolderImages.find(img => img.id === 'user-avatar');
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200 p-0 sm:p-4 font-body">
       <div className="max-w-md w-full h-screen sm:h-[812px] bg-gray-50 shadow-2xl sm:rounded-[32px] flex flex-col relative overflow-hidden border-4 border-black">
@@ -28,20 +25,11 @@ export default function AccountPage() {
         </header>
 
         <main className="flex-grow overflow-y-auto no-scrollbar">
-          <div className="p-6 flex flex-col items-center">
-            <div className="relative w-24 h-24">
-              {avatarImage && (
-                <Image
-                  src={avatarImage.imageUrl}
-                  alt="User Avatar"
-                  width={96}
-                  height={96}
-                  className="w-full h-full rounded-full border-4 border-white shadow-lg"
-                  data-ai-hint={avatarImage.imageHint}
-                />
-              )}
+          <div className="py-6 flex flex-col items-center">
+            <div className="scale-[1.15] my-2">
+              <ProfileAvatar />
             </div>
-            <h2 className="mt-4 text-xl font-bold text-gray-800">General</h2>
+            <h2 className="mt-8 text-xl font-bold text-gray-800">General</h2>
             <p className="text-sm text-gray-500">general@kakee.com</p>
           </div>
 
