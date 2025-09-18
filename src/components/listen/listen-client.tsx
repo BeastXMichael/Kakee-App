@@ -52,11 +52,16 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         return () => scrollContainer.removeEventListener('scroll', handleScroll);
     }, []);
     
-    const trendingNow = trendingData.trendingContent.map((title, index) => ({
-      id: `trending-${index+1}`,
-      title: index === 0 ? "Morning Boost" : (index === 1 ? "Evening Unwind" : "Workout Power"),
-      playing: title
-    }));
+    const trendingNow = trendingData.trendingContent.slice(0, 5).map((playingTitle, index) => {
+      const items = [
+          { id: 'trending-1', title: 'Morning Boost', playing: playingTitle },
+          { id: 'trending-2', title: 'Evening Unwind', playing: playingTitle },
+          { id: 'trending-3', title: 'Workout Power', playing: playingTitle },
+          { id: 'radio-3', title: 'Happy Hits', playing: playingTitle },
+          { id: 'made-for-you-1', title: 'Shower Jams', playing: playingTitle }
+      ];
+      return items[index];
+    });
 
 
     return (
