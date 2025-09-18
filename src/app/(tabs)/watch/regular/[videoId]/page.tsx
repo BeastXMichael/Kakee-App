@@ -44,15 +44,14 @@ export default function RegularVideoPage({ params }: { params: { videoId: string
         </header>
 
         <div className="w-full aspect-video bg-black flex-shrink-0">
-            {videoImage && (
-                <Image
-                    src={videoImage.imageUrl}
-                    alt={details.title}
-                    width={800}
-                    height={450}
-                    className="w-full h-full object-cover"
-                />
-            )}
+             <video
+                src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+                autoPlay
+                muted
+                loop
+                className="w-full h-full object-cover"
+                controls
+            />
         </div>
 
         <main className="p-4 flex-grow">

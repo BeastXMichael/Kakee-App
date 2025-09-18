@@ -48,14 +48,13 @@ export default function DramaDetailsPage({ params }: { params: { videoId: string
       </header>
 
       <div className="relative w-full h-60 flex-shrink-0">
-        {poster && (
-          <Image
-            src={poster.imageUrl}
-            alt={details.title}
-            fill
-            className="object-cover opacity-50"
-          />
-        )}
+        <video
+            src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+            autoPlay
+            muted
+            loop
+            className="absolute inset-0 w-full h-full object-cover opacity-50"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-[#101010] to-transparent"></div>
       </div>
 
