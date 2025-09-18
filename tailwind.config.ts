@@ -142,6 +142,10 @@ export default {
           '0%, 100%': { opacity: '0.7' },
           '50%': { opacity: '1' },
         },
+        'confetti-fall': {
+          '0%': { transform: 'translateY(-100%) rotate(0deg)', opacity: '1' },
+          '100%': { transform: 'translateY(100vh) rotate(360deg)', opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -158,6 +162,7 @@ export default {
         'laser-scan': 'laser-scan 2s ease-in-out infinite alternate',
         'shine': 'shine 1.5s infinite linear',
         'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'confetti-fall': 'confetti-fall 7s linear infinite',
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',
