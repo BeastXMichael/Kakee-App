@@ -10,8 +10,8 @@ import type { TrendingContentOutput } from '@/ai/flows/trending-content-predicti
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ListenSearchOverlay from './search-overlay';
-import { ProfileAvatar } from '../home/profile-avatar';
-import NotificationPanel from '../notifications/notification-panel';
+import { ProfileAvatar } from '@/components/home/profile-avatar';
+import NotificationPanel from '@/components/notifications/notification-panel';
 import { Progress } from '@/components/ui/progress';
 
 const topSongs = [

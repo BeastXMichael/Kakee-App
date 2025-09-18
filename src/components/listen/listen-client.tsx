@@ -5,13 +5,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Search, Play } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { KoinIcon, BellIcon } from '@/components/icons';
+import { KoinIcon, BellIcon, TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ListenSearchOverlay from './search-overlay';
 import { ProfileAvatar } from '../home/profile-avatar';
 import NotificationPanel from '../notifications/notification-panel';
+import { Progress } from '@/components/ui/progress';
 
 const topSongs = [
     { id: 'made-for-you-1', title: 'Espresso', artist: 'Sabrina Carpenter', playlistId: 'espresso-song' },
@@ -82,12 +83,17 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
 
                 <main className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar px-4 h-full">
                     <div className="relative z-10">
-                        <Link href="/rewards" className="bg-white/60 p-3 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                            <KoinIcon />
-                            <span className="font-bold text-primary-foreground">1,250 Koins</span>
-                            <div className="flex-grow"></div>
-                            <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
-                        </Link>
+                        <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                                <Play className="w-4 h-4 fill-white" />
+                            </div>
+                            <div className='w-full'>
+                                <Progress value={75} className='h-3' />
+                            </div>
+                            <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-md cursor-pointer flex-shrink-0 animate-chest-glow">
+                                <TreasureChestIcon className="w-7 h-7"/>
+                            </div>
+                        </div>
                         
                         <div className="grid grid-cols-2 gap-2">
                         {topSongs.map(item => {
