@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { intelligentWatchTabSearch } from "@/ai/flows/intelligent-watch-tab-search";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
@@ -28,14 +27,15 @@ export default function SearchOverlay({ show, onClose }: SearchOverlayProps) {
         if (!query) return;
         setIsLoading(true);
         setResults(null);
-        try {
-            const searchResults = await intelligentWatchTabSearch({ query });
-            setResults(searchResults);
-        } catch (error) {
-            console.error("Search failed:", error);
-        } finally {
+        // Mock search results
+        setTimeout(() => {
+            const mockResults = {
+                suggestedContent: [`Results for "${query}" 1`, `Results for "${query}" 2`],
+                suggestedGenres: ["Action", "Sci-Fi"]
+            }
+            setResults(mockResults);
             setIsLoading(false);
-        }
+        }, 1000);
     };
 
     return (

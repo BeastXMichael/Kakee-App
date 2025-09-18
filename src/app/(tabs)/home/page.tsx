@@ -4,23 +4,9 @@ import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import { KoinIcon } from '@/components/icons';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { getPersonalizedHomeRecommendations } from '@/ai/flows/personalized-home-recommendations';
 
-async function RecentlyForYou() {
-    let recommendations;
-    const defaultRecommendations = ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'];
-    try {
-        // This is a mock implementation. In a real app, you'd pass actual user data.
-        recommendations = await getPersonalizedHomeRecommendations({
-            viewingHistory: ['video1', 'video2', 'video3'],
-            listeningHistory: ['song1', 'song2'],
-            userRank: 'General'
-        });
-    } catch (error) {
-        console.error("Failed to get personalized recommendations:", error);
-        recommendations = { recommendedContent: defaultRecommendations };
-    }
-
+function RecentlyForYou() {
+    const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
 
     const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
         'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'recently-1'),
@@ -29,8 +15,7 @@ async function RecentlyForYou() {
         'Indie Wave': PlaceHolderImages.find(img => img.id === 'made-for-you-5'),
     };
     
-    // In a real app, you would fetch content details based on IDs.
-    const recommendedContent = (recommendations.recommendedContent.length > 0 ? recommendations.recommendedContent : defaultRecommendations).slice(0, 4);
+    const recommendedContent = recommendations.recommendedContent.slice(0, 4);
 
     return (
         <div className="flex-shrink-0">
