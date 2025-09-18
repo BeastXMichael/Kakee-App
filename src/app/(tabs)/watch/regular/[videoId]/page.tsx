@@ -79,9 +79,8 @@ export default function RegularVideoPage({ params }: { params: { videoId: string
                 )}
                 <div className="flex-grow">
                     <p className="font-bold">{details.channel}</p>
-                    <p className="text-xs text-gray-500">1.2M subscribers</p>
+                    <p className="text-xs text-gray-500">In-House Production</p>
                 </div>
-                <Button className="bg-gray-800 text-white hover:bg-black rounded-full">Subscribe</Button>
             </div>
 
             <div className="flex items-center justify-around bg-gray-100 p-2 rounded-full my-4">
