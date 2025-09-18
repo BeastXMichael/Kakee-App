@@ -16,6 +16,7 @@ import { Progress } from '@/components/ui/progress';
 type VideoItem = {
     id: string;
     title: string;
+    type: 'short' | 'drama' | 'regular';
 };
 
 type WatchClientProps = {
@@ -39,6 +40,24 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
 
     const openSearch = () => setShowSearch(true);
     const closeSearch = () => setShowSearch(false);
+    
+    const allLongFormContent = [
+        ...newAndTrending.map(item => ({ ...item, category: 'New & Trending', type: 'drama' })),
+        ...realityShows.map(item => ({ ...item, category: 'Reality Show', type: 'drama' })),
+        ...regularVideos.map(item => ({ ...item, category: 'Regular Videos', type: 'regular' })),
+        ...trendingDramas.map(item => ({...item, category: 'Trending Dramas', type: 'short' })),
+        ...top10Singapore.map(item => ({...item, category: 'Top 10 in Singapore Today', type: item.id.includes('short') ? 'short' : 'drama' })),
+    ];
+    
+    const getHref = (item: {id: string, type: 'short' | 'drama' | 'regular' | string}) => {
+        switch(item.type) {
+            case 'short': return `/watch/${item.id}`;
+            case 'drama': return `/watch/drama/${item.id}`;
+            case 'regular': return `/watch/regular/${item.id}`;
+            default: return `/watch/${item.id}`;
+        }
+    }
+
 
     return (
         <div className="h-full bg-white flex flex-col relative">
@@ -69,7 +88,7 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
             <main className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar h-full px-4">
                 
                 <div className="relative z-10">
-                    <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
+                     <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
                         <div className="w-8 h-8 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
                             <Clapperboard className="w-4 h-4" />
                         </div>
@@ -81,37 +100,14 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                         </div>
                     </div>
                     
-                    <Link href="/watch/drama/dune-part-two" className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105 block">
-                        {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
-                        <div className="relative z-10">
-                            <h3 className="text-2xl font-black text-shadow">Dune: Part Two</h3>
-                            <p className="text-sm text-shadow-sm">Continue where you left off</p>
-                            <div className="mt-2 text-xs font-bold bg-white text-gray-900 px-4 py-1.5 rounded-full inline-block">Continue Watching</div>
-                        </div>
-                    </Link>
-                    
-                    <div className="space-y-8 pt-6 pb-24">
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Dramas</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {trendingDramas.map(drama => {
-                                    const image = PlaceHolderImages.find(img => img.id === drama.id);
-                                    return (
-                                        <Link href={`/watch/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{drama.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        <div>
+                    <div className='space-y-8 pt-6 pb-24'>
+                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800">Shorts</h2>
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="flex space-x-3 overflow-x-auto no-scrollbar -mx-4 px-4">
                                 {shorts.map(short => {
                                     const image = PlaceHolderImages.find(img => img.id === short.id);
                                     return (
-                                        <Link href={`/watch/${short.id}`} key={short.id} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                        <Link href={`/watch/${short.id}`} key={short.id} className="w-28 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt={short.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[9/16] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-xs font-semibold">{short.title}</p>
                                         </Link>
@@ -120,69 +116,24 @@ export default function WatchClient({ trendingDramas, forYou, realityShows, newA
                             </div>
                         </div>
 
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Top 10 in Singapore Today</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {top10Singapore.map((item, index) => {
+                        <div className="space-y-4">
+                             <h2 className="font-bold text-xl text-gray-800">For You</h2>
+                             <div className="grid grid-cols-2 gap-4">
+                                {allLongFormContent.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
+                                    const isVertical = ['short', 'drama'].includes(item.type) && item.id.includes('drama') && !item.id.includes('k-drama');
+                                    
                                     return (
-                                        <Link href={`/watch/${item.id}`} key={`${item.id}-${index}`} className="flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105 w-40">
-                                            <div className="relative">
-                                                <div className="text-8xl font-black text-white absolute -left-4 -bottom-4" style={{ WebkitTextStroke: "4px black", textStroke: "4px black", zIndex: 0 }}>{index + 1}</div>
-                                                {image && <Image src={image.imageUrl} alt={item.title} width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover relative z-10 ml-auto" style={{ width: '80%'}} data-ai-hint={image.imageHint}/>}
-                                            </div>
+                                        <Link href={getHref(item)} key={`${item.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                            {image && <Image src={image.imageUrl} alt={item.title} width={400} height={225} className={`w-full h-auto rounded-lg shadow-md object-cover ${isVertical ? 'aspect-[2/3]' : 'aspect-video'}`} data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{item.title}</p>
                                         </Link>
                                     );
                                 })}
                             </div>
                         </div>
-
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Reality Show</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {realityShows.map(drama => {
-                                    const image = PlaceHolderImages.find(img => img.id === drama.id);
-                                    return (
-                                        <Link href={`/watch/drama/${drama.id}`} key={drama.id} className="w-64 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{drama.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">New & Trending</h2>
-                            <div className="grid grid-cols-2 gap-4">
-                                {newAndTrending.map((drama, index) => {
-                                    const image = PlaceHolderImages.find(img => img.id === drama.id);
-                                    return (
-                                        <Link href={`/watch/drama/${drama.id}`} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{drama.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800">Regular Videos</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
-                                {regularVideos.map(video => {
-                                    const image = PlaceHolderImages.find(img => img.id === video.id);
-                                    return (
-                                        <Link href={`/watch/regular/${video.id}`} key={video.id} className="w-64 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
-                                            {image && <Image src={image.imageUrl} alt={video.title} width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
-                                            <p className="text-sm font-semibold">{video.title}</p>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
                     </div>
+
                 </div>
             </main>
 
