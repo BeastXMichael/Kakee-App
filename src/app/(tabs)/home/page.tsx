@@ -10,11 +10,11 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
 
-    const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
-        'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'radio-2'),
-        'From HDB to CEO': PlaceHolderImages.find(img => img.id === 'recently-watched'),
-        'Chill Mix': PlaceHolderImages.find(img => img.id === 'radio-1'),
-        'Indie Wave': PlaceHolderImages.find(img => img.id === 'made-for-you-5'),
+    const contentMap: { [key: string]: { data: typeof PlaceHolderImages[0] | undefined, href: string } } = {
+        'Lofi Beats Radio': { data: PlaceHolderImages.find(img => img.id === 'radio-2'), href: '/listen' },
+        'From HDB to CEO': { data: PlaceHolderImages.find(img => img.id === 'recently-watched'), href: '/watch' },
+        'Chill Mix': { data: PlaceHolderImages.find(img => img.id === 'radio-1'), href: '/listen' },
+        'Indie Wave': { data: PlaceHolderImages.find(img => img.id === 'made-for-you-5'), href: '/listen' },
     };
     
     const recommendedContent = recommendations.recommendedContent.slice(0, 4);
@@ -25,20 +25,21 @@ function RecentlyForYou() {
             <div className="grid grid-cols-2 gap-3">
                 {recommendedContent.map((title, index) => {
                     const content = contentMap[title] || Object.values(contentMap)[index % Object.keys(contentMap).length];
+                    if (!content.data) return null;
                     return (
-                        <div key={index} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                            {content && (
+                        <Link href={content.href} key={index}>
+                            <div className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                 <Image
-                                    src={content.imageUrl}
-                                    alt={content.description}
+                                    src={content.data.imageUrl}
+                                    alt={content.data.description}
                                     width={400}
                                     height={231}
                                     className="w-full h-auto rounded-lg shadow-md aspect-[13/8] object-cover"
-                                    data-ai-hint={content.imageHint}
+                                    data-ai-hint={content.data.imageHint}
                                 />
-                            )}
-                            <p className="text-xs font-semibold text-primary-foreground/80">{title}</p>
-                        </div>
+                                <p className="text-xs font-semibold text-primary-foreground/80">{title}</p>
+                            </div>
+                        </Link>
                     );
                 })}
             </div>
@@ -58,17 +59,19 @@ function LatestListenDrops() {
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">New Music to Vibe To</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
-                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                        <Image
-                            src={item.drop!.imageUrl}
-                            alt={item.drop!.description}
-                            width={200}
-                            height={200}
-                            className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
-                            data-ai-hint={item.drop!.imageHint}
-                        />
-                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
-                    </div>
+                    <Link href="/listen" key={item.drop!.id}>
+                        <div className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                            <Image
+                                src={item.drop!.imageUrl}
+                                alt={item.drop!.description}
+                                width={200}
+                                height={200}
+                                className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
+                                data-ai-hint={item.drop!.imageHint}
+                            />
+                            <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>
@@ -87,17 +90,19 @@ function LatestWatchDrops() {
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Fresh Dramas on Screen</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
-                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                        <Image
-                            src={item.drop!.imageUrl}
-                            alt={item.drop!.description}
-                            width={200}
-                            height={300}
-                            className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover"
-                            data-ai-hint={item.drop!.imageHint}
-                        />
-                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
-                    </div>
+                    <Link href="/watch" key={item.drop!.id}>
+                        <div className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                            <Image
+                                src={item.drop!.imageUrl}
+                                alt={item.drop!.description}
+                                width={200}
+                                height={300}
+                                className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover"
+                                data-ai-hint={item.drop!.imageHint}
+                            />
+                            <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>
@@ -116,17 +121,19 @@ function LatestRewardsDrops() {
             <h2 className="font-bold text-lg mb-2 text-primary-foreground/90">Your Newest Perks</h2>
             <div className="grid grid-cols-3 gap-3">
                 {drops.map((item) => (
-                    <div key={item.drop!.id} className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
-                        <Image
-                            src={item.drop!.imageUrl}
-                            alt={item.drop!.description}
-                            width={200}
-                            height={200}
-                            className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
-                            data-ai-hint={item.drop!.imageHint}
-                        />
-                        <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
-                    </div>
+                    <Link href="/rewards" key={item.drop!.id}>
+                        <div className="space-y-1.5 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                            <Image
+                                src={item.drop!.imageUrl}
+                                alt={item.drop!.description}
+                                width={200}
+                                height={200}
+                                className="w-full h-auto rounded-lg shadow-md aspect-square object-cover"
+                                data-ai-hint={item.drop!.imageHint}
+                            />
+                            <p className="text-xs font-semibold text-primary-foreground/80">{item.title}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>
