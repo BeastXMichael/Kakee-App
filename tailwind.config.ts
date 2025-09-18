@@ -141,6 +141,10 @@ export default {
         'pulse-slow': {
           '0%, 100%': { opacity: '0.7' },
           '50%': { opacity: '1' },
+        },
+        'confetti': {
+            '0%': { 'background-position': '0 0, 0 0, 0 0' },
+            '100%': { 'background-position': '50px 500px, 20px 200px, -30px 300px' },
         }
       },
       animation: {
