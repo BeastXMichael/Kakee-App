@@ -126,8 +126,9 @@ export default {
           '100%': { transform: 'translateY(-80px) scale(1.5)', opacity: '0' },
         },
         'laser-scan': {
-          '0%, 100%': { transform: 'translateX(0%)' },
-          '50%': { transform: 'translateX(calc(3750% - 100%))' },
+          '0%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(calc(100vw - 100%))' },
+          '100%': { transform: 'translateX(0)' },
         }
       },
       animation: {
@@ -151,5 +152,3 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
-
-    

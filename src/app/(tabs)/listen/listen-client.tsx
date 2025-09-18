@@ -3,16 +3,15 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Search, Play, Music } from 'lucide-react';
+import { Search, Play } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { BellIcon, ListenIcon, TreasureChestIcon } from '@/components/icons';
+import { BellIcon, TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ListenSearchOverlay from './search-overlay';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import NotificationPanel from '@/components/notifications/notification-panel';
-import { Progress } from '@/components/ui/progress';
 
 const topSongs = [
     { id: 'made-for-you-1', title: 'Espresso', artist: 'Sabrina Carpenter', playlistId: 'espresso-song' },
@@ -85,7 +84,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                     <div className="relative z-10">
                         <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
                             <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 p-1">
-                                <ListenIcon className="w-5 h-5" />
+                                <Play className="w-4 h-4 fill-white ml-0.5" />
                             </div>
                             <div className="flex-grow h-4 bg-black/10 rounded-full overflow-hidden shadow-inner border border-white/50">
                                 <div className="relative h-full w-full">
@@ -183,7 +182,3 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         </>
     );
 }
-
-    
-
-    
