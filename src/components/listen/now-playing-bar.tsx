@@ -22,12 +22,14 @@ import {
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
+import { SoundWaveIcon } from '../icons';
 
 export default function NowPlayingBar() {
   const albumArt = PlaceHolderImages.find(img => img.id === 'now-playing-art');
   const [showVoteDialog, setShowVoteDialog] = useState(false);
   const [voted, setVoted] = useState<'heart' | 'fire' | null>(null);
   const { toast } = useToast();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleVote = (vote: 'heart' | 'fire') => {
     setVoted(vote);
@@ -39,6 +41,10 @@ export default function NowPlayingBar() {
         setShowVoteDialog(false);
         setVoted(null);
     }, 1000);
+  };
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -59,8 +65,14 @@ export default function NowPlayingBar() {
             <p className="font-bold text-sm text-gray-800 truncate">Blinding Lights</p>
             <p className="text-xs text-gray-500 truncate">The Weeknd</p>
           </div>
-          <button className="text-gray-700">
-            <Play className="h-6 w-6" fill="currentColor" />
+           <button onClick={togglePlay} className="text-gray-700 w-6 h-6">
+            {isPlaying ? (
+                <div className="playing h-full w-full">
+                    <SoundWaveIcon />
+                </div>
+            ) : (
+                <Play className="h-6 w-6" fill="currentColor" />
+            )}
           </button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

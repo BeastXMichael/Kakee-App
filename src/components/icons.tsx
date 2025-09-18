@@ -1,3 +1,4 @@
+
 import type { SVGProps } from 'react';
 import { cn } from "@/lib/utils"
 import { Music2 } from 'lucide-react';
@@ -169,3 +170,11 @@ export function GuessTheSongIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+export const SoundWaveIcon = (props: SVGProps<SVGSVGElement>) => (
+    <div className={cn("flex items-end justify-between h-full", props.className)}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+    </div>
+)
