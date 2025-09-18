@@ -9,6 +9,17 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { voteForSong } from '@/ai/flows/vote-for-song';
 import { cn } from '@/lib/utils';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 const playlistDetails = {
     'shower-power': {
@@ -101,6 +112,15 @@ const playlistDetails = {
     }
 };
 
+const communityPlaylists = [
+    { id: 'shower-power', title: 'Crying in the Shower' },
+    { id: 'morning-energy', title: 'Morning Energy' },
+    { id: 'study-flow', title: 'Study Flow' },
+    { id: 'hype-train', title: 'Hype Train' },
+    { id: 'gym-rat-fuel', title: 'Gym Rat Fuel' },
+];
+
+
 type Song = {
     id: string;
     title: string;
@@ -114,6 +134,8 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
     const { toast } = useToast();
     const [songs, setSongs] = useState<Song[]>(details.songs.sort((a, b) => b.votes - a.votes));
     const [votedSongs, setVotedSongs] = useState<Record<string, boolean>>({});
+    const [showSuggestionDialog, setShowSuggestionDialog] = useState(false);
+    const [suggestionPlaylist, setSuggestionPlaylist] = useState<string | null>(null);
 
     const handleVote = async (songId: string) => {
         if (votedSongs[songId]) return;
@@ -143,6 +165,36 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
         }
     };
     
+    const handleSuggestSong = async () => {
+        if (!suggestionPlaylist) {
+            toast({
+                title: "No Playlist Selected",
+                description: "Please select a playlist to suggest a song to.",
+                variant: 'destructive',
+            });
+            return;
+        }
+
+        const currentSong = songs[0]; // Suggesting the top song for simplicity
+        
+        try {
+            await voteForSong({ songId: currentSong.id, playlistId: suggestionPlaylist, userId: 'user-general' });
+            toast({
+                title: "Suggestion Sent!",
+                description: `You suggested "${currentSong.title}" for the "${communityPlaylists.find(p => p.id === suggestionPlaylist)?.title}" playlist.`,
+            });
+        } catch (error) {
+             toast({
+                title: "Suggestion Failed",
+                description: "Could not send your suggestion. Please try again.",
+                variant: 'destructive',
+            });
+        } finally {
+            setShowSuggestionDialog(false);
+            setSuggestionPlaylist(null);
+        }
+    };
+
     const playlistImage = PlaceHolderImages.find(p => p.id === details.image);
 
     return (
@@ -226,10 +278,33 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
             </main>
 
             <footer className="p-4 flex-shrink-0 z-10 sticky bottom-0 bg-[#0D1B2A]/80 backdrop-blur-sm">
-                <Button size="lg" className="w-full bg-red-500 hover:bg-red-600 text-white rounded-full font-bold">
-                    <Plus className="w-5 h-5 mr-2"/>
-                    Suggest a Song & Earn 100 XP
-                </Button>
+                <Dialog open={showSuggestionDialog} onOpenChange={setShowSuggestionDialog}>
+                    <DialogTrigger asChild>
+                        <Button size="lg" className="w-full bg-red-500 hover:bg-red-600 text-white rounded-full font-bold">
+                            <Plus className="w-5 h-5 mr-2"/>
+                            Suggest a Song & Earn 100 XP
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px] bg-gray-900 border-primary/50 text-white">
+                        <DialogHeader>
+                            <DialogTitle className="text-primary">Suggest a Song</DialogTitle>
+                            <DialogDescription className="text-gray-400">
+                                Vote to add <span className="font-bold text-white">{songs[0]?.title || 'this song'}</span> to a community playlist.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <RadioGroup onValueChange={setSuggestionPlaylist} className="my-4 space-y-2">
+                            {communityPlaylists.map(playlist => (
+                                <div key={playlist.id} className="flex items-center space-x-3 bg-white/5 p-3 rounded-md">
+                                    <RadioGroupItem value={playlist.id} id={playlist.id} />
+                                    <Label htmlFor={playlist.id} className="text-white font-medium">{playlist.title}</Label>
+                                </div>
+                            ))}
+                        </RadioGroup>
+                        <DialogFooter>
+                            <Button onClick={handleSuggestSong} className="w-full">Suggest & Earn XP</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             </footer>
         </div>
     );
