@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import NotificationPanel from '@/components/notifications/notification-panel';
 import WelcomeGiftDialog from '@/components/home/welcome-gift-dialog';
 import { Shield, Sparkles, Trophy } from 'lucide-react';
+import QuestsSheet from '@/components/home/quests-sheet';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -148,6 +149,7 @@ function LatestRewardsDrops() {
 export default function HomePage() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showWelcomeGift, setShowWelcomeGift] = useState(false);
+  const [showQuests, setShowQuests] = useState(false);
   
   useEffect(() => {
     const hasSeenWelcomeGift = sessionStorage.getItem('hasSeenWelcomeGift');
@@ -194,10 +196,10 @@ export default function HomePage() {
         </Link>
         
         <div className="grid grid-cols-3 gap-2 text-center mb-4 flex-shrink-0">
-            <Link href="/rewards" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
+            <button onClick={() => setShowQuests(true)} className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
                 <Trophy className="w-6 h-6 text-amber-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Quests</span>
-            </Link>
+            </button>
              <Link href="/account/my-rank" className="bg-white/60 p-2 rounded-xl shadow-sm border border-white/30 backdrop-blur-sm flex flex-col items-center justify-center space-y-1 transition-transform duration-200 hover:scale-105 cursor-pointer">
                 <Shield className="w-6 h-6 text-rose-500"/>
                 <span className="text-xs font-bold text-primary-foreground/90">Rank</span>
@@ -217,6 +219,7 @@ export default function HomePage() {
       </main>
     </div>
     <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
+    <QuestsSheet open={showQuests} onOpenChange={setShowQuests} />
     </>
   );
 }

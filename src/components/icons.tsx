@@ -1,7 +1,7 @@
 
 import type { SVGProps } from 'react';
 import { cn } from "@/lib/utils"
-import { Music2 } from 'lucide-react';
+import { Music2, Share2, UserPlus } from 'lucide-react';
 
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -178,3 +178,15 @@ export const SoundWaveIcon = (props: SVGProps<SVGSVGElement>) => (
         <span className="bar"></span>
     </div>
 )
+
+export function ShareSocialIcon(props: SVGProps<SVGSVGElement>) {
+  return <Share2 {...props} className={cn("text-blue-500", props.className)} />
+}
+
+export function CommunityDjIcon(props: SVGProps<SVGSVGElement>) {
+  return <Music2 {...props} className={cn("text-green-500", props.className)} />
+}
+
+export function UserPlusIcon(props: SVGProps<SVGSVGElement>) {
+  return <UserPlus {...props} className={cn("text-red-500", props.className)} />
+}
