@@ -49,9 +49,9 @@ function RecentlyForYou() {
 
 function LatestListenDrops() {
     const drops = [
-        { drop: PlaceHolderImages.find(img => img.id === 'trending-1'), title: 'Top Hits 2024' },
-        { drop: PlaceHolderImages.find(img => img.id === 'trending-2'), title: 'Viral 50 - SG' },
-        { drop: PlaceHolderImages.find(img => img.id === 'trending-3'), title: 'Global Top 50' },
+        { drop: PlaceHolderImages.find(img => img.id === 'made-for-you-1'), title: 'Shower Jams' },
+        { drop: PlaceHolderImages.find(img => img.id === 'made-for-you-2'), title: 'Workout Beats' },
+        { drop: PlaceHolderImages.find(img => img.id === 'made-for-you-3'), title: 'Commute Mix' },
     ].filter(item => item.drop);
 
     return (
