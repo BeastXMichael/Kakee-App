@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, Clapperboard } from 'lucide-react';
+import { Search, Clapperboard, BellIcon as BellIconLucide } from 'lucide-react';
+import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { TreasureChestIcon } from '@/components/icons';
+import { TreasureChestIcon, KoinIcon, BellIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import SearchOverlay from '@/components/watch/search-overlay';
 import VideoPlayer from '@/components/watch/video-player';
+import { ProfileAvatar } from '@/components/home/profile-avatar';
+import NotificationPanel from '@/components/notifications/notification-panel';
 
 const dramas = [
     { id: 'new-drama-1', title: 'My Secret Kopi Stall Romance' },
@@ -53,6 +56,8 @@ export default function WatchClient() {
     const [headerState, setHeaderState] = useState({ show: false, opaque: false, title: false });
     const [showSearch, setShowSearch] = useState(false);
     const [showPlayer, setShowPlayer] = useState(false);
+    const [showNotifications, setShowNotifications] = useState(false);
+
 
     const recentlyWatchedImg = PlaceHolderImages.find(img => img.id === 'recently-watched');
 
@@ -79,37 +84,45 @@ export default function WatchClient() {
     const closeSearch = () => setShowSearch(false);
 
     return (
-        <div className="h-full bg-white flex flex-col">
-            {/* Sticky Header */}
-            <header className={`p-4 flex justify-between items-center flex-shrink-0 z-20 absolute top-0 left-0 w-full transition-all duration-300 ${headerState.show ? 'translate-y-0' : '-translate-y-full'} ${headerState.opaque ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent'}`}>
-                <h1 className={`text-md font-bold text-gray-800 transition-opacity duration-300 ${headerState.title ? 'opacity-100' : 'opacity-0'}`}>Watch</h1>
-                <Button variant="ghost" size="icon" onClick={openSearch}><Search className="w-6 h-6 text-gray-400" /></Button>
-            </header>
+        <div className="h-full bg-white flex flex-col relative">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-sky-200 via-cyan-100 to-transparent z-0"></div>
+            
+            <header className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-transparent backdrop-blur-sm">
+                    <Link href="/account" className="flex items-center space-x-3">
+                        <div className="w-10 h-10">
+                            <ProfileAvatar />
+                        </div>
+                        <div>
+                            <h1 className="text-md font-bold text-primary-foreground">Time to Binge</h1>
+                            <p className="text-xs text-muted-foreground">Grab your popcorn!</p>
+                        </div>
+                    </Link>
+                    <div className="flex items-center space-x-2">
+                        <Button variant="ghost" size="icon" onClick={() => setShowSearch(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
+                            <Search className="w-6 h-6" />
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={() => setShowNotifications(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer relative">
+                            <BellIcon className="w-6 h-6" />
+                            <span className="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-background"/>
+                        </Button>
+                    </div>
+                </header>
 
             {/* Main Scrollable Content */}
-            <main ref={scrollRef} className="flex-grow bg-white overflow-y-auto z-10 no-scrollbar h-full">
-                <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-sky-200 via-cyan-100 to-transparent z-0"></div>
+            <main ref={scrollRef} className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar h-full px-4">
+                
                 <div className="relative z-10">
-                    <header className="p-4 pt-6" style={{ opacity: headerState.show ? 0 : 1, transition: 'opacity 0.3s' }}>
-                        <div className="flex justify-between items-center">
-                            <h1 className="text-3xl font-extrabold text-gray-800">Watch</h1>
-                            <Button variant="ghost" size="icon" onClick={openSearch}><Search className="w-6 h-6 text-gray-600" /></Button>
-                        </div>
-                        <div className="mt-4 bg-white/60 p-2 rounded-full shadow-sm border border-white/50 backdrop-blur-sm">
-                            <div className="flex items-center space-x-2">
-                                <div className="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-xs font-bold"><Clapperboard className="w-4 h-4" /></div>
-                                <div className="w-full bg-gray-200 rounded-full h-2"><div className="bg-cyan-500 h-2 rounded-full" style={{ width: "75%" }}></div></div>
-                                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-md cursor-pointer flex-shrink-0 animate-chest-glow">
-                                    <TreasureChestIcon className="w-6 h-6"/>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
+                    <Link href="/rewards" className="bg-white/60 p-3 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <KoinIcon />
+                        <span className="font-bold text-primary-foreground">1,250 Koins</span>
+                        <div className="flex-grow"></div>
+                        <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
+                    </Link>
                     
                     <div className="space-y-8 pt-2 pb-24">
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Recently Watched</h2>
-                            <div className="px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Recently Watched</h2>
+                            <div>
                                 <button onClick={openPlayer} className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105">
                                     {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
                                     <div className="relative z-10">
@@ -121,8 +134,8 @@ export default function WatchClient() {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Newly Released</h2>
-                            <div className="flex space-x-4 overflow-x-auto no-scrollbar px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Newly Released</h2>
+                            <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                                 {dramas.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
@@ -135,8 +148,8 @@ export default function WatchClient() {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Shorts</h2>
-                            <div className="grid grid-cols-3 gap-3 px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Shorts</h2>
+                            <div className="grid grid-cols-3 gap-3">
                                 {shorts.map(short => {
                                     const image = PlaceHolderImages.find(img => img.id === short.id);
                                     return (
@@ -149,8 +162,8 @@ export default function WatchClient() {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">More Dramas</h2>
-                            <div className="grid grid-cols-2 gap-4 px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">More Dramas</h2>
+                            <div className="grid grid-cols-2 gap-4">
                                 {moreDramas.map((drama, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
@@ -163,8 +176,8 @@ export default function WatchClient() {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Just for you</h2>
-                            <div className="grid grid-cols-2 gap-4 px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Just for you</h2>
+                            <div className="grid grid-cols-2 gap-4">
                                 {justForYou.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
@@ -177,8 +190,8 @@ export default function WatchClient() {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Trending Now</h2>
-                            <div className="grid grid-cols-2 gap-4 px-4">
+                            <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Now</h2>
+                            <div className="grid grid-cols-2 gap-4">
                                 {trendingNow.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
@@ -196,6 +209,7 @@ export default function WatchClient() {
 
             <SearchOverlay show={showSearch} onClose={closeSearch} />
             <VideoPlayer show={showPlayer} onClose={closePlayer} />
+            <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
         </div>
     );
 }
