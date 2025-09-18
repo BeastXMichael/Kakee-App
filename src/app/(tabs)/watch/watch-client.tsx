@@ -80,7 +80,7 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
                         </div>
                     </div>
                     
-                    <Link href="/watch/drama/recently-watched" className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105 block">
+                    <Link href="/watch/drama/dune-part-two" className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105 block">
                         {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
                         <div className="relative z-10">
                             <h3 className="text-2xl font-black text-shadow">Dune: Part Two</h3>
@@ -125,7 +125,7 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
                                 {top10Singapore.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
-                                        <Link href={`/watch/drama/${item.id}`} key={`${item.id}-${index}`} className="flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105 w-40">
+                                        <Link href={`/watch/${item.id}`} key={`${item.id}-${index}`} className="flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105 w-40">
                                             <div className="relative">
                                                 <div className="text-8xl font-black text-white absolute -left-4 -bottom-4" style={{ WebkitTextStroke: "4px black", textStroke: "4px black", zIndex: 0 }}>{index + 1}</div>
                                                 {image && <Image src={image.imageUrl} alt={item.title} width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover relative z-10 ml-auto" style={{ width: '80%'}} data-ai-hint={image.imageHint}/>}
@@ -143,7 +143,7 @@ export default function WatchClient({ trendingDramas, forYou, longFormDramas, ne
                                 {longFormDramas.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
-                                        <Link href={`/watch/drama/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
+                                        <Link href={`/watch/${drama.id}`} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
                                         </Link>
