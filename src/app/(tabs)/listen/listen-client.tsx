@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Search, Play, Music2 } from 'lucide-react';
+import { Search, Play, Music } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BellIcon, TreasureChestIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
@@ -85,7 +85,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                     <div className="relative z-10">
                         <div className="bg-white/60 p-2 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0">
                             <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
-                                <Music2 className="w-4 h-4" />
+                                <Music className="w-4 h-4" />
                             </div>
                             <div className='w-full'>
                                 <Progress value={75} className='h-3' />
