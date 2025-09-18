@@ -216,6 +216,36 @@
       "description": "Playlist cover for Hype Train",
       "imageUrl": "https://picsum.photos/seed/playlist4/200/200",
       "imageHint": "concert crowd"
+    },
+    {
+      "id": "k-drama-1",
+      "description": "Crash Landing on You poster",
+      "imageUrl": "https://picsum.photos/seed/kdrama1/200/300",
+      "imageHint": "romance couple"
+    },
+    {
+      "id": "k-drama-2",
+      "description": "Itaewon Class poster",
+      "imageUrl": "https://picsum.photos/seed/kdrama2/200/300",
+      "imageHint": "city night"
+    },
+    {
+      "id": "k-drama-3",
+      "description": "Vincenzo poster",
+      "imageUrl": "https://picsum.photos/seed/kdrama3/200/300",
+      "imageHint": "mafia suit"
+    },
+    {
+      "id": "k-drama-4",
+      "description": "Squid Game poster",
+      "imageUrl": "https://picsum.photos/seed/kdrama4/200/300",
+      "imageHint": "game mask"
+    },
+    {
+      "id": "k-drama-5",
+      "description": "The Glory poster",
+      "imageUrl": "https://picsum.photos/seed/kdrama5/200/300",
+      "imageHint": "drama revenge"
     }
   ]
 }
