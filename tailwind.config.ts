@@ -115,11 +115,15 @@ export default {
         'note-fall': {
             '0%': { transform: 'translateY(-100%) scale(0.5)', opacity: '0' },
             '20%': { transform: 'translateY(-80%) scale(0.7)', opacity: '1' },
-            '100%': { transform: 'translateY(2000%) scale(1.5)', opacity: '0' },
+            '100%': { transform: 'translateY(120vh) scale(1.5)', opacity: '0' },
         },
         'grid-bg': {
             '0%': { 'background-position': '0 0' },
             '100%': { 'background-position': '0 40px' },
+        },
+        'score-popup': {
+          '0%': { transform: 'translateY(0) scale(0.5)', opacity: '1' },
+          '100%': { transform: 'translateY(-80px) scale(1.5)', opacity: '0' },
         }
       },
       animation: {
@@ -130,15 +134,10 @@ export default {
         'chest-glow': 'chest-glow 2s ease-in-out infinite',
         'wheel-spin': 'wheel-spin 2s cubic-bezier(0.68, -0.55, 0.27, 1.55)',
         'vote-pop': 'vote-pop 0.5s ease-in-out',
-        'note-fall': 'note-fall 4s linear infinite',
+        'note-fall': 'note-fall 4s linear',
         'grid-bg': 'grid-bg 2s linear infinite',
+        'score-popup': 'score-popup 1s ease-out forwards',
       },
-      backgroundImage: {
-        'grid-pink-500/10': "linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px), linear-gradient(to right, rgba(236, 72, 153, 0.1) 1px, transparent 1px)",
-      },
-      backgroundSize: {
-        '40px': '40px 40px',
-      }
     },
   },
   plugins: [require('tailwindcss-animate')],
