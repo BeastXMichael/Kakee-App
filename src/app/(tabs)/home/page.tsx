@@ -1,4 +1,6 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { BellIcon } from '@/components/icons';
@@ -6,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import { KoinIcon } from '@/components/icons';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useState } from 'react';
+import NotificationPanel from '@/components/notifications/notification-panel';
 
 function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
@@ -141,7 +145,10 @@ function LatestRewardsDrops() {
 }
 
 export default function HomePage() {
+  const [showNotifications, setShowNotifications] = useState(false);
+  
   return (
+    <>
     <div className="flex flex-col h-full bg-background relative overflow-y-auto no-scrollbar">
       <div className="absolute inset-0 z-0 radiant-background-home animate-radiant-glow"></div>
       
@@ -156,9 +163,10 @@ export default function HomePage() {
           </div>
         </Link>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
-            <BellIcon className="w-6 h-6" />
-          </Button>
+            <Button variant="ghost" size="icon" onClick={() => setShowNotifications(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer relative">
+                <BellIcon className="w-6 h-6" />
+                <span className="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-background"/>
+            </Button>
         </div>
       </div>
 
@@ -184,5 +192,7 @@ export default function HomePage() {
         </div>
       </main>
     </div>
+    <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
+    </>
   );
 }

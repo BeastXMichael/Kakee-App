@@ -1,16 +1,17 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Search, BellIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { KoinIcon } from '@/components/icons';
+import { KoinIcon, BellIcon } from '@/components/icons';
 import type { TrendingContentOutput } from '@/ai/flows/trending-content-prediction';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ListenSearchOverlay from './search-overlay';
 import { ProfileAvatar } from '../home/profile-avatar';
+import NotificationPanel from '../notifications/notification-panel';
 
 const madeForYouItems = [
     { id: 'made-for-you-1', title: 'Shower Power' },
@@ -37,27 +38,9 @@ type ListenClientProps = {
 }
 
 export default function ListenClient({ trendingData }: ListenClientProps) {
-    const scrollRef = useRef<HTMLmainElement>(null);
-    const [headerState, setHeaderState] = useState({ show: false, opaque: false, title: false });
     const [showSearch, setShowSearch] = useState(false);
+    const [showNotifications, setShowNotifications] = useState(false);
 
-    useEffect(() => {
-        const scrollContainer = scrollRef.current;
-        if (!scrollContainer) return;
-
-        const handleScroll = () => {
-            const scrollY = scrollContainer.scrollTop;
-            setHeaderState({
-                show: scrollY > 50,
-                opaque: scrollY > 80,
-                title: scrollY > 100,
-            });
-        };
-
-        scrollContainer.addEventListener('scroll', handleScroll);
-        return () => scrollContainer.removeEventListener('scroll', handleScroll);
-    }, []);
-    
     const trendingNow = trendingData.trendingContent.slice(0, 5).map((playingTitle, index) => {
       const items = [
           { id: 'trending-1', title: 'Upbeat Pop', playing: playingTitle },
@@ -66,7 +49,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
           { id: 'radio-3', title: 'Happy Hits', playing: playingTitle },
           { id: 'made-for-you-1', title: 'Shower Jams', playing: playingTitle }
       ];
-      return items[index];
+      return items[index % items.length];
     });
 
 
@@ -89,13 +72,14 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                         <Button variant="ghost" size="icon" onClick={() => setShowSearch(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
                             <Search className="w-6 h-6" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
+                        <Button variant="ghost" size="icon" onClick={() => setShowNotifications(true)} className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer relative">
                             <BellIcon className="w-6 h-6" />
+                            <span className="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-background"/>
                         </Button>
                     </div>
                 </header>
 
-                <main ref={scrollRef} className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar px-4 h-full">
+                <main className="flex-grow bg-transparent overflow-y-auto z-10 no-scrollbar px-4 h-full">
                     <div className="relative z-10">
                         <Link href="/rewards" className="bg-white/60 p-3 my-4 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
                             <KoinIcon />
@@ -159,6 +143,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                 </main>
             </div>
             <ListenSearchOverlay show={showSearch} onClose={() => setShowSearch(false)} />
+            <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
         </>
     );
 }
