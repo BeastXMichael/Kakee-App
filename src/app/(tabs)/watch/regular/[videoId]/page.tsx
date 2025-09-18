@@ -12,16 +12,12 @@ const videoDetails = {
         description: "Your comprehensive guide to brewing the perfect cup of Singaporean coffee at home. From the right beans to the perfect 'pull', we've got you covered.",
         views: "1.2M views",
         uploadDate: "2 days ago",
-        channel: "Kopi Masters",
-        channelAvatarId: "commenter-1"
     },
     'default': {
         title: "Top 5 Hawker Centre Dishes You MUST Try",
         description: "Join us on a culinary journey as we explore the best and most iconic dishes from Singapore's vibrant hawker centres.",
         views: "5.6M views",
         uploadDate: "1 week ago",
-        channel: "Foodie SG",
-        channelAvatarId: "commenter-2"
     }
 }
 
@@ -35,7 +31,6 @@ const relatedVideos = [
 export default function RegularVideoPage({ params }: { params: { videoId: string } }) {
   const details = videoDetails[params.videoId as keyof typeof videoDetails] || videoDetails.default;
   const videoImage = PlaceHolderImages.find(p => p.id === params.videoId) || PlaceHolderImages.find(p => p.id === 'regular-video-1');
-  const channelAvatar = PlaceHolderImages.find(p => p.id === details.channelAvatarId);
 
   return (
     <div className="flex flex-col h-full bg-white text-gray-800 overflow-y-auto no-scrollbar">
