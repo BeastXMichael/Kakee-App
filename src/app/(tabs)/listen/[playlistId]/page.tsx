@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { SoundWaveIcon } from '@/components/icons';
+import { KoinIcon, SoundWaveIcon } from '@/components/icons';
 
 const playlistDetails = {
     'shower-power': {
@@ -177,7 +177,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
             await voteForSong({ songId: currentSong.id, playlistId: suggestionPlaylist, userId: 'user-general' });
             toast({
                 title: "Suggestion Sent!",
-                description: `You suggested "${currentSong.title}" for the "${communityPlaylists.find(p => p.id === suggestionPlaylist)?.title}" playlist.`,
+                description: `You suggested "${currentSong.title}" for the "${communityPlaylists.find(p => p.id === suggestionPlaylist)?.title}" playlist and earned 100 Koins!`,
             });
         } catch (error) {
              toast({
@@ -292,7 +292,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                     <DialogTrigger asChild>
                         <Button size="lg" className="w-full bg-red-500 hover:bg-red-600 text-white rounded-full font-bold">
                             <Plus className="w-5 h-5 mr-2"/>
-                            Suggest a Song & Earn 100 XP
+                            Suggest a Song & Earn 100 Koins
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px] bg-gray-900 border-primary/50 text-white">
@@ -311,7 +311,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                             ))}
                         </RadioGroup>
                         <DialogFooter>
-                            <Button onClick={handleSuggestSong} className="w-full">Suggest & Earn XP</Button>
+                            <Button onClick={handleSuggestSong} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">Suggest & Earn Koins</Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>

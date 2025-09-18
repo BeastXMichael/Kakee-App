@@ -13,27 +13,28 @@ import { CommunityDjIcon, ShareSocialIcon, UserPlusIcon } from "../icons";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { KoinIcon } from "../icons";
 
 type Quest = {
     icon: React.ElementType;
     iconBg: string;
     title: string;
     description: string;
-    xp: number;
+    reward: number;
     progress: number;
     total: number;
     claimed: boolean;
 };
 
 const dailyQuests: Quest[] = [
-    { icon: ShareSocialIcon, iconBg: "bg-blue-100", title: "Social Butterfly", description: "Share a playlist to your social media.", xp: 50, progress: 1, total: 1, claimed: true },
-    { icon: CommunityDjIcon, iconBg: "bg-green-100", title: "Community DJ", description: "Add 3 songs to a community playlist.", xp: 20, progress: 1, total: 3, claimed: false },
-    { icon: UserPlusIcon, iconBg: "bg-red-100", title: "Better with Friends", description: "Successfully invite one friend to Kakee.", xp: 100, progress: 0, total: 1, claimed: false },
+    { icon: ShareSocialIcon, iconBg: "bg-blue-100", title: "Social Butterfly", description: "Share a playlist to your social media.", reward: 50, progress: 1, total: 1, claimed: true },
+    { icon: CommunityDjIcon, iconBg: "bg-green-100", title: "Community DJ", description: "Add 3 songs to a community playlist.", reward: 20, progress: 1, total: 3, claimed: false },
+    { icon: UserPlusIcon, iconBg: "bg-red-100", title: "Better with Friends", description: "Successfully invite one friend to Kakee.", reward: 100, progress: 0, total: 1, claimed: false },
 ];
 
 const weeklyQuests: Quest[] = [
-    { icon: CommunityDjIcon, iconBg: "bg-green-100", title: "Playlist Pro", description: "Create 5 new playlists.", xp: 200, progress: 2, total: 5, claimed: false },
-    { icon: UserPlusIcon, iconBg: "bg-red-100", title: "Super Recruiter", description: "Invite 5 friends to Kakee.", xp: 500, progress: 1, total: 5, claimed: false },
+    { icon: CommunityDjIcon, iconBg: "bg-green-100", title: "Playlist Pro", description: "Create 5 new playlists.", reward: 200, progress: 2, total: 5, claimed: false },
+    { icon: UserPlusIcon, iconBg: "bg-red-100", title: "Super Recruiter", description: "Invite 5 friends to Kakee.", reward: 500, progress: 1, total: 5, claimed: false },
 ];
 
 
@@ -48,8 +49,9 @@ function QuestItem({ quest }: { quest: Quest }) {
                     <h4 className="font-bold text-sm text-gray-800">{quest.title}</h4>
                     <p className="text-xs text-gray-500">{quest.description}</p>
                 </div>
-                <div className="text-right">
-                    <p className="font-bold text-sm text-yellow-500">+{quest.xp} XP</p>
+                <div className="text-right flex items-center gap-1">
+                    <p className="font-bold text-sm text-yellow-500">+{quest.reward}</p>
+                    <KoinIcon className="w-4 h-4 text-xs" />
                 </div>
             </div>
             <div className="flex items-center gap-3 mt-2">
@@ -68,7 +70,7 @@ function QuestItem({ quest }: { quest: Quest }) {
 }
 
 export default function QuestsSheet({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
-    const [isRendered, setIsRendered] = useState(open);
+    const [isRendered, setIsRendered] = useState(false);
 
     useEffect(() => {
         if (open) {
