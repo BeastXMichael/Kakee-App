@@ -2,16 +2,17 @@
 'use client';
 
 import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetDescription
-} from "@/components/ui/sheet";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger
+} from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { CommunityDjIcon, ShareSocialIcon, UserPlusIcon } from "../icons";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 type Quest = {
     icon: React.ElementType;
@@ -67,16 +68,42 @@ function QuestItem({ quest }: { quest: Quest }) {
 }
 
 export default function QuestsSheet({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
+    const [isRendered, setIsRendered] = useState(open);
+
+    useEffect(() => {
+        if (open) {
+            setIsRendered(true);
+        } else {
+            const timer = setTimeout(() => setIsRendered(false), 300); // Match animation duration
+            return () => clearTimeout(timer);
+        }
+    }, [open]);
+
+    if (!isRendered) return null;
+    
     return (
-        <Sheet open={open} onOpenChange={onOpenChange}>
-            <SheetContent side="bottom" className="h-[90%] rounded-t-2xl flex flex-col p-0">
-                <SheetHeader className="p-4 text-center">
+        <div
+            className={cn(
+                "absolute inset-0 z-50 transition-colors duration-300",
+                open ? "bg-black/60" : "bg-transparent pointer-events-none"
+            )}
+            onClick={() => onOpenChange(false)}
+        >
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className={cn(
+                    "absolute bottom-0 left-0 w-full h-[90%] bg-background rounded-t-2xl flex flex-col p-0 transform transition-transform duration-300 ease-in-out",
+                    open ? "translate-y-0" : "translate-y-full"
+                )}
+            >
+                <div className="p-4 text-center relative flex-shrink-0">
                     <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-2" />
-                    <SheetTitle className="font-extrabold text-2xl text-gray-800">Quests</SheetTitle>
-                    <SheetDescription>
-                        Complete challenges for awesome rewards!
-                    </SheetDescription>
-                </SheetHeader>
+                    <h2 className="font-extrabold text-2xl text-gray-800">Quests</h2>
+                    <p className="text-sm text-muted-foreground">Complete challenges for awesome rewards!</p>
+                    <button onClick={() => onOpenChange(false)} className="absolute top-4 right-4 text-muted-foreground">
+                        <X className="w-5 h-5"/>
+                    </button>
+                </div>
                 <Tabs defaultValue="daily" className="w-full flex-grow flex flex-col">
                     <TabsList className="mx-4 grid w-auto grid-cols-2">
                         <TabsTrigger value="daily">Daily</TabsTrigger>
@@ -96,7 +123,7 @@ export default function QuestsSheet({ open, onOpenChange }: { open: boolean, onO
                         </TabsContent>
                     </div>
                 </Tabs>
-            </SheetContent>
-        </Sheet>
+            </div>
+        </div>
     )
 }
