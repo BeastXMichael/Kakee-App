@@ -87,8 +87,11 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                             <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 p-1">
                                 <ListenIcon className="w-5 h-5" />
                             </div>
-                            <div className='w-full'>
-                                <Progress value={75} className='h-3' />
+                            <div className="flex-grow h-4 bg-black/10 rounded-full overflow-hidden shadow-inner border border-white/50">
+                                <div className="relative h-full w-full">
+                                    <div className="w-full h-full bg-red-400" style={{ width: '75%' }}></div>
+                                    <div className="absolute top-0 left-0 h-full w-2 bg-white/80 rounded-full animate-laser-scan shadow-[0_0_10px_white]"></div>
+                                </div>
                             </div>
                             <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-md cursor-pointer flex-shrink-0 animate-chest-glow">
                                 <TreasureChestIcon className="w-7 h-7"/>
@@ -180,5 +183,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         </>
     );
 }
+
+    
 
     

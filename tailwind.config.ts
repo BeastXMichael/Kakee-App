@@ -124,6 +124,10 @@ export default {
         'score-popup': {
           '0%': { transform: 'translateY(0) scale(0.5)', opacity: '1' },
           '100%': { transform: 'translateY(-80px) scale(1.5)', opacity: '0' },
+        },
+        'laser-scan': {
+          '0%, 100%': { transform: 'translateX(0%)' },
+          '50%': { transform: 'translateX(calc(3750% - 100%))' },
         }
       },
       animation: {
@@ -138,6 +142,7 @@ export default {
         'note-fall': 'note-fall 4s linear',
         'grid-bg': 'grid-bg 2s linear infinite',
         'score-popup': 'score-popup 1s ease-out forwards',
+        'laser-scan': 'laser-scan 3s ease-in-out infinite',
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',
@@ -146,3 +151,5 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    
