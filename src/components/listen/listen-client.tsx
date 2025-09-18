@@ -51,8 +51,6 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         { id: 'trending-1', title: 'Gym Rat Fuel', playing: trendingData.trendingContent[0], playlistId: 'gym-rat-fuel' },
         { id: 'trending-2', title: 'POV: You\'re Vibing', playing: trendingData.trendingContent[1], playlistId: 'pov-you-vibe' },
         { id: 'trending-3', title: 'Crank Up Brain Power', playing: trendingData.trendingContent[2], playlistId: 'crank-up-brain-power' },
-        { id: 'radio-3', title: 'Running Flash', playing: trendingData.trendingContent[3], playlistId: 'running-flash' },
-        { id: 'made-for-you-1', title: 'Sad Girl Hours', playing: trendingData.trendingContent[4], playlistId: 'sad-girl-hours' }
     ];
 
 
@@ -176,9 +174,3 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
         </>
     );
 }
-
-    
-
-    
-
-
