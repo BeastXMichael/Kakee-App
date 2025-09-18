@@ -7,8 +7,8 @@ import { Search, Play } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { KoinIcon, BellIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
-import SearchOverlay from './search-overlay';
-import VideoPlayer from './video-player';
+import SearchOverlay from '@/components/watch/search-overlay';
+import VideoPlayer from '@/components/watch/video-player';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
 import NotificationPanel from '@/components/notifications/notification-panel';
 
@@ -152,6 +152,7 @@ export default function WatchClient({ topVideos, trendingDramas, forYou, moreToW
             </div>
             <SearchOverlay show={showSearch} onClose={closeSearch} />
             <VideoPlayer show={showPlayer} onClose={closePlayer} />
+            <NotificationPanel show={showNotifications} onClose={() => setShowNotifications(false)} />
         </>
     );
 }
