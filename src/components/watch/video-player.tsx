@@ -6,24 +6,15 @@ import { Heart, MessageCircle, Share2, X } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import CommentPanel from './comment-panel';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
-type VideoPlayerProps = {
-    show: boolean;
-    onClose: () => void;
-};
-
-export default function VideoPlayer({ show, onClose }: VideoPlayerProps) {
+export default function VideoPlayer() {
     const [liked, setLiked] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const playerBg = PlaceHolderImages.find(img => img.id === 'player-background');
 
-    const handleClose = () => {
-        setShowComments(false);
-        onClose();
-    }
-
     return (
-        <div className={`dark absolute inset-0 z-40 bg-black flex flex-col transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <div className={`dark absolute inset-0 z-40 bg-black flex flex-col`}>
             {playerBg && (
                 <>
                     <Image
@@ -39,9 +30,9 @@ export default function VideoPlayer({ show, onClose }: VideoPlayerProps) {
             )}
             
             <div className={cn("relative z-10 flex flex-col h-full p-4 transition-opacity duration-300", showComments && "opacity-0 pointer-events-none")}>
-                <button onClick={handleClose} className="absolute top-4 left-4 text-white z-50">
+                <Link href="/watch" className="absolute top-4 left-4 text-white z-50">
                     <X className="w-8 h-8" />
-                </button>
+                </Link>
                 
                 <div className="flex-grow"></div>
 
