@@ -26,6 +26,78 @@ const playlistDetails = {
             { id: 'study-flow', title: 'Study Flow', icon: Brain, color: 'blue' },
             { id: 'hype-train', title: 'Hype Train', icon: Zap, color: 'red' },
         ]
+    },
+    'lofi-beats-radio': {
+        title: 'Lofi Beats Radio',
+        description: '24/7 chilled beats to relax, study, or sleep.',
+        image: 'radio-1',
+        songs: [
+            { id: 'song-5', title: 'Midnight Stroll', artist: 'Lo-fi Ghost', votes: 54000 },
+            { id: 'song-6', title: 'Misty Window', artist: 'Study Cat', votes: 51000 },
+            { id: 'song-7', title: 'Dreaming of You', artist: 'Chillhop Cow', votes: 48000 },
+        ],
+        communityPicks: []
+    },
+    'espresso-song': {
+        title: 'Espresso',
+        description: 'By Sabrina Carpenter',
+        image: 'made-for-you-1',
+        songs: [
+            { id: 'song-espresso', title: 'Espresso', artist: 'Sabrina Carpenter', votes: 150000 },
+            { id: 'song-please', title: 'Please Please Please', artist: 'Sabrina Carpenter', votes: 120000 },
+            { id: 'song-taste', title: 'Taste', artist: 'Sabrina Carpenter', votes: 110000 },
+        ],
+        communityPicks: []
+    },
+    'crank-up-brain-power': {
+        title: 'Crank Up Brain Power',
+        description: 'Music to help you focus and study.',
+        image: 'trending-1',
+        songs: [
+            { id: 'song-brain-1', title: 'Genesis', artist: 'Grimes', votes: 88000 },
+            { id: 'song-brain-2', title: 'Oblivion', artist: 'Grimes', votes: 85000 },
+        ],
+        communityPicks: []
+    },
+    'pov-you-vibe': {
+        title: 'POV: You\'re Vibing',
+        description: 'Just good vibes.',
+        image: 'trending-2',
+        songs: [
+            { id: 'song-vibe-1', title: 'Good Days', artist: 'SZA', votes: 91000 },
+            { id: 'song-vibe-2', title: 'Golden', artist: 'Harry Styles', votes: 90000 },
+        ],
+        communityPicks: []
+    },
+    'gym-rat-fuel': {
+        title: 'Gym Rat Fuel',
+        description: 'Get pumped.',
+        image: 'trending-3',
+        songs: [
+            { id: 'song-gym-1', title: 'HUMBLE.', artist: 'Kendrick Lamar', votes: 99000 },
+            { id: 'song-gym-2', title: 'Till I Collapse', artist: 'Eminem', votes: 97000 },
+        ],
+        communityPicks: []
+    },
+     'running-flash': {
+        title: 'Running Flash',
+        description: 'High-energy tracks for your run.',
+        image: 'radio-3',
+        songs: [
+            { id: 'song-run-1', title: 'Dog Days Are Over', artist: 'Florence + The Machine', votes: 93000 },
+            { id: 'song-run-2', title: 'Shake It Out', artist: 'Florence + The Machine', votes: 92500 },
+        ],
+        communityPicks: []
+    },
+    'sad-girl-hours': {
+        title: 'Sad Girl Hours',
+        description: 'For when you\'re in your feels.',
+        image: 'made-for-you-1',
+        songs: [
+            { id: 'song-sad-1', title: 'drivers license', artist: 'Olivia Rodrigo', votes: 110000 },
+            { id: 'song-sad-2', title: 'deja vu', artist: 'Olivia Rodrigo', votes: 105000 },
+        ],
+        communityPicks: []
     }
 };
 
@@ -40,7 +112,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
     const { playlistId } = params;
     const details = playlistDetails[playlistId as keyof typeof playlistDetails] || playlistDetails['shower-power'];
     const { toast } = useToast();
-    const [songs, setSongs] = useState<Song[]>(details.songs);
+    const [songs, setSongs] = useState<Song[]>(details.songs.sort((a, b) => b.votes - a.votes));
     const [votedSongs, setVotedSongs] = useState<Record<string, boolean>>({});
 
     const handleVote = async (songId: string) => {
@@ -126,7 +198,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                     </div>
                 </div>
 
-                <div className="mt-8 pb-4">
+                {details.communityPicks.length > 0 && <div className="mt-8 pb-4">
                      <h2 className="font-bold text-xl mb-3">More Community Picks</h2>
                      <div className="grid grid-cols-3 gap-3">
                         {details.communityPicks.map(pick => {
@@ -150,7 +222,7 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                             )
                         })}
                      </div>
-                </div>
+                </div>}
             </main>
 
             <footer className="p-4 flex-shrink-0 z-10 sticky bottom-0 bg-[#0D1B2A]/80 backdrop-blur-sm">

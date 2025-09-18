@@ -14,29 +14,29 @@ import { ProfileAvatar } from '../home/profile-avatar';
 import NotificationPanel from '../notifications/notification-panel';
 
 const topSongs = [
-    { id: 'made-for-you-1', title: 'Espresso', artist: 'Sabrina Carpenter' },
-    { id: 'made-for-you-2', title: 'Good Luck, Babe!', artist: 'Chappell Roan' },
-    { id: 'made-for-you-3', title: 'Die With A Smile', artist: 'Lady Gaga' },
-    { id: 'made-for-you-4', title: 'Please Please Please', artist: 'Sabrina Carpenter' },
-    { id: 'made-for-you-5', title: 'Taste', artist: 'Sabrina Carpenter' },
-    { id: 'made-for-you-6', title: 'Birds of a Feather', artist: 'Billie Eilish' },
-    { id: 'radio-1', title: 'Not Like Us', artist: 'Kendrick Lamar' },
-    { id: 'radio-2', title: 'I Am The Walrus', artist: 'The Beatles' },
+    { id: 'made-for-you-1', title: 'Espresso', artist: 'Sabrina Carpenter', playlistId: 'espresso-song' },
+    { id: 'made-for-you-2', title: 'Good Luck, Babe!', artist: 'Chappell Roan', playlistId: 'shower-power' },
+    { id: 'made-for-you-3', title: 'Die With A Smile', artist: 'Lady Gaga', playlistId: 'shower-power' },
+    { id: 'made-for-you-4', title: 'Please Please Please', artist: 'Sabrina Carpenter', playlistId: 'espresso-song' },
+    { id: 'made-for-you-5', title: 'Taste', artist: 'Sabrina Carpenter', playlistId: 'espresso-song' },
+    { id: 'made-for-you-6', title: 'Birds of a Feather', artist: 'Billie Eilish', playlistId: 'shower-power' },
+    { id: 'radio-1', title: 'Not Like Us', artist: 'Kendrick Lamar', playlistId: 'shower-power' },
+    { id: 'radio-2', title: 'I Am The Walrus', artist: 'The Beatles', playlistId: 'shower-power' },
 ];
 
 const radioStations = [
-    { id: 'radio-1', title: 'Lofi Beats Radio' },
-    { id: 'radio-2', title: 'K-Pop Fever' },
-    { id: 'radio-3', title: 'Mandopop Hits' },
+    { id: 'radio-1', title: 'Lofi Beats Radio', playlistId: 'lofi-beats-radio' },
+    { id: 'radio-2', title: 'K-Pop Fever', playlistId: 'shower-power' },
+    { id: 'radio-3', title: 'Mandopop Hits', playlistId: 'shower-power' },
 ];
 
 const moreSongs = [
-    { id: 'trending-1', title: 'Adrenaline Rush', artist: 'High-energy tracks for your workout.', playlistId: 'shower-power' },
-    { id: 'trending-2', title: 'Creative Flow', artist: 'Inspiring music to get your ideas flowing.', playlistId: 'shower-power' },
-    { id: 'trending-3', title: 'Road Trip Anthems', artist: 'The perfect soundtrack for your journey.', playlistId: 'shower-power' },
+    { id: 'trending-1', title: 'Adrenaline Rush', artist: 'High-energy tracks for your workout.', playlistId: 'gym-rat-fuel' },
+    { id: 'trending-2', title: 'Creative Flow', artist: 'Inspiring music to get your ideas flowing.', playlistId: 'crank-up-brain-power' },
+    { id: 'trending-3', title: 'Road Trip Anthems', artist: 'The perfect soundtrack for your journey.', playlistId: 'pov-you-vibe' },
     { id: 'made-for-you-5', title: 'Indie Drive', artist: 'Cruising with the best modern indie.', playlistId: 'shower-power' },
     { id: 'made-for-you-6', title: 'Sunshine Beats', artist: 'Feel-good tracks for a great day.', playlistId: 'shower-power' },
-    { id: 'recently-1', title: 'Deep Study', artist: 'Instrumental beats to help you focus.', playlistId: 'shower-power' },
+    { id: 'recently-1', title: 'Deep Study', artist: 'Instrumental beats to help you focus.', playlistId: 'crank-up-brain-power' },
 ];
 
 type ListenClientProps = {
@@ -48,11 +48,11 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     const [showNotifications, setShowNotifications] = useState(false);
 
     const trendingPlaylists = [
-        { id: 'trending-1', title: 'Gym Fuel', playing: trendingData.trendingContent[0], playlistId: 'shower-power' },
-        { id: 'trending-2', title: 'Vibe Check', playing: trendingData.trendingContent[1], playlistId: 'shower-power' },
-        { id: 'trending-3', title: 'Brain Power', playing: trendingData.trendingContent[2], playlistId: 'shower-power' },
-        { id: 'radio-3', title: 'Happy Hits', playing: trendingData.trendingContent[3], playlistId: 'shower-power' },
-        { id: 'made-for-you-1', title: 'Shower Sesh', playing: trendingData.trendingContent[4], playlistId: 'shower-power' }
+        { id: 'trending-1', title: 'Gym Rat Fuel', playing: trendingData.trendingContent[0], playlistId: 'gym-rat-fuel' },
+        { id: 'trending-2', title: 'POV: You\'re Vibing', playing: trendingData.trendingContent[1], playlistId: 'pov-you-vibe' },
+        { id: 'trending-3', title: 'Crank Up Brain Power', playing: trendingData.trendingContent[2], playlistId: 'crank-up-brain-power' },
+        { id: 'radio-3', title: 'Running Flash', playing: trendingData.trendingContent[3], playlistId: 'running-flash' },
+        { id: 'made-for-you-1', title: 'Sad Girl Hours', playing: trendingData.trendingContent[4], playlistId: 'sad-girl-hours' }
     ];
 
 
@@ -95,7 +95,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                         {topSongs.map(item => {
                             const image = PlaceHolderImages.find(img => img.id === item.id);
                             return (
-                            <button key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden transition-transform duration-200 hover:scale-105 cursor-pointer group">
+                            <Link href={`/listen/${item.playlistId}`} key={item.id} className="bg-white/60 backdrop-blur-sm rounded-md flex items-center space-x-2 shadow-sm border border-white/50 overflow-hidden transition-transform duration-200 hover:scale-105 cursor-pointer group">
                                 {image && <Image src={image.imageUrl} alt={item.title} width={48} height={48} className="w-12 h-12 flex-shrink-0 object-cover" data-ai-hint={image.imageHint} />}
                                 <div className="truncate pr-2 flex-grow text-left">
                                   <p className="text-xs font-bold truncate">{item.title}</p>
@@ -104,13 +104,13 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                 <div className="pr-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                   <Play className="w-5 h-5 text-primary" fill="currentColor"/>
                                 </div>
-                            </button>
+                            </Link>
                             );
                         })}
                         </div>
 
                         <div className="space-y-8 py-6 pb-24">
-                            <div>
+                             <div>
                                 <h2 className="font-bold text-xl mb-3 text-gray-800">Trending Now</h2>
                                 <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                                     {trendingPlaylists.map(item => {
@@ -127,14 +127,14 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                     })}
                                 </div>
                             </div>
-
-                             <div>
+                            
+                            <div>
                                 <h2 className="font-bold text-xl mb-3 text-gray-800">Your Favorite Radios</h2>
                                 <div className="flex space-x-4 overflow-x-auto no-scrollbar -mx-4 px-4">
                                     {radioStations.map(item => {
                                         const image = PlaceHolderImages.find(img => img.id === item.id);
                                         return(
-                                            <Link href={`/listen/shower-power`} key={item.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
+                                            <Link href={`/listen/${item.playlistId}`} key={item.id} className="w-40 flex-shrink-0 space-y-2 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                                 <div className="w-full h-auto rounded-lg shadow-md aspect-square overflow-hidden">
                                                 {image && <Image src={image.imageUrl} alt={item.title} width={160} height={160} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                                 </div>
@@ -151,7 +151,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                     {moreSongs.map(item => {
                                         const image = PlaceHolderImages.find(img => img.id === item.id);
                                         return(
-                                            <button key={item.id} className="w-full flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100/50 transition-transform duration-200 hover:scale-105 cursor-pointer group">
+                                            <Link href={`/listen/${item.playlistId}`} key={item.id} className="w-full flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-100/50 transition-transform duration-200 hover:scale-105 cursor-pointer group">
                                                 <div className="w-16 h-16 rounded-lg shadow-md aspect-square overflow-hidden flex-shrink-0">
                                                     {image && <Image src={image.imageUrl} alt={item.title} width={64} height={64} className="w-full h-full object-cover" data-ai-hint={image.imageHint}/>}
                                                 </div>
@@ -162,7 +162,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
                                                  <div className="pr-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                     <Play className="w-6 h-6 text-primary" fill="currentColor"/>
                                                 </div>
-                                            </button>
+                                            </Link>
                                         );
                                     })}
                                 </div>
@@ -180,4 +180,5 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     
 
     
+
 
