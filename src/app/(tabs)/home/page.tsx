@@ -85,7 +85,7 @@ export default function HomePage() {
       <div className="absolute inset-0 z-0 radiant-background-home animate-radiant-glow"></div>
       
       <div className="p-4 flex justify-between items-center z-10 flex-shrink-0 sticky top-0 bg-background/80 backdrop-blur-sm">
-        <div className="flex items-center space-x-3">
+        <Link href="/account" className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center">
             <SmileIcon className="w-6 h-6 text-primary-foreground" />
           </div>
@@ -93,7 +93,7 @@ export default function HomePage() {
             <h1 className="text-md font-bold text-primary-foreground">Welcome, General!</h1>
             <p className="text-xs text-muted-foreground">Our #1 Rewards Buddy</p>
           </div>
-        </div>
+        </Link>
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon" className="text-muted-foreground transition-transform duration-200 hover:scale-105 cursor-pointer">
             <BellIcon className="w-6 h-6" />
@@ -102,9 +102,9 @@ export default function HomePage() {
       </div>
 
       <main className="px-4 pt-0 flex-grow bg-transparent z-10 flex flex-col">
-        <div className="text-center my-2 flex-shrink-0">
+        <Link href="/account" className="text-center my-2 flex-shrink-0">
           <ProfileAvatar />
-        </div>
+        </Link>
         
         <Link href="/rewards" className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
             <KoinIcon />
