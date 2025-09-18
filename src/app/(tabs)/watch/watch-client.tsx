@@ -110,7 +110,7 @@ export default function WatchClient() {
                         <div>
                             <h2 className="font-bold text-xl mb-3 text-gray-800 px-4">Recently Watched</h2>
                             <div className="px-4">
-                                <button onClick={openPlayer} className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden">
+                                <button onClick={openPlayer} className="w-full text-left h-auto rounded-lg shadow-xl aspect-video object-cover bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-end p-4 text-white relative overflow-hidden transition-transform duration-200 hover:scale-105">
                                     {recentlyWatchedImg && <Image src={recentlyWatchedImg.imageUrl} alt="Drama Poster" fill className="absolute inset-0 w-full h-full object-cover opacity-50" data-ai-hint={recentlyWatchedImg.imageHint}/>}
                                     <div className="relative z-10">
                                         <h3 className="text-2xl font-black">From HDB to CEO</h3>
@@ -126,7 +126,7 @@ export default function WatchClient() {
                                 {dramas.map(drama => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
-                                        <button onClick={openPlayer} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left">
+                                        <button onClick={openPlayer} key={drama.id} className="w-32 flex-shrink-0 space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={128} height={192} className="w-full h-auto rounded-lg shadow-md aspect-[2/3] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
                                         </button>
@@ -140,7 +140,7 @@ export default function WatchClient() {
                                 {shorts.map(short => {
                                     const image = PlaceHolderImages.find(img => img.id === short.id);
                                     return (
-                                        <button onClick={openPlayer} key={short.id} className="w-full space-y-2 text-left">
+                                        <button onClick={openPlayer} key={short.id} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt={short.title} width={200} height={300} className="w-full h-auto rounded-lg shadow-md aspect-[9/16] object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-xs font-semibold">{short.title}</p>
                                         </button>
@@ -154,7 +154,7 @@ export default function WatchClient() {
                                 {moreDramas.map((drama, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === drama.id);
                                     return (
-                                        <button onClick={openPlayer} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left">
+                                        <button onClick={openPlayer} key={`${drama.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{drama.title}</p>
                                         </button>
@@ -168,7 +168,7 @@ export default function WatchClient() {
                                 {justForYou.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
-                                        <button onClick={openPlayer} key={`${item.id}-${index}`} className="w-full space-y-2 text-left">
+                                        <button onClick={openPlayer} key={`${item.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{item.title}</p>
                                         </button>
@@ -182,7 +182,7 @@ export default function WatchClient() {
                                 {trendingNow.map((item, index) => {
                                     const image = PlaceHolderImages.find(img => img.id === item.id);
                                     return (
-                                        <button onClick={openPlayer} key={`${item.id}-${index}`} className="w-full space-y-2 text-left">
+                                        <button onClick={openPlayer} key={`${item.id}-${index}`} className="w-full space-y-2 text-left transition-transform duration-200 hover:scale-105">
                                             {image && <Image src={image.imageUrl} alt="Drama Poster" width={400} height={225} className="w-full h-auto rounded-lg shadow-md aspect-video object-cover" data-ai-hint={image.imageHint}/>}
                                             <p className="text-sm font-semibold">{item.title}</p>
                                         </button>

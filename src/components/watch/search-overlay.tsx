@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
+import { intelligentWatchTabSearch, IntelligentWatchTabSearchOutput } from "@/ai/flows/intelligent-watch-tab-search";
 
 type SearchOverlayProps = {
     show: boolean;
@@ -21,22 +22,29 @@ const genres = [
 export default function SearchOverlay({ show, onClose }: SearchOverlayProps) {
     const [query, setQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [results, setResults] = useState<{ suggestedContent: string[], suggestedGenres: string[] } | null>(null);
+    const [results, setResults] = useState<IntelligentWatchTabSearchOutput | null>(null);
 
-    const handleSearch = async () => {
-        if (!query) return;
+    const handleSearch = async (searchQuery?: string) => {
+        const currentQuery = searchQuery || query;
+        if (!currentQuery) return;
+
         setIsLoading(true);
         setResults(null);
-        // Mock search results
-        setTimeout(() => {
-            const mockResults = {
-                suggestedContent: [`Results for "${query}" 1`, `Results for "${query}" 2`],
-                suggestedGenres: ["Action", "Sci-Fi"]
-            }
-            setResults(mockResults);
+        try {
+            const res = await intelligentWatchTabSearch({ query: currentQuery });
+            setResults(res);
+        } catch (error) {
+            console.error("Error fetching search results:", error);
+            // Optionally, set an error state to show in the UI
+        } finally {
             setIsLoading(false);
-        }, 1000);
+        }
     };
+    
+    const handleGenreClick = (genreName: string) => {
+        setQuery(genreName);
+        handleSearch(genreName);
+    }
 
     return (
         <div className={`absolute inset-0 z-30 bg-black/80 backdrop-blur-md p-4 flex flex-col transition-opacity duration-300 ${show ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
@@ -58,13 +66,14 @@ export default function SearchOverlay({ show, onClose }: SearchOverlayProps) {
                         <Loader2 className="w-8 h-8 text-white animate-spin" />
                     </div>
                 )}
-                {results ? (
-                    <div className="space-y-4">
+                
+                {results && (
+                    <div className="space-y-6">
                         <div>
-                            <h2 className="font-bold text-lg text-white mb-3">Suggested Content</h2>
+                            <h2 className="font-bold text-lg text-white mb-3">Content Suggestions</h2>
                             <div className="space-y-2">
                                 {results.suggestedContent.map((item, i) => (
-                                    <Card key={i} className="bg-white/10 border-white/20">
+                                    <Card key={`content-${i}`} className="bg-white/10 border-white/20 transition-transform duration-200 hover:scale-105 cursor-pointer">
                                         <CardContent className="p-3">
                                             <p className="text-white">{item}</p>
                                         </CardContent>
@@ -73,26 +82,26 @@ export default function SearchOverlay({ show, onClose }: SearchOverlayProps) {
                             </div>
                         </div>
                         <div>
-                            <h2 className="font-bold text-lg text-white mb-3">Suggested Genres</h2>
+                            <h2 className="font-bold text-lg text-white mb-3">Genre Suggestions</h2>
                              <div className="flex flex-wrap gap-2">
                                 {results.suggestedGenres.map((item, i) => (
-                                    <div key={i} className="bg-primary/80 text-primary-foreground rounded-full px-3 py-1 text-sm font-semibold">{item}</div>
+                                    <button key={`genre-${i}`} onClick={() => handleGenreClick(item)} className="bg-primary/80 text-primary-foreground rounded-full px-3 py-1 text-sm font-semibold transition-transform duration-200 hover:scale-110 cursor-pointer">{item}</button>
                                 ))}
                             </div>
                         </div>
                     </div>
-                ) : !isLoading && (
-                    <>
-                        <h2 className="font-bold text-lg text-white mb-3">Browse Genres</h2>
-                        <div className="grid grid-cols-2 gap-3">
-                            {genres.map(genre => (
-                                <div key={genre.name} className={`aspect-video rounded-lg bg-gradient-to-br ${genre.gradient} flex items-center justify-center p-2 font-bold text-white text-shadow`}>
-                                    {genre.name}
-                                </div>
-                            ))}
-                        </div>
-                    </>
                 )}
+
+                <div className="mt-6">
+                    <h2 className="font-bold text-lg text-white mb-3">Browse Genres</h2>
+                    <div className="grid grid-cols-2 gap-3">
+                        {genres.map(genre => (
+                            <button key={genre.name} onClick={() => handleGenreClick(genre.name)} className={`aspect-video rounded-lg bg-gradient-to-br ${genre.gradient} flex items-center justify-center p-2 font-bold text-white text-shadow transition-transform duration-200 hover:scale-105 cursor-pointer`}>
+                                {genre.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
