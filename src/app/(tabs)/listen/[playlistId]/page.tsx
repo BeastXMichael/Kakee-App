@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { SoundWaveIcon } from '@/components/icons';
 
 const playlistDetails = {
     'shower-power': {
@@ -136,6 +137,19 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
     const [likedSongs, setLikedSongs] = useState<Record<string, boolean>>({});
     const [showSuggestionDialog, setShowSuggestionDialog] = useState(false);
     const [suggestionPlaylist, setSuggestionPlaylist] = useState<string | null>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [nowPlayingIndex, setNowPlayingIndex] = useState<number | null>(0);
+    
+    const togglePlay = (index?: number) => {
+        const newIndex = index !== undefined ? index : (nowPlayingIndex === null ? 0 : nowPlayingIndex);
+        if (isPlaying && newIndex === nowPlayingIndex) {
+            setIsPlaying(false);
+        } else {
+            setNowPlayingIndex(newIndex);
+            setIsPlaying(true);
+        }
+    };
+
 
     const handleLike = (songId: string) => {
         const isLiked = likedSongs[songId];
@@ -201,8 +215,14 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                     <h1 className="text-3xl font-extrabold mt-4">{details.title}</h1>
                     <p className="text-sm text-gray-400 mt-1">{details.description}</p>
                     <div className="flex items-center space-x-6 mt-4">
-                        <Button variant="ghost" size="icon" className="w-16 h-16 rounded-full bg-red-500 text-white hover:bg-red-600">
-                            <Play className="w-8 h-8" fill="currentColor" />
+                        <Button onClick={() => togglePlay()} variant="ghost" size="icon" className="w-16 h-16 rounded-full bg-red-500 text-white hover:bg-red-600">
+                            {isPlaying ? (
+                                <div className="playing h-8 w-8">
+                                    <SoundWaveIcon />
+                                </div>
+                            ) : (
+                                <Play className="w-8 h-8" fill="currentColor" />
+                            )}
                         </Button>
                         <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
                            <Heart className="w-7 h-7" />
@@ -217,16 +237,24 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                     <h2 className="font-bold text-xl mb-3">More For You</h2>
                     <div className="space-y-3">
                         {songs.map((song, index) => (
-                            <div key={song.id} className="flex items-center">
-                                <span className="text-lg font-bold w-6 text-gray-400">{index + 1}</span>
+                            <button key={song.id} className="w-full flex items-center text-left" onClick={() => togglePlay(index)}>
+                                <div className="w-6 text-lg font-bold text-gray-400 flex items-center justify-center">
+                                    {isPlaying && nowPlayingIndex === index ? (
+                                        <div className="playing h-4 w-4 text-red-500">
+                                            <SoundWaveIcon />
+                                        </div>
+                                    ) : (
+                                        <span>{index + 1}</span>
+                                    )}
+                                </div>
                                 <div className="flex-grow ml-3">
-                                    <p className="font-bold">{song.title}</p>
+                                    <p className={cn("font-bold", isPlaying && nowPlayingIndex === index && "text-red-500")}>{song.title}</p>
                                     <p className="text-xs text-gray-400">{song.artist} &bull; {Math.round(song.votes/1000)}k votes</p>
                                 </div>
-                                <Button variant="ghost" size="icon" onClick={() => handleLike(song.id)} className={cn("text-gray-500", likedSongs[song.id] && "text-red-500")}>
+                                <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleLike(song.id); }} className={cn("text-gray-500", likedSongs[song.id] && "text-red-500")}>
                                     <Heart className="w-6 h-6" fill={likedSongs[song.id] ? "currentColor" : "none"}/>
                                 </Button>
-                            </div>
+                            </button>
                         ))}
                     </div>
                 </div>
