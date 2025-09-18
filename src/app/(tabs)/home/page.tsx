@@ -1,5 +1,6 @@
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { BellIcon, SmileIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { ProfileAvatar } from '@/components/home/profile-avatar';
@@ -10,8 +11,8 @@ function RecentlyForYou() {
     const recommendations = { recommendedContent: ['Lofi Beats Radio', 'From HDB to CEO', 'Chill Mix', 'Indie Wave'] };
 
     const contentMap: { [key: string]: typeof PlaceHolderImages[0] | undefined } = {
-        'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'recently-1'),
-        'From HDB to CEO': PlaceHolderImages.find(img => img.id === 'recently-2'),
+        'Lofi Beats Radio': PlaceHolderImages.find(img => img.id === 'radio-2'),
+        'From HDB to CEO': PlaceHolderImages.find(img => img.id === 'recently-watched'),
         'Chill Mix': PlaceHolderImages.find(img => img.id === 'radio-1'),
         'Indie Wave': PlaceHolderImages.find(img => img.id === 'made-for-you-5'),
     };
@@ -48,7 +49,7 @@ function RecentlyForYou() {
 
 function LatestDrops() {
     const drops = [
-        { drop: PlaceHolderImages.find(img => img.id === 'drops-1'), title: "Ah Beng's Guide" },
+        { drop: PlaceHolderImages.find(img => img.id === 'new-drama-2'), title: "Ah Beng's Guide" },
         { drop: PlaceHolderImages.find(img => img.id === 'drops-2'), title: "New Lobang!" },
         { drop: PlaceHolderImages.find(img => img.id === 'drops-3'), title: "New Game!" },
         { drop: PlaceHolderImages.find(img => img.id === 'new-drama-1'), title: "Secret Kopi Stall" },
@@ -105,12 +106,12 @@ export default function HomePage() {
           <ProfileAvatar />
         </div>
         
-        <div className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
+        <Link href="/rewards" className="bg-white/60 p-3 rounded-full shadow-sm border border-white/30 backdrop-blur-sm flex items-center space-x-2 mb-4 flex-shrink-0 transition-transform duration-200 hover:scale-105 cursor-pointer">
             <KoinIcon />
             <span className="font-bold text-primary-foreground">1,250 Koins</span>
             <div className="flex-grow"></div>
-            <Button size="sm" className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</Button>
-        </div>
+            <div className="text-xs font-bold bg-gray-800 text-white px-3 py-1 rounded-full h-auto hover:bg-black transition">Redeem</div>
+        </Link>
 
         <div className="flex-grow flex flex-col space-y-6 pb-4">
           <RecentlyForYou />
