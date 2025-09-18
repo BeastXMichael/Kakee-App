@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -140,10 +141,6 @@ export default {
         'pulse-slow': {
           '0%, 100%': { opacity: '0.7' },
           '50%': { opacity: '1' },
-        },
-        confetti: {
-          '0%': { 'background-position': '0% 0%, 20% 25%, 40% 50%' },
-          '100%': { 'background-position': '100% 100%, 120% 125%, 140% 150%' },
         }
       },
       animation: {
@@ -159,10 +156,8 @@ export default {
         'grid-bg': 'grid-bg 2s linear infinite',
         'score-popup': 'score-popup 1s ease-out forwards',
         'laser-scan': 'laser-scan 2s ease-in-out infinite alternate',
-        'card-pulse': 'card-pulse 4s infinite ease-in-out',
         'shine': 'shine 1.5s infinite linear',
         'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'confetti': 'confetti 10s linear infinite',
       },
       boxShadow: {
         'primary': '0 0 15px 3px hsl(var(--primary) / 0.5)',
