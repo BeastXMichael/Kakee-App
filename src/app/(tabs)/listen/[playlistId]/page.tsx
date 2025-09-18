@@ -133,36 +133,17 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
     const details = playlistDetails[playlistId as keyof typeof playlistDetails] || playlistDetails['shower-power'];
     const { toast } = useToast();
     const [songs, setSongs] = useState<Song[]>(details.songs.sort((a, b) => b.votes - a.votes));
-    const [votedSongs, setVotedSongs] = useState<Record<string, boolean>>({});
+    const [likedSongs, setLikedSongs] = useState<Record<string, boolean>>({});
     const [showSuggestionDialog, setShowSuggestionDialog] = useState(false);
     const [suggestionPlaylist, setSuggestionPlaylist] = useState<string | null>(null);
 
-    const handleVote = async (songId: string) => {
-        if (votedSongs[songId]) return;
-
-        setVotedSongs(prev => ({ ...prev, [songId]: true }));
-        try {
-            const result = await voteForSong({ songId, playlistId, userId: 'user-general' });
-            if (result.success) {
-                setSongs(currentSongs =>
-                    currentSongs.map(song =>
-                        song.id === songId ? { ...song, votes: result.newVoteCount } : song
-                    ).sort((a, b) => b.votes - a.votes)
-                );
-                toast({
-                    title: "Vote Cast!",
-                    description: "You've successfully voted for this song.",
-                });
-            }
-        } catch (error) {
-            console.error("Failed to vote:", error);
-            toast({
-                title: "Vote Failed",
-                description: "Could not cast your vote. Please try again.",
-                variant: 'destructive',
-            });
-            setVotedSongs(prev => ({ ...prev, [songId]: false }));
-        }
+    const handleLike = (songId: string) => {
+        const isLiked = likedSongs[songId];
+        setLikedSongs(prev => ({ ...prev, [songId]: !isLiked }));
+        toast({
+            title: isLiked ? "Removed from Liked Songs" : "Added to Liked Songs",
+            description: `"${songs.find(s => s.id === songId)?.title}" has been ${isLiked ? 'removed from' : 'added to'} your Liked Songs playlist.`,
+        });
     };
     
     const handleSuggestSong = async () => {
@@ -242,8 +223,8 @@ export default function PlaylistPage({ params }: { params: { playlistId: string 
                                     <p className="font-bold">{song.title}</p>
                                     <p className="text-xs text-gray-400">{song.artist} &bull; {Math.round(song.votes/1000)}k votes</p>
                                 </div>
-                                <Button variant="ghost" size="icon" onClick={() => handleVote(song.id)} className={cn("text-gray-500", votedSongs[song.id] && "text-red-500")}>
-                                    <Heart className="w-6 h-6" fill={votedSongs[song.id] ? "currentColor" : "none"}/>
+                                <Button variant="ghost" size="icon" onClick={() => handleLike(song.id)} className={cn("text-gray-500", likedSongs[song.id] && "text-red-500")}>
+                                    <Heart className="w-6 h-6" fill={likedSongs[song.id] ? "currentColor" : "none"}/>
                                 </Button>
                             </div>
                         ))}
