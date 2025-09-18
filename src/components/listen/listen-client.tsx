@@ -61,7 +61,7 @@ export default function ListenClient({ trendingData }: ListenClientProps) {
     
     const trendingNow = trendingData.trendingContent.map((title, index) => ({
       id: `trending-${index+1}`,
-      title: index === 0 ? "Top Hits" : (index === 1 ? "Viral 50" : "Global Hits"),
+      title: index === 0 ? "Upbeat Pop" : (index === 1 ? "Chill Vibes" : "Global Grooves"),
       playing: title
     }));
 
